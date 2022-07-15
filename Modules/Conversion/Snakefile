@@ -1,0 +1,33 @@
+## Conversion module for the deconvolution benchmarking pipeline
+##
+## @zgr2788
+##
+##
+## Description:
+##
+##  Converts input .h5ad file to a Seurat object and saves the object as a
+## .rds file to be loaded back for the future steps of the pipeline
+##
+## TODO:
+##  - After I/O is sorted out, need to decide on where to put files and
+## adjust the script.
+##
+##  - Check accuracy of generation through sceasy, if not accurate switch
+## main to seuratdisk, which is more problematic.
+##
+##
+##
+##
+
+rule convertAnndata:
+    input:
+        "Input/{sample}.h5ad"
+
+    output:
+        "Scratch/Conversion/{sample}.rds"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        "Rscript Modules/Conversion/convert.R Input/{wildcards.sample}.h5ad"
