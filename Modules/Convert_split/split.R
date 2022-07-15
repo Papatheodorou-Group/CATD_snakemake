@@ -9,6 +9,7 @@ partitionProp <- 0.5 #Can be edited later
 
 filename <- commandArgs(trailingOnly = TRUE)
 seuratObj <- readRDS(filename)
+filename <- sub("Scratch/Convert_split", "Output/Cell_splits", filename)
 
 splitSize <- floor(partitionProp * nrow(seuratObj@meta.data)) #Get the split size
 idxList <- seq_len(nrow(seuratObj@meta.data)) #List of all indices

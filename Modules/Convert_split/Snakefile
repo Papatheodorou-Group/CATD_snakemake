@@ -19,6 +19,7 @@
 ##
 ##
 
+#Rule for converting anndata to seurat object
 rule convertAnndata:
     input:
         "Input/{sample}.h5ad"
@@ -31,3 +32,20 @@ rule convertAnndata:
 
     shell:
         "Rscript Modules/Convert_split/convert.R Input/{wildcards.sample}.h5ad"
+
+
+
+#Rule for splitting seurat object to be sent to different workflows
+rule splitCells:
+    input:
+        "Scratch/Convert_split/{sample}.rds"
+
+    output:
+        "Output/Cell_splits/{sample}_gen.rds",
+        "Output/Cell_splits/{sample}_C0.rds"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        "Rscript Modules/Convert_split/split.R Scratch/Convert_split/{wildcards.sample}.rds"
