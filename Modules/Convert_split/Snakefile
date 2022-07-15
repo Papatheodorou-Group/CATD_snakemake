@@ -24,10 +24,10 @@ rule convertAnndata:
         "Input/{sample}.h5ad"
 
     output:
-        "Scratch/Conversion/{sample}.rds"
+        "Scratch/Convert_split/{sample}.rds"
 
     conda:
         "env.yaml"
 
     shell:
-        "Rscript Modules/Conversion/convert.R Input/{wildcards.sample}.h5ad"
+        "Rscript Modules/Convert_split/convert.R Input/{wildcards.sample}.h5ad"
