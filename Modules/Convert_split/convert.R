@@ -4,10 +4,10 @@
 
 
 
-filename <- sub("Input/", "", commandArgs(trailingOnly = TRUE))
+filename <- commandArgs(trailingOnly = TRUE)
 
 library(devtools)
 devtools::install_github('cellgeni/sceasy')
 library(sceasy)
 library(Seurat)
-sceasy::convertFormat(paste0("Input/", filename), from = "anndata", to = "seurat", outFile = paste0("Scratch/Convert_split/", sub(".h5ad", "", filename), ".rds"))
+sceasy::convertFormat(filename, from = "anndata", to = "seurat", outFile = paste0(sub(".h5ad", "", filename), ".rds"))
