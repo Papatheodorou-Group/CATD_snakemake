@@ -35,9 +35,10 @@ rule generatePsuedobulks:
         'Rscript Modules/Psuedobulk/randomGen.R Input/Cell_splits/{wildcards.sample}_gen.rds 1 1000 5'
 
 
+
 rule generateSeededPsuedobulks:
     input:
-        'Input/Cell_splits/{sample}_gen.rds'
+        'Input/Cell_splits/{sample}_gen_seeded.rds'
 
     output:
         'Input/Psuedobulks/{sample}_pbulks_seeded.rds',

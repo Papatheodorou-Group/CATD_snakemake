@@ -9,7 +9,7 @@
 ## .rds file to be loaded back for the future steps of the pipeline
 ##
 ## TODO:
-## - Add seeded version for split  
+## - Add seeded version for split
 ##
 ##
 ##
@@ -47,4 +47,21 @@ rule splitCells:
         "env.yaml"
 
     shell:
-        "Rscript Modules/Convert_split/split.R Input/{wildcards.sample}.rds"
+        "Rscript Modules/Convert_split/split.R Input/{wildcards.sample}_seurat.rds"
+
+
+
+#Same as above, but runs the seeded script
+rule splitCellsSeeded:
+    input:
+        "Input/{sample}_seurat.rds"
+
+    output:
+        "Input/Cell_splits/{sample}_gen_seeded.rds",
+        "Input/Cell_splits/{sample}_C0_seeded.rds"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        "Rscript Modules/Convert_split/split_seeded.R Input/{wildcards.sample}_seurat.rds"
