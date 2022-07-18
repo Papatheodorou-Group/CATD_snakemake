@@ -18,7 +18,7 @@ filename <- sub("Input/Cell_splits", "Input/Psuedobulks", filename)
 
 #Switch modes
 T_df <- data.frame(row.names = 1:nrow(T_prep@assays$RNA@counts))
-P_df <- data.frame(row.names = levels(as.factor(T_prep@meta.data$cell_type)))
+P_df <- data.frame(row.names = levels(as.factor(T_prep@meta.data$cellType)))
 
 switch(mode,
 '1'={
@@ -33,7 +33,7 @@ switch(mode,
     whichCols <- sample(seq_len(ncol(T_prep@assays$RNA@counts)), cellCount, replace = TRUE)
 
     #Get cell types corresponding to selected cells
-    whichTypes <- T_prep@meta.data$cell_type[whichCols]
+    whichTypes <- T_prep@meta.data$cellType[whichCols]
 
     #Get picked columns and sum over them
     T <- rowSums(T_prep@assays$RNA@counts[,whichCols])
