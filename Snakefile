@@ -1,6 +1,6 @@
 include: "Modules/Convert_split/Snakefile"
+include: "Modules/Psuedobulk/Snakefile"
 
 rule all:
     input:
-        "Input/Cell_splits/sciPlex1_C0.rds",
-        "Input/Cell_splits/sciPlex1_gen.rds"
+        "Input/Psuedobulks/sciPlex3_MCF7_Targets45toEND_and_vehicle_pbulks.rds",

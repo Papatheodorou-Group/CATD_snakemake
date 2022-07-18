@@ -11,13 +11,16 @@ mode <- args[2] #Mode to be used
 cellCount <- args[3] #How many cells to pool for each psuedobulk
 nSamples <- args[4] #How many samples to generate
 T_prep <- readRDS(filename)
+filename <- sub("Input/Cell_splits", "Input/Psuedobulks", filename)
+
 
 
 
 #Switch modes
+samplesDf <- data.frame(row.names = 1:nrow(T_prep@assays$RNA@counts))
 switch(mode,
 '1'={
-  samplesDf <- data.frame(row.names = 1:nrow(T_prep@assays$RNA@counts))
+
 
   for (i in 1:nSamples)
   {
@@ -36,9 +39,6 @@ switch(mode,
 
   }
 
-  #Debug - remove later
-  write.csv(samplesDf, "samples.csv")
-
 
 },
 
@@ -47,3 +47,10 @@ switch(mode,
 
 }
 )
+
+
+#Debug - remove later
+write.csv(samplesDf, "pbulks.csv")
+
+#Save matrix to rds
+saveRDS(samplesDf, file = sub("_gen.rds", "_pbulks.rds", filename))

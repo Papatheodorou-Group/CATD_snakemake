@@ -1,20 +1,33 @@
-## Conversion module for the deconvolution benchmarking pipeline
+## Psuedobulk generation module for the deconvolution benchmarking pipeline
 ##
 ## @zgr2788
 ##
 ##
 ## Description:
 ##
+## Takes a SeuratObject as input ('{input}_gen.rds' as part of pipeline) and
+## generates psuedobulks with the given parameters.
+##
+## TODO:
+## - Add parameterization
+## - Add mode 2
+## - Add all parameters to config
 ##
 ##
 ##
 ##
 ##
 ##
-##
-##
-##
-##
-##
-##
-##
+
+rule generatePsuedobulks:
+    input:
+        'Input/Cell_splits/{sample}_gen.rds'
+
+    output:
+        'Input/Psuedobulks/{sample}_pbulks.rds'
+
+    conda:
+        "env.yaml"
+
+    shell:
+        'Rscript Modules/Psuedobulk/randomGen.R Input/Cell_splits/{wildcards.sample}_gen.rds 1 1000 5'
