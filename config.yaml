@@ -1,0 +1,5 @@
+#pbulk parameters below
+pbulkParam:
+  pbulkMode: 1  #Different mode for building pbulks
+  cellCount: 100000  #How many cells should be used to create a bulk sample
+  nSamples: 6  #How many different samples should be generated
