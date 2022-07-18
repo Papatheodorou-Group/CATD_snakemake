@@ -9,11 +9,10 @@
 ## .rds file to be loaded back for the future steps of the pipeline
 ##
 ## TODO:
-##  - After I/O is sorted out, need to decide on where to put files and
-## adjust the script.
+## - Add seeded version for split  
 ##
-##  - Check accuracy of generation through sceasy, if not accurate switch
-## main to seuratdisk, which is more problematic.
+##
+##
 ##
 ##
 ##

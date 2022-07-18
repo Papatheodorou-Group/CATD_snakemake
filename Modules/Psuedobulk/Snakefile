@@ -6,14 +6,15 @@
 ## Description:
 ##
 ## Takes a SeuratObject as input ('{input}_gen.rds' as part of pipeline) and
-## generates psuedobulks with the given parameters.
-##
+## generates psuedobulks with the given parameters. If reproducability is
+## desired, the seeded version of the rule should be used, which is essentially
+## the same code with a seed of '42'.
 ## TODO:
 ## - Add parameterization
 ## - Add mode 2
 ## - Add all parameters to config
-## - Add proportions
-##
+## - Add proportions - DONE
+## - Add seeded/unseeded - DONE
 ##
 ##
 ##
@@ -32,3 +33,18 @@ rule generatePsuedobulks:
 
     shell:
         'Rscript Modules/Psuedobulk/randomGen.R Input/Cell_splits/{wildcards.sample}_gen.rds 1 1000 5'
+
+
+rule generateSeededPsuedobulks:
+    input:
+        'Input/Cell_splits/{sample}_gen.rds'
+
+    output:
+        'Input/Psuedobulks/{sample}_pbulks_seeded.rds',
+        'Input/Psuedobulks/{sample}_props_seeded.rds'
+
+    conda:
+        "env.yaml"
+
+    shell:
+        'Rscript Modules/Psuedobulk/randomGen_seeded.R Input/Cell_splits/{wildcards.sample}_gen.rds 1 1000 5'
