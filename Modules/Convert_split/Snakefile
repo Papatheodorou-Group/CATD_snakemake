@@ -25,7 +25,7 @@ rule convertAnndata:
         "Input/{sample}.h5ad"
 
     output:
-        "Input/{sample}.rds"
+        "Input/{sample}_seurat.rds"
 
     conda:
         "env.yaml"
@@ -38,7 +38,7 @@ rule convertAnndata:
 #Rule for splitting seurat object to be sent to different workflows
 rule splitCells:
     input:
-        "Input/{sample}.rds"
+        "Input/{sample}_seurat.rds"
 
     output:
         "Input/Cell_splits/{sample}_gen.rds",

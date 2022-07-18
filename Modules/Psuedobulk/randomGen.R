@@ -13,11 +13,13 @@ nSamples <- args[4] #How many samples to generate
 T_prep <- readRDS(filename)
 filename <- sub("Input/Cell_splits", "Input/Psuedobulks", filename)
 
-
+#set.seed(42)
 
 
 #Switch modes
-samplesDf <- data.frame(row.names = 1:nrow(T_prep@assays$RNA@counts))
+T_df <- data.frame(row.names = 1:nrow(T_prep@assays$RNA@counts))
+P_df <- data.frame(row.names = levels(as.factor(T_prep@meta.data$cell_type)))
+
 switch(mode,
 '1'={
 
@@ -30,11 +32,18 @@ switch(mode,
     #Classic random generation, pick cells (columns) randomly with replacement
     whichCols <- sample(seq_len(ncol(T_prep@assays$RNA@counts)), cellCount, replace = TRUE)
 
+    #Get cell types corresponding to selected cells
+    whichTypes <- T_prep@meta.data$cell_type[whichCols]
+
     #Get picked columns and sum over them
     T <- rowSums(T_prep@assays$RNA@counts[,whichCols])
 
-    #Append the bulk to dataframe
-    samplesDf[identifierString] <- T
+    #Get picked cell types and turn counts into proportions
+    P <- table(whichTypes) / as.numeric(cellCount)
+
+    #Append the bulk to dataframes
+    T_df[identifierString] <- T
+    P_df[identifierString] <- P
 
 
   }
@@ -50,7 +59,9 @@ switch(mode,
 
 
 #Debug - remove later
-write.csv(samplesDf, "pbulks.csv")
+write.csv(T_df, "pbulks.csv")
+write.csv(P_df, "props.csv")
 
 #Save matrix to rds
-saveRDS(samplesDf, file = sub("_gen.rds", "_pbulks.rds", filename))
+saveRDS(T_df, file = sub("_gen.rds", "_pbulks.rds", filename))
+saveRDS(P_df, file = sub("_gen.rds", "_props.rds", filename))

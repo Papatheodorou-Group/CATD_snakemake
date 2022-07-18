@@ -19,5 +19,5 @@ seuratObj@meta.data$splitGroup <- as.integer(idxList %in% sample(idxList, size =
 seuratSplit <- SplitObject(seuratObj, split.by = 'splitGroup')
 
 #Save the splits into outputs
-saveRDS(seuratSplit[[1]], file = sub(".rds", "_gen.rds", filename)) #Sent to pseudobulk generation workflow
-saveRDS(seuratSplit[[2]], file = sub(".rds", "_C0.rds", filename)) #Sent to ref/marker generation workflow
+saveRDS(seuratSplit[[1]], file = sub("_seurat.rds", "_gen.rds", filename)) #Sent to pseudobulk generation workflow
+saveRDS(seuratSplit[[2]], file = sub("_seurat.rds", "_C0.rds", filename)) #Sent to ref/marker generation workflow

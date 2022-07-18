@@ -12,7 +12,7 @@
 ## - Add parameterization
 ## - Add mode 2
 ## - Add all parameters to config
-##
+## - Add proportions
 ##
 ##
 ##
@@ -24,7 +24,8 @@ rule generatePsuedobulks:
         'Input/Cell_splits/{sample}_gen.rds'
 
     output:
-        'Input/Psuedobulks/{sample}_pbulks.rds'
+        'Input/Psuedobulks/{sample}_pbulks.rds',
+        'Input/Psuedobulks/{sample}_props.rds'
 
     conda:
         "env.yaml"
