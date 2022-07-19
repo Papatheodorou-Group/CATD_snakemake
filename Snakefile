@@ -1,3 +1,4 @@
+configfile: 'config.yaml'
 include: "Modules/Convert_split/Snakefile"
 include: "Modules/Psuedobulk/Snakefile"
 

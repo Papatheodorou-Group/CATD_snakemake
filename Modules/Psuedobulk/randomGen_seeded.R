@@ -16,8 +16,9 @@ tryCatch(
     sampleCT <- as.numeric(args[6])
   }
   ,
-  error= function(err){
-    print("Less than expected args for proportional sampling, running in random...")
+  warning= function(warn){
+    message("Warning: less than expected args for proportional sampling, running in random sampling...")
+    mode <<- '1' #Altering global variable mode here
   }
 )
 

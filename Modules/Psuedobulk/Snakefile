@@ -28,11 +28,18 @@ rule generatePsuedobulks:
         'Input/Psuedobulks/{sample}_pbulks.rds',
         'Input/Psuedobulks/{sample}_props.rds'
 
+    params:
+        mode = config['pbulkParam']['pbulkMode'],
+        cellCount = config['pbulkParam']['cellCount'],
+        nSamples = config['pbulkParam']['nSamples'],
+        propVar = config['pbulkParam']['propVar'],
+        sampleCT = config['pbulkParam']['sampleCT']
+
     conda:
         "env.yaml"
 
     shell:
-        'Rscript Modules/Psuedobulk/randomGen.R Input/Cell_splits/{wildcards.sample}_gen.rds 1 1000 5'
+        'Rscript Modules/Psuedobulk/randomGen.R Input/Cell_splits/{wildcards.sample}_gen.rds {params}'
 
 
 
@@ -44,8 +51,15 @@ rule generateSeededPsuedobulks:
         'Input/Psuedobulks/{sample}_pbulks_seeded.rds',
         'Input/Psuedobulks/{sample}_props_seeded.rds'
 
+    params:
+        mode = config['pbulkParam']['pbulkMode'],
+        cellCount = config['pbulkParam']['cellCount'],
+        nSamples = config['pbulkParam']['nSamples'],
+        propVar = config['pbulkParam']['propVar'],
+        sampleCT = config['pbulkParam']['sampleCT']
+
     conda:
         "env.yaml"
 
     shell:
-        'Rscript Modules/Psuedobulk/randomGen_seeded.R Input/Cell_splits/{wildcards.sample}_gen.rds 1 1000 5'
+        'Rscript Modules/Psuedobulk/randomGen_seeded.R Input/Cell_splits/{wildcards.sample}_gen.rds {params}'
