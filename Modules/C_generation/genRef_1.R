@@ -17,7 +17,7 @@ C_1 <- data.frame(row.names = rownames(C_0@assays$RNA@counts))
 #Group all celltype rowsums
 for (i in 1:length(levels(C_0@meta.data$cellType)))
 {
-    C_1[names(cellSplits[i])] <- rowSums(cellSplits[[i]]@assays$RNA@counts)
+    C_1[names(cellSplits[i])] <- rowMeans(cellSplits[[i]]@assays$RNA@counts)
 }
 
 #Debug

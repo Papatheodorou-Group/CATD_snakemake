@@ -4,17 +4,34 @@
 ##
 ##
 ## Description:
+## Generates single cell references for supervised / semi-supervised
+## deconvolution methods. Since the methods require different types, the
+## generated references also vary in type. The following convention is
+## used:
+##
+##
+##      Type 0: Single cell expression matrix (C0)
+##      Type 1: Sum of gene raw counts (rows) by cell types (columns) (C1)
+##      Type 2: Marker genes list with respect to cell types (C2)
 ##
 ##
 ##
 ##
 ##
-##
-##
-##
-##
-##
-##
-##
-##
-## 
+
+rule generateReferences:
+    input:
+        'Input/Cell_splits/{sample}_C0.rds'
+
+    output:
+        'Input/References/{sample}_C1.rds',
+        'Input/References/{sample}_C2.rds'
+
+    conda:
+        'env.yaml'
+
+    shell:
+        """
+        Rscript Modules/C_generation/genRef_1.R {input}
+        Rscript Modules/C_generation/genRef_2.R {input}
+        """

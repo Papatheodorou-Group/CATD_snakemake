@@ -5,16 +5,12 @@
 library(Seurat)
 
 #Read data
-args <- commandArgs(trailingOnly = TRUE)
-filename <- args[1]
-topMarkers <- as.numeric(args[2]) #Useless as of now
+filename <- commandArgs(trailingOnly = TRUE)
 C_0 <- readRDS(filename)
 filename <- sub("Input/Cell_splits", "Input/References", filename)
 
 #Port cell types to Idents
 Idents(C_0) <- C_0@meta.data$cellType
-
-#Do DGE analysis on marker groups
 
 #Find cell type specific markers
 markers <- FindAllMarkers(C_0, min.pct = 0.5, logfc.threshold = log(2), test.use = "wilcox")
