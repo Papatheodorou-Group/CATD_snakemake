@@ -9,12 +9,11 @@
 ## generates psuedobulks with the given parameters. If reproducability is
 ## desired, the seeded version of the rule should be used, which is essentially
 ## the same code with a seed of '42'.
-## TODO:
-## - Add parameterization
-## - Add mode 2
-## - Add all parameters to config
-## - Add proportions - DONE
-## - Add seeded/unseeded - DONE
+## :
+##
+##
+##
+##
 ##
 ##
 ##

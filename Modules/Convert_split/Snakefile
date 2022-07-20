@@ -8,8 +8,9 @@
 ##  Converts input .h5ad file to a Seurat object and saves the object as a
 ## .rds file to be loaded back for the future steps of the pipeline
 ##
-## TODO:
-## - Add seeded version for split
+## :
+##
+##
 ##
 ##
 ##
