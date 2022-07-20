@@ -11,11 +11,11 @@
 ##
 ##
 ##      Type 0: Single cell expression matrix (C0)
-##      Type 1: Sum of gene raw counts (rows) by cell types (columns) (C1)
+##
+##      Type 1: Mean of gene raw counts (rows) by cell types (columns) (C1)
+##      -also at this step, refVar table (Standard deviations of rows by cell types)
+##
 ##      Type 2: Marker genes list with respect to cell types (C2)
-##
-##
-##
 ##
 ##
 
@@ -25,7 +25,8 @@ rule generateReferences:
 
     output:
         'Input/References/{sample}_C1.rds',
-        'Input/References/{sample}_C2.rds'
+        'Input/References/{sample}_C2.rds',
+        'Input/References/{sample}_refVar.rds'
 
     conda:
         'env.yaml'

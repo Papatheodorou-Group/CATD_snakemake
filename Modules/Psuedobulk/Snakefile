@@ -9,7 +9,7 @@
 ## generates psuedobulks with the given parameters. If reproducability is
 ## desired, the seeded version of the rule should be used, which is essentially
 ## the same code with a seed of '42'.
-## :
+## 
 ##
 ##
 ##

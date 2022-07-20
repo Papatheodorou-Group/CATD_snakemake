@@ -43,4 +43,5 @@ rule normalizeMatrices:
     input:
         outFile,
         'Input/References/Hrvatin_afteint_C1.rds',
-        'Input/References/Hrvatin_afteint_C2.rds'
+        'Input/References/Hrvatin_afteint_C2.rds',
+        'Input/References/Hrvatin_afteint_refVar.rds'
