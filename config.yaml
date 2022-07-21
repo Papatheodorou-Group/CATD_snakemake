@@ -6,7 +6,7 @@ Input:
 
 
 #seeding parameter - to be implemented
-seededRun: 1 #Use if you want this run of the pipeline to be reproducible
+seededRun: 0 #Use if you want this run of the pipeline to be reproducible
 
 
 
@@ -39,6 +39,6 @@ refgenDgeParam:
 
 #params for scale_transform
 stParam:
-  scale: none
-  transform: none
-  scaleFirst: 0 #1 = scale first, 0 = transform first
+  scale: row
+  transform: row
+  scaleFirst: 1 #1 = scale first, 0 = transform first
