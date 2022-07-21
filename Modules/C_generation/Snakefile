@@ -16,8 +16,8 @@
 ##      -also at this step, refVar table (Standard deviations of rows by cell types)
 ##
 ##      Type 2: Marker genes list with respect to cell types (C2)
-##
-##
+## TODO:
+## -Add seeded version
 
 rule generateReferences:
     input:
@@ -27,7 +27,7 @@ rule generateReferences:
         'Input/References/{sample}_C1.rds',
         'Input/References/{sample}_C2.rds',
         'Input/References/{sample}_refVar.rds',
-        moved = 'Input/References/{sample}_C0.rds'
+        'Input/References/{sample}_C0.rds'
 
     params:
         test_1 = config['refgenDgeParam']['test_1'],
@@ -40,5 +40,4 @@ rule generateReferences:
         """
         Rscript Modules/C_generation/genRef_1.R {input}
         Rscript Modules/C_generation/genRef_2.R {input} {params}
-        cp {input} {output.moved}
         """

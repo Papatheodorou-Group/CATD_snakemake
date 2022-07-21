@@ -24,6 +24,9 @@ for (i in 1:length(levels(C_0@meta.data$cellType)))
     refVar[names(cellSplits[i])] <- sparseMatrixStats::rowSds(cellSplits[[i]]@assays$RNA@counts)
 }
 
+#Write sc-counts matrix as separate object to save memory later on
+C_counts <- C_0@assays$RNA@counts
+
 #Debug
 write.csv(C_1, "C_1.csv")
 write.csv(refVar, "C_refVar.csv")
@@ -31,3 +34,4 @@ write.csv(refVar, "C_refVar.csv")
 #Write to RDS
 saveRDS(C_1, file = sub("_C0.rds", "_C1.rds", filename ))
 saveRDS(refVar, file = sub("_C0.rds", "_refVar.rds", filename ))
+saveRDS(C_counts, file = filename)
