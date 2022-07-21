@@ -39,9 +39,10 @@ else:
 outFile.append(pbulks)
 outFile.append(props)
 
-rule normalizeMatrices:
+rule all:
     input:
         outFile,
         'Input/References/Hrvatin_afteint_C1.rds',
         'Input/References/Hrvatin_afteint_C2.rds',
-        'Input/References/Hrvatin_afteint_refVar.rds'
+        'Input/References/Hrvatin_afteint_refVar.rds',
+        'Input/References/Hrvatin_afteint_C0.rds'

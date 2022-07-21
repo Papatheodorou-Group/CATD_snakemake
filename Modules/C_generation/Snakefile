@@ -26,7 +26,8 @@ rule generateReferences:
     output:
         'Input/References/{sample}_C1.rds',
         'Input/References/{sample}_C2.rds',
-        'Input/References/{sample}_refVar.rds'
+        'Input/References/{sample}_refVar.rds',
+        moved = 'Input/References/{sample}_C0.rds'
 
     params:
         test_1 = config['refgenDgeParam']['test_1'],
@@ -39,4 +40,5 @@ rule generateReferences:
         """
         Rscript Modules/C_generation/genRef_1.R {input}
         Rscript Modules/C_generation/genRef_2.R {input} {params}
+        cp {input} {output.moved}
         """
