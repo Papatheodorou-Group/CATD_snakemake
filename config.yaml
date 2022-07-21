@@ -1,7 +1,8 @@
-#Input file name - to be implemented
+#Input file name - to be implemented fully later on
 Input:
   pbulk: Input/Psuedobulks/Hrvatin_afteint
   cgen: Input/References/Hrvatin_afteint
+  normtab: Input/Normalized_tables/Hrvatin_afteint
 
 
 
