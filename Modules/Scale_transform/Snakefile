@@ -18,3 +18,27 @@
 ##
 ##
 ##
+
+rule scaleTransform:
+    input:
+        C = 'Input/References/{sample}_C0.rds',
+        T = 'Input/Psuedobulks/{sample}_pbulks.rds'
+
+    output:
+        'Input/Normalized_tables/{sample}_pbulks_scaled_transformed.rds',
+        'Input/Normalized_tables/{sample}_C0_scaled_transformed.rds'
+
+    conda:
+        'env.yaml'
+
+    params:
+        scaleTMethod = config['stParam']['scaleT']
+        scaleCMethod = config['stParam']['scaleC']
+        transMethod = config['stParam']['transform']
+
+    shell:
+    """
+    Rscript Modules/Scale_transform/scaleTable_T.R {input.T} {params.scaleTMethod}
+    Rscript Modules/Scale_transform/scaleTable_C.R {input.C} {params.scaleCMethod}
+    Rscript Modules/Scale_transform/transformTables.R Input/Normalized_tables/{input.T}_scaled.rds Input/Normalized_tables/{input.c}_scaled.rds {params.transMethod}
+    """

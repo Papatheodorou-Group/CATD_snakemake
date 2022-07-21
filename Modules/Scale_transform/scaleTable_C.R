@@ -10,6 +10,12 @@ filename_C <- args[1]
 method <- args[2]
 
 C <- readRDS(filename_C)
+filename_C<- sub("Input/References", "Input/Normalized_tables", filename_C)
+
+
+#debug on local to reduce dimensions, delete later
+C <- C[,1:500]
+
 
 #Preprocess matrices to avoid errors
 
@@ -121,7 +127,4 @@ switch(method,
 )
 
 #Save transformed tables
-saveRDS(C, "C_scaled.rds")
-
-#Debug
-write.csv(C, "C_scaled.csv")
+saveRDS(C, sub(".rds", "_scaled.rds",filename_C))

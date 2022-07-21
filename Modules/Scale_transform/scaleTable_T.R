@@ -13,7 +13,7 @@ T <- readRDS(filename_T)
 filename_T <- sub("Input/Psuedobulks", "Input/Normalized_tables", filename_T)
 
 
-#Preprocess matrices to avoid errors
+#Preprocess matrices to avoid errorshaving multiple snakefiles in one directory
 
 #Only get rows where there is at least one cell with a count
 T <- T[rowSums(T) != 0,]
