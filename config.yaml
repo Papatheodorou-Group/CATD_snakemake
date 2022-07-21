@@ -43,4 +43,4 @@ stParam:
   scaleC: row
   scaleT: row
   transform: sqrt
-  scaleFirst: 1 #1 = scale first, 0 = transform first
+  scaleFirst: 0 #1 = scale first, 0 = transform first

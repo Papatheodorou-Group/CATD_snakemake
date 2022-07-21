@@ -62,7 +62,7 @@ else:
 
     else:
             c0 = c0 + '_transformed_scaled.rds'
-            pbulks = pbulks + 'transformed_scaled.rds'
+            pbulks = pbulks + '_transformed_scaled.rds'
 
 
 outFile.append(pbulks)
@@ -72,7 +72,7 @@ outFile.append(c1)
 outFile.append(c2)
 outFile.append(refvar)
 
-rule prepModule:
+rule endPrep:
     input:
         outFile
 

@@ -69,3 +69,59 @@ rule transformScale:
     Rscript Modules/Scale_transform/scaleTable_T.R Input/Normalized_tables/{wildcards.sample}_pbulks_transformed.rds {params.scaleTMethod}
     Rscript Modules/Scale_transform/scaleTable_C.R Input/Normalized_tables/{wildcards.sample}_C0_transformed.rds {params.scaleCMethod}
         """
+
+
+#######################
+#######################
+#######################
+
+#Same rules with seeded keyword
+rule scaleTransformSeeded:
+    input:
+        C_table = 'Input/References/{sample}_C0_seeded.rds',
+        T_table = 'Input/Psuedobulks/{sample}_pbulks_seeded.rds'
+
+    output:
+        'Input/Normalized_tables/{sample}_pbulks_seeded_scaled_transformed.rds',
+        'Input/Normalized_tables/{sample}_C0_seeded_scaled_transformed.rds'
+
+    conda:
+        'env.yaml'
+
+    params:
+        scaleTMethod = config['stParam']['scaleT'],
+        scaleCMethod = config['stParam']['scaleC'],
+        transMethod = config['stParam']['transform']
+
+    shell:
+        """
+    Rscript Modules/Scale_transform/scaleTable_T.R {input.T_table} {params.scaleTMethod}
+    Rscript Modules/Scale_transform/scaleTable_C.R {input.C_table} {params.scaleCMethod}
+    Rscript Modules/Scale_transform/transformTables.R Input/Normalized_tables/{wildcards.sample}_pbulks_seeded_scaled.rds Input/Normalized_tables/{wildcards.sample}_C0_seeded_scaled.rds {params.transMethod}
+        """
+
+
+#First transform then scale
+rule transformScaleSeeded:
+    input:
+        C_table = 'Input/References/{sample}_C0_seeded.rds',
+        T_table = 'Input/Psuedobulks/{sample}_pbulks_seeded.rds'
+
+    output:
+        'Input/Normalized_tables/{sample}_pbulks_seeded_transformed_scaled.rds',
+        'Input/Normalized_tables/{sample}_C0_seeded_transformed_scaled.rds'
+
+    conda:
+        'env.yaml'
+
+    params:
+        scaleTMethod = config['stParam']['scaleT'],
+        scaleCMethod = config['stParam']['scaleC'],
+        transMethod = config['stParam']['transform']
+
+    shell:
+        """
+    Rscript Modules/Scale_transform/transformTables.R {input.T_table} {input.C_table} {params.transMethod}
+    Rscript Modules/Scale_transform/scaleTable_T.R Input/Normalized_tables/{wildcards.sample}_pbulks_seeded_transformed.rds {params.scaleTMethod}
+    Rscript Modules/Scale_transform/scaleTable_C.R Input/Normalized_tables/{wildcards.sample}_C0_seeded_transformed.rds {params.scaleCMethod}
+        """
