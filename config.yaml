@@ -1,8 +1,14 @@
 #Input file name - to be implemented
-Input: Input/Psuedobulks/Hrvatin_afteint
+Input:
+  pbulk: Input/Psuedobulks/Hrvatin_afteint
+  cgen: Input/References/Hrvatin_afteint
+
+
 
 #seeding parameter - to be implemented
-seededRun: 0 #Use if you want this run of the pipeline to be reproducible
+seededRun: 1 #Use if you want this run of the pipeline to be reproducible
+
+
 
 #pbulk parameters below
 pbulkParam:
@@ -12,8 +18,9 @@ pbulkParam:
   propVar: -1 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
   sampleCT: 1 #Sampling for cell types allowed or not (1 or 0) (EFFECTIVE IN MODE 2 ONLY)
 
-#tests to be used for refGen
 
+
+#tests to be used for refGen
 #Available tests in Seurat:
 #"wilcox"
 #"bimod"
@@ -27,3 +34,11 @@ pbulkParam:
 refgenDgeParam:
     test_1: 'wilcox'
     test_2: 'bimod'
+
+
+
+#params for scale_transform
+stParam:
+  scale: none
+  transform: none
+  scaleFirst: 0 #1 = scale first, 0 = transform first

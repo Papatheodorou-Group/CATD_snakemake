@@ -2,8 +2,8 @@
 ##
 ## @zgr2788
 
-library(Seurat)
-library(sparseMatrixStats)
+suppressMessages(library(Seurat))
+suppressMessages(library(sparseMatrixStats))
 
 #Read data
 filename <- commandArgs(trailingOnly = TRUE)
@@ -32,6 +32,6 @@ write.csv(C_1, "C_1.csv")
 write.csv(refVar, "C_refVar.csv")
 
 #Write to RDS
-saveRDS(C_1, file = sub("_C0.rds", "_C1.rds", filename ))
-saveRDS(refVar, file = sub("_C0.rds", "_refVar.rds", filename ))
+saveRDS(C_1, file = sub("_C0", "_C1", filename ))
+saveRDS(refVar, file = sub("_C0", "_refVar", filename ))
 saveRDS(C_counts, file = filename)

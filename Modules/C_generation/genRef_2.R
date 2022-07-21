@@ -2,10 +2,10 @@
 ##
 ## @zgr2788
 
-library(Seurat)
-library(future)
-library(MAST)
-library(DESeq2)
+suppressMessages(library(Seurat))
+suppressMessages(library(future))
+suppressMessages(library(MAST))
+suppressMessages(library(DESeq2))
 
 plan('multisession', workers = 5) #Paralellism
 
@@ -44,4 +44,4 @@ colnames(markers) <- c("log2FC", "cellType", "geneName")
 write.csv(markers, "C_2.csv")
 
 #Write to rds
-saveRDS(markers, file = sub("_C0.rds", "_C2.rds", filename ))
+saveRDS(markers, file = sub("_C0", "_C2", filename ))

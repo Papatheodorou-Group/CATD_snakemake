@@ -26,23 +26,33 @@ include: "Modules/C_generation/Snakefile"
 
 
 outFile = list()
-inFile = config['Input']
+inP = config['Input']['pbulk']
+inC = config['Input']['cgen']
 
 if config['seededRun'] == False:
-    pbulks = inFile + '_pbulks.rds'
-    props = inFile + '_props.rds'
+    pbulks = inP + '_pbulks.rds'
+    props = inP + '_props.rds'
+    c0 = inC + '_C0.rds'
+    c1 = inC + '_C1.rds'
+    c2 = inC + '_C2.rds'
+    refvar = inC + '_refVar.rds'
+
 
 else:
-    pbulks = inFile + '_pbulks_seeded.rds'
-    props = inFile + '_props_seeded.rds'
+    pbulks = inP + '_pbulks_seeded.rds'
+    props = inP + '_props_seeded.rds'
+    c0 = inC + '_C0_seeded.rds'
+    c1 = inC + '_C1_seeded.rds'
+    c2 = inC + '_C2_seeded.rds'
+    refvar = inC + '_refVar_seeded.rds'
 
 outFile.append(pbulks)
 outFile.append(props)
+outFile.append(c0)
+outFile.append(c1)
+outFile.append(c2)
+outFile.append(refvar)
 
 rule all:
     input:
         outFile,
-        'Input/References/Hrvatin_afteint_C1.rds',
-        'Input/References/Hrvatin_afteint_C2.rds',
-        'Input/References/Hrvatin_afteint_refVar.rds',
-        'Input/References/Hrvatin_afteint_C0.rds'

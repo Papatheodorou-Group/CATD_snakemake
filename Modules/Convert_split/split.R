@@ -2,7 +2,7 @@
 ##
 ## @zgr2788
 
-library(Seurat)
+suppressMessages(library(Seurat))
 #set.seed(42) #For reproducability purposes
 
 partitionProp <- 0.5 #Can be edited later

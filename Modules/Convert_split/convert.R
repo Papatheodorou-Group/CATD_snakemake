@@ -6,8 +6,8 @@
 
 filename <- commandArgs(trailingOnly = TRUE)
 
-library(devtools)
+suppressMessages(library(devtools))
 devtools::install_github('cellgeni/sceasy')
-library(sceasy)
-library(Seurat)
+suppressMessages(library(sceasy))
+suppressMessages(library(Seurat))
 sceasy::convertFormat(filename, from = "anndata", to = "seurat", outFile = paste0(sub(".h5ad", "", filename), "_seurat.rds"))

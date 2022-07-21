@@ -2,7 +2,7 @@
 ##
 ## @zgr2788
 
-library(Seurat)
+suppressMessages(library(Seurat))
 
 #Read data
 args <- commandArgs(trailingOnly = TRUE)

@@ -41,3 +41,28 @@ rule generateReferences:
         Rscript Modules/C_generation/genRef_1.R {input}
         Rscript Modules/C_generation/genRef_2.R {input} {params}
         """
+
+
+#Overload for seeded output to be differentiated
+rule generateSeededReferences:
+    input:
+        'Input/Cell_splits/{sample}_C0_seeded.rds'
+
+    output:
+        'Input/References/{sample}_C1_seeded.rds',
+        'Input/References/{sample}_C2_seeded.rds',
+        'Input/References/{sample}_refVar_seeded.rds',
+        'Input/References/{sample}_C0_seeded.rds'
+
+    params:
+        test_1 = config['refgenDgeParam']['test_1'],
+        test_2 = config['refgenDgeParam']['test_2']
+
+    conda:
+        'env.yaml'
+
+    shell:
+        """
+        Rscript Modules/C_generation/genRef_1.R {input}
+        Rscript Modules/C_generation/genRef_2.R {input} {params}
+        """
