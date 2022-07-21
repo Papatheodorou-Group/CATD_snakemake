@@ -39,6 +39,7 @@ refgenDgeParam:
 
 #params for scale_transform
 stParam:
-  scale: row
-  transform: row
+  scaleC: row
+  scaleT: row
+  transform: sqrt
   scaleFirst: 1 #1 = scale first, 0 = transform first

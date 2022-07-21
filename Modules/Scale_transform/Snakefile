@@ -21,8 +21,8 @@
 
 rule scaleTransform:
     input:
-        C = 'Input/References/{sample}_C0.rds',
-        T = 'Input/Psuedobulks/{sample}_pbulks.rds'
+        C_table = 'Input/References/{sample}_C0.rds',
+        T_table = 'Input/Psuedobulks/{sample}_pbulks.rds'
 
     output:
         'Input/Normalized_tables/{sample}_pbulks_scaled_transformed.rds',
@@ -32,13 +32,13 @@ rule scaleTransform:
         'env.yaml'
 
     params:
-        scaleTMethod = config['stParam']['scaleT']
-        scaleCMethod = config['stParam']['scaleC']
+        scaleTMethod = config['stParam']['scaleT'],
+        scaleCMethod = config['stParam']['scaleC'],
         transMethod = config['stParam']['transform']
 
     shell:
-    """
-    Rscript Modules/Scale_transform/scaleTable_T.R {input.T} {params.scaleTMethod}
-    Rscript Modules/Scale_transform/scaleTable_C.R {input.C} {params.scaleCMethod}
-    Rscript Modules/Scale_transform/transformTables.R Input/Normalized_tables/{input.T}_scaled.rds Input/Normalized_tables/{input.c}_scaled.rds {params.transMethod}
-    """
+        """
+    Rscript Modules/Scale_transform/scaleTable_T.R {input.T_table} {params.scaleTMethod}
+    Rscript Modules/Scale_transform/scaleTable_C.R {input.C_table} {params.scaleCMethod}
+    Rscript Modules/Scale_transform/transformTables.R Input/Normalized_tables/{wildcards.sample}_pbulks_scaled.rds Input/Normalized_tables/{wildcards.sample}_C0_scaled.rds {params.transMethod}
+        """

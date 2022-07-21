@@ -23,6 +23,7 @@ configfile: 'config.yaml'
 include: "Modules/Convert_split/Snakefile"
 include: "Modules/Psuedobulk/Snakefile"
 include: "Modules/C_generation/Snakefile"
+include: "Modules/Scale_transform/Snakefile"
 
 
 outFile = list()
@@ -53,6 +54,14 @@ outFile.append(c1)
 outFile.append(c2)
 outFile.append(refvar)
 
-rule all:
+rule prepModule:
     input:
         outFile,
+        "Input/Normalized_tables/Hrvatin_afteint_pbulks_scaled_transformed.rds",
+        "Input/Normalized_tables/Hrvatin_afteint_C0_scaled_transformed.rds"
+
+#    output:
+#        "passPrep"
+#
+#    shell:
+#        " printf -- 'Delete this file to reactivate the deconvolution preparation module.' > passPrep "
