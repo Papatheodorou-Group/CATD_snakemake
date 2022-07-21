@@ -57,8 +57,8 @@ outFile.append(refvar)
 rule prepModule:
     input:
         outFile,
-        "Input/Normalized_tables/Hrvatin_afteint_pbulks_scaled_transformed.rds",
-        "Input/Normalized_tables/Hrvatin_afteint_C0_scaled_transformed.rds"
+        "Input/Normalized_tables/Hrvatin_afteint_pbulks_transformed_scaled.rds",
+        "Input/Normalized_tables/Hrvatin_afteint_C0_transformed_scaled.rds"
 
 #    output:
 #        "passPrep"

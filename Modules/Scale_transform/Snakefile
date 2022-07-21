@@ -19,6 +19,7 @@
 ##
 ##
 
+#First scale then transform
 rule scaleTransform:
     input:
         C_table = 'Input/References/{sample}_C0.rds',
@@ -41,4 +42,30 @@ rule scaleTransform:
     Rscript Modules/Scale_transform/scaleTable_T.R {input.T_table} {params.scaleTMethod}
     Rscript Modules/Scale_transform/scaleTable_C.R {input.C_table} {params.scaleCMethod}
     Rscript Modules/Scale_transform/transformTables.R Input/Normalized_tables/{wildcards.sample}_pbulks_scaled.rds Input/Normalized_tables/{wildcards.sample}_C0_scaled.rds {params.transMethod}
+        """
+
+
+#First transform then scale
+rule transformScale:
+    input:
+        C_table = 'Input/References/{sample}_C0.rds',
+        T_table = 'Input/Psuedobulks/{sample}_pbulks.rds'
+
+    output:
+        'Input/Normalized_tables/{sample}_pbulks_transformed_scaled.rds',
+        'Input/Normalized_tables/{sample}_C0_transformed_scaled.rds'
+
+    conda:
+        'env.yaml'
+
+    params:
+        scaleTMethod = config['stParam']['scaleT'],
+        scaleCMethod = config['stParam']['scaleC'],
+        transMethod = config['stParam']['transform']
+
+    shell:
+        """
+    Rscript Modules/Scale_transform/transformTables.R {input.T_table} {input.C_table} {params.transMethod}
+    Rscript Modules/Scale_transform/scaleTable_T.R Input/Normalized_tables/{wildcards.sample}_pbulks_transformed.rds {params.scaleTMethod}
+    Rscript Modules/Scale_transform/scaleTable_C.R Input/Normalized_tables/{wildcards.sample}_C0_transformed.rds {params.scaleCMethod}
         """
