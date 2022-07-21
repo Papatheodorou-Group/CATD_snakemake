@@ -28,11 +28,15 @@ rule generateReferences:
         'Input/References/{sample}_C2.rds',
         'Input/References/{sample}_refVar.rds'
 
+    params:
+        test_1 = config['refgenDgeParam']['test_1'],
+        test_2 = config['refgenDgeParam']['test_2']
+
     conda:
         'env.yaml'
 
     shell:
         """
         Rscript Modules/C_generation/genRef_1.R {input}
-        Rscript Modules/C_generation/genRef_2.R {input}
+        Rscript Modules/C_generation/genRef_2.R {input} {params}
         """
