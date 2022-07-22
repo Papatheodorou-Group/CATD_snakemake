@@ -7,14 +7,17 @@ suppressMessages(library(Matrix))
 #Read data
 args <- commandArgs(trailingOnly = TRUE)
 filename_C <- args[1]
-method <- args[2]
+phenData_C <- args[2]
+method <- args[3]
 
 C <- readRDS(filename_C)
+C_data <- readRDS(phenData_C)
 filename_C<- sub("Input/References", "Input/Normalized_tables", filename_C)
 
 
 #debug on local to reduce dimensions, delete later
 C <- C[,1:500]
+C_data <- C_data[1:500,]
 
 
 #Preprocess matrices to avoid errors
@@ -89,42 +92,83 @@ switch(method,
   },
 
 
-  "CMM" = { #CHECK FOR C
+  "TMM" = { #Spikes? Data?
     suppressMessages(library(edgeR))
 
-    C <- edgeR::DGEList(counts = C, group = colnames(C))
+    cellType <- as.character(C_data$cellType[rownames(C_data) %in% colnames(C)])
+    C <- edgeR::DGEList(counts = C, group = cellType)
     C <- edgeR::calcNormFactors(C, method = "TMM")
     C <- edgeR::cpm(C)
   },
 
 
-  "UQ" = { #CHECK FOR C
-    suppressMessages(library(edgeR))
+#  "UQ" = { #Spikes? Data?
+#    suppressMessages(library(edgeR))
+#
+#    cellType <- as.character(C_data$cellType[rownames(C_data) %in% colnames(C)])
+#    C <- edgeR::DGEList(counts = C, group = cellType)
+#    C <- edgeR::calcNormFactors(C, method = "upperquartile")
+#    C <- edgeR::cpm(C)
+#  },
 
-    C <- edgeR::DGEList(counts = C, group = colnames(C))
-    C <- edgeR::calcNormFactors(C, method = "upperquartile")
-    C <- edgeR::cpm(C)
+
+#  "median_ratios" = { #Takes too long, not feasible
+#    suppressMessages(library(DESeq2))
+#
+#    cellType <- as.character(C_data$cellType[rownames(C_data) %in% colnames(C)])
+#    C <- round(C); metadata <- data.frame(cellType = cellType);  #DESeq2 requires integers as counts
+#    dds <- DESeq2::DESeqDataSetFromMatrix(C, colData = metadata, design = ~cellType)
+#    dds <- DESeq2::estimateSizeFactors(dds, type = "ratio")
+#    C <- DESeq2::counts(dds, normalized = TRUE)
+#  },
+
+
+#  "TPM" = {
+#    suppressMessages(library(SingleR))
+#
+#    #Cannot find data(human_lengths) ? -> check later
+#  }
+
+
+ #sc-RNA specific
+  "SCTransform" = {
+    suppressMessages(library(sctransform))
+
+    C <- sctransform::vst(C, return_corrected_umi=TRUE, verbosity = FALSE)$umi_corrected
+    C <- as(C, "matrix")
   },
 
 
-  "median_ratios" = { #CHECK FOR C
-    suppressMessages(library(DESeq2))
+  "scran" =  {
+    suppressMessages(library(scran))
+    suppressMessages(library(SingleCellExperiment))
 
-    C <- round(C); metadata <- colnames(C);  #DESeq2 requires integers as counts
-    dds <- DESeq2::DESeqDataSetFromMatrix(C, colData = metadata, design = ~samples)
-    dds <- DESeq2::estimateSizeFactors(dds, type = "ratio")
-    C <- DESeq2::counts(dds, normalized = TRUE)
+
+    C <- SingleCellExperiment::SingleCellExperiment(assays = list(counts = as.matrix(C)))
+    C <- scran::computeSumFactors(C, clusters = NULL)
+    C <- scater::logNormCounts(C, exprs_values = 'counts', transform = "none")
+    C <- C@assays@data$normcounts
   },
 
 
-  "TPM" = {
-    suppressMessages(library(SingleR))
+  "scater" = {
+    suppressMessages(library(scater))
 
-    #Cannot find data(human_lengths) ? -> check later
+    sizeFactors <- scater::librarySizeFactors(C)
+    C <- scater::normalizeCounts(C, sizeFactors, transform = "none")
+  },
+
+
+  "Linnorm" = {
+    suppressMessages(library(Linnorm))
+
+    C <- expm1(Linnorm::Linnorm(as.matrix(C)))
   }
 
 
 )
+
+
 
 #Save transformed tables
 saveRDS(C, sub(".rds", "_scaled.rds",filename_C))

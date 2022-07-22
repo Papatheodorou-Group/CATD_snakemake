@@ -23,6 +23,7 @@
 rule scaleTransform:
     input:
         C_table = 'Input/References/{sample}_C0.rds',
+        C_phenData = 'Input/References/{sample}_phenData.rds',
         T_table = 'Input/Psuedobulks/{sample}_pbulks.rds'
 
     output:
@@ -40,7 +41,7 @@ rule scaleTransform:
     shell:
         """
     Rscript Modules/Scale_transform/scaleTable_T.R {input.T_table} {params.scaleTMethod}
-    Rscript Modules/Scale_transform/scaleTable_C.R {input.C_table} {params.scaleCMethod}
+    Rscript Modules/Scale_transform/scaleTable_C.R {input.C_table} {input.C_phenData} {params.scaleCMethod}
     Rscript Modules/Scale_transform/transformTables.R Input/Normalized_tables/{wildcards.sample}_pbulks_scaled.rds Input/Normalized_tables/{wildcards.sample}_C0_scaled.rds {params.transMethod}
         """
 
@@ -49,6 +50,7 @@ rule scaleTransform:
 rule transformScale:
     input:
         C_table = 'Input/References/{sample}_C0.rds',
+        C_phenData = 'Input/References/{sample}_phenData.rds',
         T_table = 'Input/Psuedobulks/{sample}_pbulks.rds'
 
     output:
@@ -67,7 +69,7 @@ rule transformScale:
         """
     Rscript Modules/Scale_transform/transformTables.R {input.T_table} {input.C_table} {params.transMethod}
     Rscript Modules/Scale_transform/scaleTable_T.R Input/Normalized_tables/{wildcards.sample}_pbulks_transformed.rds {params.scaleTMethod}
-    Rscript Modules/Scale_transform/scaleTable_C.R Input/Normalized_tables/{wildcards.sample}_C0_transformed.rds {params.scaleCMethod}
+    Rscript Modules/Scale_transform/scaleTable_C.R Input/Normalized_tables/{wildcards.sample}_C0_transformed.rds {input.C_phenData} {params.scaleCMethod}
         """
 
 
@@ -79,6 +81,7 @@ rule transformScale:
 rule scaleTransformSeeded:
     input:
         C_table = 'Input/References/{sample}_C0_seeded.rds',
+        C_phenData = 'Input/References/{sample}_phenData_seeded.rds',
         T_table = 'Input/Psuedobulks/{sample}_pbulks_seeded.rds'
 
     output:
@@ -96,7 +99,7 @@ rule scaleTransformSeeded:
     shell:
         """
     Rscript Modules/Scale_transform/scaleTable_T.R {input.T_table} {params.scaleTMethod}
-    Rscript Modules/Scale_transform/scaleTable_C.R {input.C_table} {params.scaleCMethod}
+    Rscript Modules/Scale_transform/scaleTable_C.R {input.C_table} {input.C_phenData} {params.scaleCMethod}
     Rscript Modules/Scale_transform/transformTables.R Input/Normalized_tables/{wildcards.sample}_pbulks_seeded_scaled.rds Input/Normalized_tables/{wildcards.sample}_C0_seeded_scaled.rds {params.transMethod}
         """
 
@@ -105,6 +108,7 @@ rule scaleTransformSeeded:
 rule transformScaleSeeded:
     input:
         C_table = 'Input/References/{sample}_C0_seeded.rds',
+        C_phenData = 'Input/References/{sample}_phenData_seeded.rds',
         T_table = 'Input/Psuedobulks/{sample}_pbulks_seeded.rds'
 
     output:
@@ -123,5 +127,5 @@ rule transformScaleSeeded:
         """
     Rscript Modules/Scale_transform/transformTables.R {input.T_table} {input.C_table} {params.transMethod}
     Rscript Modules/Scale_transform/scaleTable_T.R Input/Normalized_tables/{wildcards.sample}_pbulks_seeded_transformed.rds {params.scaleTMethod}
-    Rscript Modules/Scale_transform/scaleTable_C.R Input/Normalized_tables/{wildcards.sample}_C0_seeded_transformed.rds {params.scaleCMethod}
+    Rscript Modules/Scale_transform/scaleTable_C.R Input/Normalized_tables/{wildcards.sample}_C0_seeded_transformed.rds {input.C_phenData} {params.scaleCMethod}
         """

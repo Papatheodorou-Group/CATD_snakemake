@@ -26,6 +26,7 @@ for (i in 1:length(levels(C_0@meta.data$cellType)))
 
 #Write sc-counts matrix as separate object to save memory later on
 C_counts <- C_0@assays$RNA@counts
+C_metadata <- C_0@meta.data
 
 #Debug
 write.csv(C_1, "C_1.csv")
@@ -35,3 +36,4 @@ write.csv(refVar, "C_refVar.csv")
 saveRDS(C_1, file = sub("_C0", "_C1", filename ))
 saveRDS(refVar, file = sub("_C0", "_refVar", filename ))
 saveRDS(C_counts, file = filename)
+saveRDS(C_metadata, file = sub("_C0", "_phenData", filename))

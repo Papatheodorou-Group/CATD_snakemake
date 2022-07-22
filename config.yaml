@@ -7,7 +7,7 @@ Input:
 
 
 #seeding parameter - to be implemented
-seededRun: 0 #Use if you want this run of the pipeline to be reproducible
+seededRun: 1 #Use if you want this run of the pipeline to be reproducible
 
 
 
@@ -15,9 +15,9 @@ seededRun: 0 #Use if you want this run of the pipeline to be reproducible
 pbulkParam:
   pbulkMode: 2  #Different mode for building pbulks
   cellCount: 100000  #How many cells should be used to create a bulk sample
-  nSamples: 10  #How many different samples should be generated
-  propVar: -1 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
-  sampleCT: 1 #Sampling for cell types allowed or not (1 or 0) (EFFECTIVE IN MODE 2 ONLY)
+  nSamples: 5  #How many different samples should be generated
+  propVar: 30 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
+  sampleCT: 0 #Sampling for cell types allowed or not (1 or 0) (EFFECTIVE IN MODE 2 ONLY)
 
 
 
@@ -39,8 +39,48 @@ refgenDgeParam:
 
 
 #params for scale_transform
+
+#Transform
+#   none
+#   log
+#   sqrt
+#   vst (requires high memory)
+
+
+#scaleC
+#   none
+#   column
+#   row
+#   mean
+#   column_z-score
+#   global_z-score
+#   column_min-max
+#   global_min-max
+#   LogNormalize
+#   QN
+#   TMM
+#   SCTransform (sc-specific)
+#   scater (sc-specific)
+#   scran (sc-specific)
+#   Linnorm (sc-specific)
+
+#scaleT
+#   none
+#   column
+#   row
+#   mean
+#   column_z-score
+#   global_z-score
+#   column_min-max
+#   global_min-max
+#   LogNormalize
+#   QN
+#   TMM
+#   UQ
+#   median_ratios
+
 stParam:
   scaleC: row
-  scaleT: row
+  scaleT: TMM
   transform: sqrt
-  scaleFirst: 0 #1 = scale first, 0 = transform first
+  scaleFirst: 1 #1 = scale first, 0 = transform first

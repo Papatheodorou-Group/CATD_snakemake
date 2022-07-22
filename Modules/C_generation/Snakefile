@@ -27,7 +27,8 @@ rule generateReferences:
         'Input/References/{sample}_C1.rds',
         'Input/References/{sample}_C2.rds',
         'Input/References/{sample}_refVar.rds',
-        'Input/References/{sample}_C0.rds'
+        'Input/References/{sample}_C0.rds',
+        'Input/References/{sample}_phenData.rds'
 
     params:
         test_1 = config['refgenDgeParam']['test_1'],
@@ -52,7 +53,8 @@ rule generateSeededReferences:
         'Input/References/{sample}_C1_seeded.rds',
         'Input/References/{sample}_C2_seeded.rds',
         'Input/References/{sample}_refVar_seeded.rds',
-        'Input/References/{sample}_C0_seeded.rds'
+        'Input/References/{sample}_C0_seeded.rds',
+        'Input/References/{sample}_phenData_seeded.rds'
 
     params:
         test_1 = config['refgenDgeParam']['test_1'],

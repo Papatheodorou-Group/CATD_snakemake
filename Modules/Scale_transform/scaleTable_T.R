@@ -113,11 +113,11 @@ switch(method,
   },
 
 
-  "TPM" = {
-    suppressMessages(library(SingleR))
-
-    #Cannot find data(human_lengths) ? -> check later
-  }
+#  "TPM" = {
+#    suppressMessages(library(SingleR))
+#
+#    #Cannot find data(human_lengths) ? -> check later
+#  }
 
 
 )
