@@ -7,20 +7,26 @@ suppressMessages(library(future))
 suppressMessages(library(MAST))
 suppressMessages(library(DESeq2))
 
-plan('multisession', workers = 5) #Paralellism
+plan('multisession', workers = 1) #Paralellism
 
 #Read data
  args <- commandArgs(trailingOnly = TRUE)
 filename <- args[1]
 test_1 <- args[2]
 test_2 <- args[3]
+seurNorm <- args[4]
 C_0 <- readRDS(filename)
 filename <- sub("Input/Cell_splits", "Input/References", filename)
 
-message(paste0('Running DGE with tests: ', test_1, ' & ', test_2))
+message(paste0('Running DGE with tests: ', test_1, ' & ', test_2, ", Seurat normalization: ", seurNorm))
 
 #Port cell types to Idents
 Idents(C_0) <- C_0@meta.data$cellType
+
+
+#Normalization required before markers to find accurately
+#C_0 <- NormalizeData(C_0, normalization.method = seurNorm)
+suppressMessages(gc())
 
 #Find cell type specific markers
 markers_t1 <- FindAllMarkers(C_0, min.pct = 0.5, logfc.threshold = log(2), test.use = test_1)

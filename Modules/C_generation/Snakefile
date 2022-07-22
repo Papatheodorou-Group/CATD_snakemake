@@ -32,7 +32,8 @@ rule generateReferences:
 
     params:
         test_1 = config['refgenDgeParam']['test_1'],
-        test_2 = config['refgenDgeParam']['test_2']
+        test_2 = config['refgenDgeParam']['test_2'],
+        seurNorm = config['refgenDgeParam']['seuratNorm']
 
     conda:
         'env.yaml'
@@ -58,7 +59,8 @@ rule generateSeededReferences:
 
     params:
         test_1 = config['refgenDgeParam']['test_1'],
-        test_2 = config['refgenDgeParam']['test_2']
+        test_2 = config['refgenDgeParam']['test_2'],
+        seurNorm = config['refgenDgeParam']['seuratNorm']
 
     conda:
         'env.yaml'

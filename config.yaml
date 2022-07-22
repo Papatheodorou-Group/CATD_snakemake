@@ -21,21 +21,26 @@ pbulkParam:
 
 
 
-#tests to be used for refGen
+
 #Available tests in Seurat:
-#"wilcox"
-#"bimod"
-#"roc"
-#"t"
-#"negbinom"
-#"poisson"
-#"LR"
-#"MAST"
-#"DESeq2"
+#   "wilcox"
+#   "bimod"
+#   "roc"
+#   "t"
+#   "negbinom"
+#   "poisson"
+#   "LR"
+#   "MAST"
+#   "DESeq2"
+
+#Normalizations available in Seurat:
+#   LogNormalize
+#   CLR #Not working
+#   RC
 refgenDgeParam:
     test_1: 'wilcox'
     test_2: 'bimod'
-
+    seuratNorm: 'RC'
 
 
 #params for scale_transform
