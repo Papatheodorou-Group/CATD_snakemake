@@ -19,12 +19,15 @@ P <- readRDS(filename_P)
 #Get foldchanges for possible marker genes
 pMGstat <- MGstatistic(C1, colnames(C1))
 
-#Get those with a fold change over 10
+#Get those with a fold change over 10, might need to revisit
 pMGlist.FC <- lapply(colnames(C1), function(x) rownames(pMGstat)[pMGstat$idx == x & pMGstat$OVE.FC > 10])
 
 #Run with marker list generated from S
-res <- redoASest(T, pMGlist.FC, maxIter = 10) #Adjust maxIter later
+res <- redoASest(T, pMGlist.FC, maxIter = 30) #Adjust maxIter later
 res <- t(res$Aest)
+
+#Convert P to matrix
+P <- matrix(unlist(P), nrow = nrow(P), ncol = ncol(P))
 
 #Calculate RMSE error
 rmse <- sqrt(sum((P - res)^2) / length(res))
