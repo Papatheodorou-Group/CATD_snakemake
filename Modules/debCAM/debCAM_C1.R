@@ -1,35 +1,30 @@
-## debCAM unsupervised clustering script
+## debCAM semi-supervised clustering script with cell type profile matrix (S in debCAM documentation)
 ##
 ## @zgr2788
 
 
 suppressMessages(library(debCAM))
 suppressMessages(library(BiocParallel))
-register(MulticoreParam(4))
-register(SnowParam(4))
-
 
 #Read data
 args <- commandArgs(trailingOnly = TRUE)
 filename_T <- args[1]
-cellType_n <- as.numeric(args[2])
+filename_C1 <- args[2]
 filename_P <- args[3]
 
 T <- readRDS(filename_T)
+C1 <- readRDS(filename_C1)
 P <- readRDS(filename_P)
 
+#Get foldchanges for possible marker genes
+pMGstat <- MGstatistic(C1, colnames(C1))
 
-# Warning: Since fit model is linear, needs more samples in pbulk step, otherwise det can be in epsilon range
-# Adjust config.yaml accordingly
+#Get those with a fold change over 10
+pMGlist.FC <- lapply(colnames(C1), function(x) rownames(pMGstat)[pMGstat$idx == x & pMGstat$OVE.FC > 10])
 
-#Run deconv
-camObj <- CAM(T, K = cellType_n, thres.low = 0.3, thres.high = 0.95)
-
-#Extract results
-res <- t(camObj@ASestResult[[1]]@Aest)
-
-#Fill empty rows if cell types were sampled
-for (i in 1:(nrow(P)-nrow(res))) { res <- rbind(res, 0) }
+#Run with marker list generated from S
+res <- redoASest(T, pMGlist.FC, maxIter = 10) #Adjust maxIter later
+res <- t(res$Aest)
 
 #Calculate RMSE error
 rmse <- sqrt(sum((P - res)^2) / length(res))
