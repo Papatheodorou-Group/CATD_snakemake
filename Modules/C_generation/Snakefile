@@ -31,6 +31,7 @@ rule generateReferences:
         'Input/References/{sample}_phenData.rds'
 
     params:
+        method = config['stParam']['transform'],
         test_1 = config['refgenDgeParam']['test_1'],
         test_2 = config['refgenDgeParam']['test_2'],
         seurNorm = config['refgenDgeParam']['seuratNorm']
@@ -40,8 +41,8 @@ rule generateReferences:
 
     shell:
         """
-        Rscript Modules/C_generation/genRef_1.R {input}
-        Rscript Modules/C_generation/genRef_2.R {input} {params}
+        Rscript Modules/C_generation/genRef_1.R {input} {params.method}
+        Rscript Modules/C_generation/genRef_2.R {input} {params.test_1} {params.test_2} {params.seurNorm}
         """
 
 
@@ -58,6 +59,7 @@ rule generateSeededReferences:
         'Input/References/{sample}_phenData_seeded.rds'
 
     params:
+        method = config['stParam']['transform'],
         test_1 = config['refgenDgeParam']['test_1'],
         test_2 = config['refgenDgeParam']['test_2'],
         seurNorm = config['refgenDgeParam']['seuratNorm']
@@ -67,6 +69,6 @@ rule generateSeededReferences:
 
     shell:
         """
-        Rscript Modules/C_generation/genRef_1.R {input}
-        Rscript Modules/C_generation/genRef_2.R {input} {params}
+        Rscript Modules/C_generation/genRef_1.R {input} {params.method}
+        Rscript Modules/C_generation/genRef_2.R {input} {params.test_1} {params.test_2} {params.seurNorm}
         """

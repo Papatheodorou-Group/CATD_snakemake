@@ -5,6 +5,8 @@
 
 suppressMessages(library(debCAM))
 suppressMessages(library(BiocParallel))
+register(MulticoreParam(7))
+register(SnowParam(7))
 
 #Read data
 args <- commandArgs(trailingOnly = TRUE)
@@ -30,7 +32,7 @@ res <- t(res$Aest)
 P <- matrix(unlist(P), nrow = nrow(P), ncol = ncol(P))
 
 #Calculate RMSE error
-rmse <- sqrt(sum((P - res)^2) / length(res))
+rmse <- sqrt(mean((P - res)^2))
 
 #Calculate euclidean distance (switch to any minkowski-type by adjusting p)
 m_dist <- dist(rbind(as.vector(res), as.vector(unlist(P))), method = "minkowski", p = 2)

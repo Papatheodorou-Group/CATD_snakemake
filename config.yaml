@@ -90,4 +90,4 @@ stParam:
 
 
 #Unsupervised params:
-expectedTypes: 6 #Enter manually
+expectedTypes: 6 #Enter manually for now
