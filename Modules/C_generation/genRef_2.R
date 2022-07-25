@@ -47,7 +47,7 @@ colnames(markers) <- c("log2FC", "cellType", "geneName")
 
 
 #Debug - remove later
-write.csv(markers, "C_2.csv")
+#write.csv(markers, "C_2.csv")
 
 #Write to rds
 saveRDS(markers, file = sub("_C0", "_C2", filename ))

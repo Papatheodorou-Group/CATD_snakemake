@@ -126,4 +126,4 @@ switch(method,
 saveRDS(T, sub(".rds", "_scaled.rds",filename_T))
 
 #Debug
-write.csv(T, "T_scaled.csv")
+#write.csv(T, "T_scaled.csv")

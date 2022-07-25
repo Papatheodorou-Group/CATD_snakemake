@@ -1,0 +1,61 @@
+## Rule index for all debCAM deconvolutions
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes all rules associated with deconvolution using debCAM
+## package. The 3 different modes are
+##
+##      1- Unsupervised with k coefficient
+##      2- Semi-supervised with C1 reference
+##      3- Semi-supervised with C2 reference
+##
+##
+##
+##
+##
+##
+##
+##
+
+def getRunConfig(wildcards):
+    inList = []
+
+    if config['seededRun']:
+        seedStatus = "_seeded"
+    else:
+        seedStatus = ""
+
+    if config["stParam"]['scaleFirst']:
+        st = "_scaled_transformed"
+    else:
+        st = "_transformed_scaled"
+
+    filename_T = str("Input/Normalized_tables/" + config['sampleName'] + "_pbulks" + seedStatus + st + ".rds")
+    filename_P = str("Input/Psuedobulks/" + config['sampleName'] + "_props" + seedStatus + ".rds")
+
+    inList.append(filename_T)
+    inList.append(filename_P)
+
+    return inList
+
+
+rule debCAM_unsupervised:
+    input:
+        getRunConfig
+
+    output:
+        "Output/{sample}_debCAM_unsupervised.txt"
+
+    params:
+        cellTypes_n = config['expectedTypes']
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/debCAM/debCAM_u.R {input} {params}
+        touch {output}"
+        """

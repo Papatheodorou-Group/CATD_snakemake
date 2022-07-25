@@ -29,8 +29,8 @@ C_counts <- C_0@assays$RNA@counts
 C_metadata <- C_0@meta.data
 
 #Debug
-write.csv(C_1, "C_1.csv")
-write.csv(refVar, "C_refVar.csv")
+#write.csv(C_1, "C_1.csv")
+#write.csv(refVar, "C_refVar.csv")
 
 #Write to RDS
 saveRDS(C_1, file = sub("_C0", "_C1", filename ))

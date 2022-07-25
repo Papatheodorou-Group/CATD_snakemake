@@ -127,8 +127,8 @@ switch(mode,
 
 
 #Debug - remove later
-write.csv(T_df, "pbulks.csv")
-write.csv(P_df, "props.csv")
+#write.csv(T_df, "pbulks.csv")
+#write.csv(P_df, "props.csv")
 
 #Save matrix to rds
 saveRDS(T_df, file = sub("_gen.rds", "_pbulks_seeded.rds", filename))

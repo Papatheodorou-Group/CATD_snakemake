@@ -19,19 +19,22 @@
 ##
 ##
 
+
 configfile: 'config.yaml'
 include: "Modules/Convert_split/Snakefile"
 include: "Modules/Psuedobulk/Snakefile"
 include: "Modules/C_generation/Snakefile"
 include: "Modules/Scale_transform/Snakefile"
+include: "Modules/debCAM/Snakefile"
 
 
 outFile = list()
-inP = config['Input']['pbulk']
-inC = config['Input']['cgen']
-inN = config['Input']['normtab']
+inP = "Input/Psuedobulks/" + config['sampleName']
+inC = "Input/References/" + config['sampleName']
+inN = "Input/Normalized_tables/" + config['sampleName']
 
-if config['seededRun'] == False:
+
+if not config['seededRun']:
     props = inP + '_props.rds'
     c1 = inC + '_C1.rds'
     c2 = inC + '_C2.rds'
@@ -39,13 +42,13 @@ if config['seededRun'] == False:
     c0 = inN + '_C0'
     pbulks = inN + '_pbulks'
 
-    if config["stParam"]["scaleFirst"] == True:
+    if config["stParam"]["scaleFirst"]:
         c0 = c0 + '_scaled_transformed.rds'
         pbulks = pbulks + '_scaled_transformed.rds'
 
     else:
-            c0 = c0 + '_transformed_scaled.rds'
-            pbulks = pbulks + '_transformed_scaled.rds'
+        c0 = c0 + '_transformed_scaled.rds'
+        pbulks = pbulks + '_transformed_scaled.rds'
 
 
 else:
@@ -56,13 +59,13 @@ else:
     c0 = inN + '_C0_seeded'
     pbulks = inN + '_pbulks_seeded'
 
-    if config["stParam"]["scaleFirst"] == True:
+    if config["stParam"]["scaleFirst"]:
         c0 = c0 + '_scaled_transformed.rds'
         pbulks = pbulks + '_scaled_transformed.rds'
 
     else:
-            c0 = c0 + '_transformed_scaled.rds'
-            pbulks = pbulks + '_transformed_scaled.rds'
+        c0 = c0 + '_transformed_scaled.rds'
+        pbulks = pbulks + '_transformed_scaled.rds'
 
 
 outFile.append(pbulks)
@@ -72,9 +75,11 @@ outFile.append(c1)
 outFile.append(c2)
 outFile.append(refvar)
 
-rule endPrep:
+
+rule all:
     input:
-        outFile
+        #outFile,
+        "Output/Hrvatin_afteint_debCAM_unsupervised.txt"
 
 #    output:
 #        "passPrep"

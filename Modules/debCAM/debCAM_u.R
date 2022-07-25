@@ -5,15 +5,16 @@
 
 suppressMessages(library(debCAM))
 suppressMessages(library(BiocParallel))
-register(MulticoreParam(4))
-register(SnowParam(4))
+#register(MulticoreParam(4))
+#register(SnowParam(4))
 
 
 #Read data
 args <- commandArgs(trailingOnly = TRUE)
 filename_T <- args[1]
-cellType_n <- as.numeric(args[2])
-filename_P <- args[3]
+filename_P <- args[2]
+cellType_n <- as.numeric(args[3])
+
 
 T <- readRDS(filename_T)
 P <- readRDS(filename_P)
