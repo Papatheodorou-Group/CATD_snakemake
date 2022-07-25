@@ -30,7 +30,7 @@ switch(method,
 
 
   "none" = {
-    #Do nothing
+    message('Warning: T not scaled')
   },
 
 

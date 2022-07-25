@@ -14,7 +14,7 @@ T <- readRDS(filename_T)
 C <- readRDS(filename_C)
 
 #Debug for local, remove later
-C <- C[,1:500]
+#C <- C[,1:500]
 
 #Correction for filenames if needed
 filename_T <- sub("Input/Psuedobulks", "Input/Normalized_tables", filename_T)
@@ -25,7 +25,7 @@ filename_C <- sub("Input/References", "Input/Normalized_tables", filename_C)
 switch(method,
 
   "none" = {
-    #Do nothing
+    message('Warning: No transformation applied')
   },
 
   "log" = {
