@@ -19,7 +19,7 @@
 ##
 ##
 
-def getRunConfig(wildcards):
+def getBulks():
     inList = []
 
     if config['seededRun']:
@@ -41,9 +41,36 @@ def getRunConfig(wildcards):
     return inList
 
 
+def getC2(inList):
+    if config['seededRun']:
+        seedStatus = "_seeded"
+    else:
+        seedStatus = ""
+
+    filename_C2 = str("Input/References/" + config["sampleName"] + "_C2" + seedStatus + ".rds")
+
+    inList.append(filename_C2)
+
+    return inList
+
+
+def getC1(inList):
+        if config['seededRun']:
+            seedStatus = "_seeded"
+        else:
+            seedStatus = ""
+
+        filename_C1 = str("Input/References/" + config["sampleName"] + "_C1" + seedStatus + ".rds")
+
+        inList.append(filename_C1)
+
+        return inList
+
+
+
 rule debCAM_unsupervised:
     input:
-        getRunConfig
+        getBulks()
 
     output:
         "Output/{sample}_debCAM_unsupervised.txt"
@@ -57,5 +84,41 @@ rule debCAM_unsupervised:
     shell:
         """
         Rscript Modules/debCAM/debCAM_u.R {input} {params}
+        touch {output}
+        """
+
+
+
+rule debCAM_marker:
+    input:
+        getC2(getBulks())
+
+    output:
+        "Output/{sample}_debCAM_marker.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/debCAM/debCAM_marker.R {input}
+        touch {output}
+        """
+
+
+
+rule debCAM_C1:
+    input:
+        getC1(getBulks())
+
+    output:
+        "Output/{sample}_debCAM_C1.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/debCAM/debCAM_C1.R {input}
         touch {output}
         """

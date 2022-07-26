@@ -22,7 +22,7 @@ P <- readRDS(filename_P)
 # Adjust config.yaml accordingly
 
 #Run deconv
-camObj <- CAM(T, K = cellType_n, thres.low = 0.3, thres.high = 0.95)
+camObj <- CAM(T, K = cellType_n)
 
 #Extract results
 res <- t(camObj@ASestResult[[1]]@Aest)

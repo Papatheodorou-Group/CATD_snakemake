@@ -79,7 +79,9 @@ outFile.append(refvar)
 rule all:
     input:
         #outFile,
-        "Output/Hrvatin_afteint_debCAM_unsupervised.txt"
+        "Output/Hrvatin_afteint_debCAM_unsupervised.txt",
+        "Output/Hrvatin_afteint_debCAM_marker.txt",
+        "Output/Hrvatin_afteint_debCAM_C1.txt"
 
 #    output:
 #        "passPrep"

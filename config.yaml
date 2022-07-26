@@ -11,9 +11,9 @@ seededRun: 0 #Use if you want this run of the pipeline to be reproducible
 
 #pbulk parameters below
 pbulkParam:
-  pbulkMode: 1  #Different mode for building pbulks
+  pbulkMode: 2  #Different mode for building pbulks
   cellCount: 100000  #How many cells should be used to create a bulk sample
-  nSamples: 20  #How many different samples should be generated
+  nSamples: 50  #How many different samples should be generated
   propVar: 30 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
   sampleCT: 1 #Sampling for cell types allowed or not (1 or 0) (EFFECTIVE IN MODE 2 ONLY)
 
@@ -37,8 +37,8 @@ pbulkParam:
 #   RC
 refgenDgeParam:
     test_1: 'wilcox'
-    test_2: 'bimod'
-    seuratNorm: 'RC'
+    test_2: 't'
+    seuratNorm: 'LogNormalize'
 
 
 #params for scale_transform
@@ -83,11 +83,11 @@ refgenDgeParam:
 #   median_ratios
 
 stParam:
-  scaleC: scater
-  scaleT: TMM
+  scaleC: Linnorm
+  scaleT: QN
   transform: sqrt
-  scaleFirst: 0 #1 = scale first, 0 = transform first
+  scaleFirst: 1 #1 = scale first, 0 = transform first
 
 
 #Unsupervised params:
-expectedTypes: 6 #Enter manually for now
+expectedTypes: 9 #Enter manually for now

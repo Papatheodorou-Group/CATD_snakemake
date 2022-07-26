@@ -20,7 +20,7 @@
 ##
 
 #First scale then transform
-rule scaleTransform:
+rule scaleTransform_T_C:
     input:
         C_table = 'Input/References/{sample}_C0.rds',
         C_phenData = 'Input/References/{sample}_phenData.rds',
@@ -48,7 +48,7 @@ rule scaleTransform:
 
 
 #First transform then scale
-rule transformScale:
+rule transformScale_T_C:
     input:
         C_table = 'Input/References/{sample}_C0.rds',
         C_phenData = 'Input/References/{sample}_phenData.rds',
@@ -80,7 +80,7 @@ rule transformScale:
 #######################
 
 #Same rules with seeded keyword
-rule scaleTransformSeeded:
+rule scaleTransformSeeded_T_C:
     input:
         C_table = 'Input/References/{sample}_C0_seeded.rds',
         C_phenData = 'Input/References/{sample}_phenData_seeded.rds',
@@ -108,7 +108,7 @@ rule scaleTransformSeeded:
 
 
 #First transform then scale
-rule transformScaleSeeded:
+rule transformScaleSeeded_T_C:
     input:
         C_table = 'Input/References/{sample}_C0_seeded.rds',
         C_phenData = 'Input/References/{sample}_phenData_seeded.rds',
