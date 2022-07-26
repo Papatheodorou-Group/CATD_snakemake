@@ -41,6 +41,7 @@ rule generateReferences:
 
     shell:
         """
+        mkdir -p Input/References
         Rscript Modules/C_generation/genRef_1.R {input} {params.method}
         Rscript Modules/C_generation/genRef_2.R {input} {params.test_1} {params.test_2} {params.seurNorm}
         """
@@ -69,6 +70,7 @@ rule generateSeededReferences:
 
     shell:
         """
+        mkdir -p Input/References
         Rscript Modules/C_generation/genRef_1.R {input} {params.method}
         Rscript Modules/C_generation/genRef_2.R {input} {params.test_1} {params.test_2} {params.seurNorm}
         """

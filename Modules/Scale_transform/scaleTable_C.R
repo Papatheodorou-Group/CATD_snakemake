@@ -16,8 +16,8 @@ filename_C<- sub("Input/References", "Input/Normalized_tables", filename_C)
 
 
 #debug on local to reduce dimensions, delete later
-C <- C[,1:500]
-C_data <- C_data[1:500,]
+#C <- C[,1:500]
+#C_data <- C_data[1:500,]
 
 
 #Preprocess matrices to avoid errors

@@ -9,7 +9,7 @@
 ## generates psuedobulks with the given parameters. If reproducability is
 ## desired, the seeded version of the rule should be used, which is essentially
 ## the same code with a seed of '42'.
-## 
+##
 ##
 ##
 ##
@@ -38,8 +38,10 @@ rule generatePsuedobulks:
         "env.yaml"
 
     shell:
-        'Rscript Modules/Psuedobulk/randomGen.R Input/Cell_splits/{wildcards.sample}_gen.rds {params}'
-
+        """
+        mkdir -p Input/Psuedobulks
+        Rscript Modules/Psuedobulk/randomGen.R Input/Cell_splits/{wildcards.sample}_gen.rds {params}
+        """
 
 
 rule generateSeededPsuedobulks:
@@ -61,4 +63,7 @@ rule generateSeededPsuedobulks:
         "env.yaml"
 
     shell:
-        'Rscript Modules/Psuedobulk/randomGen_seeded.R Input/Cell_splits/{wildcards.sample}_gen.rds {params}'
+        """
+        mkdir -p Input/Psuedobulks
+        Rscript Modules/Psuedobulk/randomGen_seeded.R Input/Cell_splits/{wildcards.sample}_gen.rds {params}
+        """

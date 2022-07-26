@@ -48,8 +48,10 @@ rule splitCells:
         "env.yaml"
 
     shell:
-        "Rscript Modules/Convert_split/split.R Input/{wildcards.sample}_seurat.rds"
-
+        """
+        mkdir -p Input/Cell_splits
+        Rscript Modules/Convert_split/split.R Input/{wildcards.sample}_seurat.rds
+        """
 
 
 #Same as above, but runs the seeded script
@@ -65,4 +67,7 @@ rule splitCellsSeeded:
         "env.yaml"
 
     shell:
-        "Rscript Modules/Convert_split/split_seeded.R Input/{wildcards.sample}_seurat.rds"
+        """
+        mkdir -p Input/Cell_splits
+        Rscript Modules/Convert_split/split_seeded.R Input/{wildcards.sample}_seurat.rds
+        """
