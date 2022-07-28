@@ -4,16 +4,13 @@
 
 
 suppressMessages(library(debCAM))
-suppressMessages(library(BiocParallel))
 suppressMessages(library(dplyr))
-register(MulticoreParam(7))
-register(SnowParam(7))
 
 #Read data
 args <- commandArgs(trailingOnly = TRUE)
 filename_T <- args[1]
-filename_C2 <- args[2]
-filename_P <- args[3]
+filename_P <- args[2]
+filename_C2 <- args[3]
 
 T <- readRDS(filename_T)
 C2 <- readRDS(filename_C2)

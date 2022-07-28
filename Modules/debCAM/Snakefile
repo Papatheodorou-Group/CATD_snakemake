@@ -81,6 +81,8 @@ rule debCAM_unsupervised:
     conda:
         "env.yaml"
 
+    threads: 30
+
     shell:
         """
         Rscript Modules/debCAM/debCAM_u.R {input} {params}

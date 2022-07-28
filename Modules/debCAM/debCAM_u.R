@@ -22,13 +22,10 @@ P <- readRDS(filename_P)
 # Adjust config.yaml accordingly
 
 #Run deconv
-camObj <- CAM(T, K = cellType_n)
+camObj <- CAM(T, K = cellType_n, cores = 30)
 
 #Extract results
 res <- t(camObj@ASestResult[[1]]@Aest)
-
-#Fill empty rows if cell types were sampled
-for (i in 1:(nrow(P)-nrow(res))) { res <- rbind(res, 0) }
 
 #Convert P to matrix
 P <- matrix(unlist(P), nrow = nrow(P), ncol = ncol(P))
