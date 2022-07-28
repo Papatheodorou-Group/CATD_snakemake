@@ -7,7 +7,7 @@ suppressMessages(library(future))
 suppressMessages(library(MAST))
 suppressMessages(library(DESeq2))
 
-plan('multisession', workers = 1) #Paralellism
+plan('multisession', workers = 16) #Paralellism
 
 #Read data
  args <- commandArgs(trailingOnly = TRUE)

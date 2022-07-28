@@ -3,6 +3,18 @@
 ## @zgr2788
 
 suppressMessages(library(Seurat))
+suppressMessages(library(foreach))
+suppressMessages(library(doParallel))
+suppressMessages(library(dplyr))
+
+
+cores <- 16
+registerDoParallel(cores)
+
+#Function used for parallel combinations
+combFunc <- function(...) {
+    mapply('bind_cols', ..., SIMPLIFY=FALSE)
+}
 
 #Read data
 args <- commandArgs(trailingOnly = TRUE)
@@ -29,59 +41,48 @@ filename <- sub("Input/Cell_splits", "Input/Psuedobulks", filename)
 
 
 #Switch modes
-T_df <- data.frame(row.names = rownames(T_prep@assays$RNA@counts))
-P_df <- data.frame(row.names = levels(as.factor(T_prep@meta.data$cellType)))
 
 switch(mode,
 '1'={
 
 
-  for (i in 1:nSamples)
-  {
-    #Get identifier for the sample
-    identifierString <- paste0('sample_', i)
+    T_P <- foreach (i=1:nSamples, .combine = combFunc) %dopar%
+    {
 
-    #Classic random generation, pick cells (columns) randomly with replacement
-    whichCols <- sample(seq_len(ncol(T_prep@assays$RNA@counts)), cellCount, replace = TRUE)
+      #Classic random generation, pick cells (columns) randomly with replacement
+      whichCols <- sample(seq_len(ncol(T_prep@assays$RNA@counts)), cellCount, replace = TRUE)
 
-    #Get cell types corresponding to selected cells
-    whichTypes <- T_prep@meta.data$cellType[whichCols]
+      #Get cell types corresponding to selected cells
+      whichTypes <- T_prep@meta.data$cellType[whichCols]
 
-    #Get picked columns and sum over them
-    T <- rowSums(T_prep@assays$RNA@counts[,whichCols])
-
-    #Get picked cell types and turn counts into proportions
-    P <- table(whichTypes) / as.numeric(cellCount)
-
-    #Append the bulk to dataframes
-    T_df[identifierString] <- T
-    P_df[identifierString] <- P
-  }
+      #Get picked columns and sum over them
+      T <- data.frame(rowSums(T_prep@assays$RNA@counts[,whichCols]))
+      P <- data.frame(table(whichTypes) / as.numeric(cellCount), row.names = 'whichTypes')
+      list(T, P)
+    }
+    colnames(T_P[[1]]) <- paste0("sample_", 1:ncol(T_P[[1]]))
+    colnames(T_P[[2]]) <- paste0("sample_", 1:ncol(T_P[[2]]))
 
 
 },
 
 '2'={
 
-    for (i in 1:nSamples)
+    T_P <- foreach (i=1:nSamples, .combine = combFunc) %dopar%
     {
-      #Get identifier for the sample
-      identifierString <- paste0('sample_', i)
-
-
 
       #Sampling cell types
-      if (sampleCT)
-      {
-        includedTypeCount <- as.numeric(sample(3:nlevels(as.factor(T_prep@meta.data$cellType)), 1)) #Minimum 3 cell types needed
-        toKeep <- sample(levels(T_prep@meta.data$cellType), includedTypeCount, replace = FALSE) #Sample the cell types
-        T_prep@meta.data$toKeep <- as.numeric(T_prep@meta.data$cellType %in% toKeep) #Assign kept/unkept to cells
-        keepObj <- SplitObject(T_prep, split.by = 'toKeep') #Keep the selected cell types
-        if(all(keepObj[[1]]@meta.data$toKeep == 1)) { keepObj <- keepObj[[1]] } else { keepObj <- keepObj[[2]] } #Need to differentiate between kept cell types
-        keepObj@meta.data$cellType <- droplevels(keepObj@meta.data$cellType) #Drop unused cell types
-      }
+      #if (sampleCT)
+      #{
+      #  includedTypeCount <- as.numeric(sample(3:nlevels(as.factor(T_prep@meta.data$cellType)), 1)) #Minimum 3 cell types needed
+      #  toKeep <- sample(levels(T_prep@meta.data$cellType), includedTypeCount, replace = FALSE) #Sample the cell types
+      #  T_prep@meta.data$toKeep <- as.numeric(T_prep@meta.data$cellType %in% toKeep) #Assign kept/unkept to cells
+      #  keepObj <- SplitObject(T_prep, split.by = 'toKeep') #Keep the selected cell types
+      #  if(all(keepObj[[1]]@meta.data$toKeep == 1)) { keepObj <- keepObj[[1]] } else { keepObj <- keepObj[[2]] } #Need to differentiate between kept cell types
+      #  keepObj@meta.data$cellType <- droplevels(keepObj@meta.data$cellType) #Drop unused cell types
+      #}
 
-      else { keepObj <- T_prep }
+      #else { keepObj <- T_prep }
 
 
 
@@ -89,13 +90,13 @@ switch(mode,
       if (propVar <= 0)
       {
         #Sample with min max bound 1-99
-        P <- runif(nlevels(keepObj@meta.data$cellType), 1, 99)
+        P <- runif(nlevels(T_prep@meta.data$cellType), 1, 99)
       }
 
       else
       {
         #Fit the distribution with given variance
-        P <- round(runif(nlevels(keepObj@meta.data$cellType), 100 - propVar, 100 + propVar))/100
+        P <- round(runif(nlevels(T_prep@meta.data$cellType), 100 - propVar, 100 + propVar))/100
       }
 
       #Sum to 1
@@ -105,8 +106,9 @@ switch(mode,
       correspondingCounts <- cellCount * P
 
       #Sample to create T
-      splitObj <- SplitObject(keepObj, split.by = 'cellType') #Split by cell type
-      T <- numeric(length = nrow(keepObj@assays$RNA@counts)) #Initialize T
+      splitObj <- SplitObject(T_prep, split.by = 'cellType') #Split by cell type
+      T <- numeric(length = nrow(T_prep@assays$RNA@counts)) #Initialize T
+      P <- data.frame(P, row.names = names(splitObj))
 
       #Add samples into T
       for (j in 1:length(correspondingCounts))
@@ -114,13 +116,15 @@ switch(mode,
         #Get sample per cell type
         whichCols <- sample(seq_len(ncol(splitObj[[j]]@assays$RNA@counts)), correspondingCounts[[j]], replace = TRUE)
         T <- T + rowSums(splitObj[[j]]@assays$RNA@counts[,whichCols])
-        P_df[names(splitObj[j]), identifierString] <- P[[j]]
       }
 
       #Append the bulk to dataframes
-      T_df[identifierString] <- T
-      P_df[is.na(P_df)] <- 0
+      T <- data.frame(T)
+
+      list(T, P)
     }
+    colnames(T_P[[1]]) <- paste0("sample_", 1:ncol(T_P[[1]]))
+    colnames(T_P[[2]]) <- paste0("sample_", 1:ncol(T_P[[2]]))
 
   }
 )
@@ -131,5 +135,5 @@ switch(mode,
 #write.csv(P_df, "props.csv")
 
 #Save matrix to rds
-saveRDS(T_df, file = sub("_gen.rds", "_pbulks.rds", filename))
-saveRDS(P_df, file = sub("_gen.rds", "_props.rds", filename))
+saveRDS(T_P[[1]], file = sub("_gen.rds", "_pbulks.rds", filename))
+saveRDS(T_P[[2]], file = sub("_gen.rds", "_props.rds", filename))

@@ -37,6 +37,8 @@ rule generatePsuedobulks:
     conda:
         "env.yaml"
 
+    threads: 16
+
     shell:
         """
         mkdir -p Input/Psuedobulks
@@ -61,6 +63,8 @@ rule generateSeededPsuedobulks:
 
     conda:
         "env.yaml"
+
+    threads: 16
 
     shell:
         """

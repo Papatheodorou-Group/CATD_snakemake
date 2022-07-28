@@ -3,6 +3,10 @@
 ## @zgr2788
 
 suppressMessages(library(DESeq2))
+suppressMessages(library(future))
+plan('multisession', workers = 16) #Paralellism
+
+
 
 #Read data
 args <- commandArgs(trailingOnly = TRUE)
@@ -21,6 +25,7 @@ filename_T <- sub("Input/Psuedobulks", "Input/Normalized_tables", filename_T)
 filename_C <- sub("Input/References", "Input/Normalized_tables", filename_C)
 
 
+message(paste0("Transforming tables with method: ", method))
 
 switch(method,
 

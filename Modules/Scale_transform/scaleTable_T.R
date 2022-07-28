@@ -3,6 +3,9 @@
 ## @zgr2788
 
 suppressMessages(library(Matrix))
+suppressMessages(library(future))
+plan('multisession', workers = 8) #Paralellism
+
 
 #Read data
 args <- commandArgs(trailingOnly = TRUE)
@@ -14,6 +17,8 @@ filename_T <- sub("Input/Psuedobulks", "Input/Normalized_tables", filename_T)
 
 
 #Preprocess matrices to avoid errorshaving multiple snakefiles in one directory
+
+message(paste0("Scaling T with method: ", method))
 
 #Only get rows where there is at least one cell with a count
 T <- T[rowSums(T) != 0,]

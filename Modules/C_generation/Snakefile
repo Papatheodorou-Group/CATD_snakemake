@@ -39,6 +39,8 @@ rule generateReferences:
     conda:
         'env.yaml'
 
+    threads: 16
+
     shell:
         """
         mkdir -p Input/References
@@ -67,6 +69,8 @@ rule generateSeededReferences:
 
     conda:
         'env.yaml'
+
+    threads: 16
 
     shell:
         """

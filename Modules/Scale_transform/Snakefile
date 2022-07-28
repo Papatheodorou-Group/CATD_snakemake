@@ -38,6 +38,8 @@ rule scaleTransform_T_C:
         scaleCMethod = config['stParam']['scaleC'],
         transMethod = config['stParam']['transform']
 
+    threads: 16
+
     shell:
         """
         mkdir -p Input/Normalized_tables
@@ -65,6 +67,8 @@ rule transformScale_T_C:
         scaleTMethod = config['stParam']['scaleT'],
         scaleCMethod = config['stParam']['scaleC'],
         transMethod = config['stParam']['transform']
+
+    threads: 16
 
     shell:
         """
@@ -98,6 +102,8 @@ rule scaleTransformSeeded_T_C:
         scaleCMethod = config['stParam']['scaleC'],
         transMethod = config['stParam']['transform']
 
+    threads: 16
+
     shell:
         """
         mkdir -p Input/Normalized_tables
@@ -125,6 +131,8 @@ rule transformScaleSeeded_T_C:
         scaleTMethod = config['stParam']['scaleT'],
         scaleCMethod = config['stParam']['scaleC'],
         transMethod = config['stParam']['transform']
+
+    threads: 16
 
     shell:
         """

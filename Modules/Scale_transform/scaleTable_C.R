@@ -3,6 +3,9 @@
 ## @zgr2788
 
 suppressMessages(library(Matrix))
+suppressMessages(library(future))
+plan('multisession', workers = 8) #Paralellism
+
 
 #Read data
 args <- commandArgs(trailingOnly = TRUE)
@@ -19,6 +22,7 @@ filename_C<- sub("Input/References", "Input/Normalized_tables", filename_C)
 #C <- C[,1:500]
 #C_data <- C_data[1:500,]
 
+message(paste0("Scaling C with method: ", method))
 
 #Preprocess matrices to avoid errors
 
