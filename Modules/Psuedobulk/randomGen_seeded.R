@@ -8,8 +8,7 @@ suppressMessages(library(doParallel))
 suppressMessages(library(dplyr))
 
 
-cores <- 16
-registerDoParallel(cores)
+
 
 #Function used for parallel combinations
 combFunc <- function(...) {
@@ -18,6 +17,10 @@ combFunc <- function(...) {
 
 #Read data
 args <- commandArgs(trailingOnly = TRUE)
+
+cores <- as.numeric(args[7])
+registerDoParallel(cores)
+
 filename <- args[1] #Name of T_ref
 mode <- args[2] #Mode to be used
 cellCount <- as.numeric(args[3]) #How many cells to pool for each psuedobulk
@@ -137,5 +140,5 @@ switch(mode,
 #write.csv(P_df, "props.csv")
 
 #Save matrix to rds
-saveRDS(T_P[[1]], file = sub("_gen.rds", "_pbulks.rds", filename))
-saveRDS(T_P[[2]], file = sub("_gen.rds", "_props.rds", filename))
+saveRDS(T_P[[1]], file = sub("_gen_seeded.rds", "_pbulks_seeded.rds", filename))
+saveRDS(T_P[[2]], file = sub("_gen_seeded.rds", "_props_seeded.rds", filename))

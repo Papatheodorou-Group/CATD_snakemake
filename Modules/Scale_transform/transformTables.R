@@ -4,7 +4,7 @@
 
 suppressMessages(library(DESeq2))
 suppressMessages(library(future))
-plan('multisession', workers = 16) #Paralellism
+plan('multisession', workers = 32) #Paralellism
 
 
 

@@ -37,12 +37,12 @@ rule generatePsuedobulks:
     conda:
         "env.yaml"
 
-    threads: 16
+    threads: config['cores']['pbulks']
 
     shell:
         """
         mkdir -p Input/Psuedobulks
-        Rscript Modules/Psuedobulk/randomGen.R Input/Cell_splits/{wildcards.sample}_gen.rds {params}
+        Rscript Modules/Psuedobulk/randomGen.R Input/Cell_splits/{wildcards.sample}_gen.rds {params} {threads}
         """
 
 
@@ -64,10 +64,10 @@ rule generateSeededPsuedobulks:
     conda:
         "env.yaml"
 
-    threads: 16
+    threads: config['cores']['pbulks']
 
     shell:
         """
         mkdir -p Input/Psuedobulks
-        Rscript Modules/Psuedobulk/randomGen_seeded.R Input/Cell_splits/{wildcards.sample}_gen.rds {params}
+        Rscript Modules/Psuedobulk/randomGen_seeded.R Input/Cell_splits/{wildcards.sample}_gen_seeded.rds {params} {threads}
         """

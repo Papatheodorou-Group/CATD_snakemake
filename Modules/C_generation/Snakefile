@@ -39,13 +39,13 @@ rule generateReferences:
     conda:
         'env.yaml'
 
-    threads: 16
+    threads: config['cores']['c_gen']
 
     shell:
         """
         mkdir -p Input/References
         Rscript Modules/C_generation/genRef_1.R {input} {params.method}
-        Rscript Modules/C_generation/genRef_2.R {input} {params.test_1} {params.test_2} {params.seurNorm}
+        Rscript Modules/C_generation/genRef_2.R {input} {params.test_1} {params.test_2} {params.seurNorm} {threads}
         """
 
 
@@ -70,11 +70,11 @@ rule generateSeededReferences:
     conda:
         'env.yaml'
 
-    threads: 16
+    threads: config['cores']['c_gen']
 
     shell:
         """
         mkdir -p Input/References
         Rscript Modules/C_generation/genRef_1.R {input} {params.method}
-        Rscript Modules/C_generation/genRef_2.R {input} {params.test_1} {params.test_2} {params.seurNorm}
+        Rscript Modules/C_generation/genRef_2.R {input} {params.test_1} {params.test_2} {params.seurNorm} {threads}
         """

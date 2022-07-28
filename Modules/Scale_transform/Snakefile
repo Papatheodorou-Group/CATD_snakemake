@@ -38,7 +38,7 @@ rule scaleTransform_T_C:
         scaleCMethod = config['stParam']['scaleC'],
         transMethod = config['stParam']['transform']
 
-    threads: 16
+    threads: 32
 
     shell:
         """
@@ -68,7 +68,7 @@ rule transformScale_T_C:
         scaleCMethod = config['stParam']['scaleC'],
         transMethod = config['stParam']['transform']
 
-    threads: 16
+    threads: 32
 
     shell:
         """
@@ -102,7 +102,7 @@ rule scaleTransformSeeded_T_C:
         scaleCMethod = config['stParam']['scaleC'],
         transMethod = config['stParam']['transform']
 
-    threads: 16
+    threads: 32
 
     shell:
         """
@@ -132,7 +132,7 @@ rule transformScaleSeeded_T_C:
         scaleCMethod = config['stParam']['scaleC'],
         transMethod = config['stParam']['transform']
 
-    threads: 16
+    threads: 32
 
     shell:
         """

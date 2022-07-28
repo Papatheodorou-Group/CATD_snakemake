@@ -7,10 +7,11 @@ suppressMessages(library(future))
 suppressMessages(library(MAST))
 suppressMessages(library(DESeq2))
 
-plan('multisession', workers = 16) #Paralellism
+
 
 #Read data
- args <- commandArgs(trailingOnly = TRUE)
+args <- commandArgs(trailingOnly = TRUE)
+plan('multisession', workers = as.numeric(args[5])) #Paralellism
 filename <- args[1]
 test_1 <- args[2]
 test_2 <- args[3]
@@ -25,7 +26,7 @@ Idents(C_0) <- C_0@meta.data$cellType
 
 
 #Normalization required before markers to find accurately
-#C_0 <- NormalizeData(C_0, normalization.method = seurNorm)
+C_0 <- NormalizeData(C_0, normalization.method = seurNorm)
 suppressMessages(gc())
 
 #Find cell type specific markers

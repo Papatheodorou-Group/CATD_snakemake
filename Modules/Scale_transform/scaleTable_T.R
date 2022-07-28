@@ -4,7 +4,7 @@
 
 suppressMessages(library(Matrix))
 suppressMessages(library(future))
-plan('multisession', workers = 8) #Paralellism
+plan('multisession', workers = 16) #Paralellism
 
 
 #Read data

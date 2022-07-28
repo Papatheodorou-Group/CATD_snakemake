@@ -8,8 +8,6 @@ suppressMessages(library(doParallel))
 suppressMessages(library(dplyr))
 
 
-cores <- 16
-registerDoParallel(cores)
 
 #Function used for parallel combinations
 combFunc <- function(...) {
@@ -18,6 +16,10 @@ combFunc <- function(...) {
 
 #Read data
 args <- commandArgs(trailingOnly = TRUE)
+
+cores <- as.numeric(args[7])
+registerDoParallel(cores)
+
 filename <- args[1] #Name of T_ref
 mode <- args[2] #Mode to be used
 cellCount <- as.numeric(args[3]) #How many cells to pool for each psuedobulk
