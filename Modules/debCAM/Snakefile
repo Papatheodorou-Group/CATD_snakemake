@@ -76,7 +76,7 @@ rule debCAM_unsupervised:
         "Output/{sample}_debCAM_unsupervised.txt"
 
     params:
-        cellTypes_n = config['expectedTypes']
+        cellTypes_n = config['unsupervisedParams']['expectedTypes']
 
     conda:
         "env.yaml"
@@ -101,9 +101,12 @@ rule debCAM_marker:
     conda:
         "env.yaml"
 
+    params:
+        topN = config['markerParams']['topN']
+
     shell:
         """
-        Rscript Modules/debCAM/debCAM_marker.R {input}
+        Rscript Modules/debCAM/debCAM_marker.R {input} {params}
         touch {output}
         """
 

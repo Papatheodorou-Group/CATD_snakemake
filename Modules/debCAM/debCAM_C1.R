@@ -4,6 +4,8 @@
 
 
 suppressMessages(library(debCAM))
+suppressMessages(library(energy))
+
 
 #Read data
 args <- commandArgs(trailingOnly = TRUE)
@@ -22,7 +24,7 @@ pMGstat <- MGstatistic(C1, colnames(C1))
 pMGlist.FC <- lapply(colnames(C1), function(x) rownames(pMGstat)[pMGstat$idx == x & pMGstat$OVE.FC > 10])
 
 #Run with marker list generated from S
-res <- redoASest(T, pMGlist.FC, maxIter = 30) #Adjust maxIter later
+res <- redoASest(T, pMGlist.FC, maxIter = 10) #Adjust maxIter later
 res <- t(res$Aest)
 
 #Convert P to matrix
@@ -34,6 +36,10 @@ rmse <- sqrt(mean((P - res)^2))
 #Calculate euclidean distance (switch to any minkowski-type by adjusting p)
 m_dist <- dist(rbind(as.vector(res), as.vector(unlist(P))), method = "minkowski", p = 2)
 
+#Calculate Distance corr
+distance_corr <- dcor(P, res)
+
 #print and exit (update later)
 print(paste0("RMSE: ", rmse))
 print(paste0("Euclidean Distance: ", m_dist))
+print(paste0("Distance Correlation: ", distance_corr))

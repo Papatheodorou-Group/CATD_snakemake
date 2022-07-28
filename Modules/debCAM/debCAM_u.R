@@ -5,6 +5,8 @@
 
 suppressMessages(library(debCAM))
 suppressMessages(library(BiocParallel))
+suppressMessages(library(energy))
+
 
 
 #Read data
@@ -22,7 +24,7 @@ P <- readRDS(filename_P)
 # Adjust config.yaml accordingly
 
 #Run deconv
-camObj <- CAM(T, K = cellType_n, cores = 30)
+camObj <- CAM(T, K = length(rownames(P)), cores = 30)
 
 #Extract results
 res <- t(camObj@ASestResult[[1]]@Aest)
@@ -36,6 +38,10 @@ rmse <- sqrt(mean((P - res)^2))
 #Calculate euclidean distance (switch to any minkowski-type by adjusting p)
 m_dist <- dist(rbind(as.vector(res), as.vector(unlist(P))), method = "minkowski", p = 2)
 
+#Calculate Distance corr
+distance_corr <- dcor(P, res)
+
 #print and exit (update later)
 print(paste0("RMSE: ", rmse))
 print(paste0("Euclidean Distance: ", m_dist))
+print(paste0("Distance Correlation: ", distance_corr))
