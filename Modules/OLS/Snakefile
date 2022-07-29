@@ -1,0 +1,36 @@
+## Rule index for OLS deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run OLS with C1 reference.
+## Can be parallelized but not advised as the runtime is slower.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule OLS_run:
+    input:
+        getC1(getBulks())
+
+    output:
+        "Output/{sample}_OLS.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/OLS/OLS_run.R {input} {threads}
+        touch {output}
+        """
