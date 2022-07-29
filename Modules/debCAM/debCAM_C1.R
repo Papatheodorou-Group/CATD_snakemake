@@ -1,4 +1,4 @@
-## debCAM semi-supervised clustering script with cell type profile matrix (S in debCAM documentation)
+## debCAM semi-supervised deconv script with cell type profile matrix (S in debCAM documentation)
 ##
 ## @zgr2788
 

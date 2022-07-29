@@ -1,4 +1,4 @@
-## debCAM unsupervised clustering script
+## debCAM unsupervised deconv script
 ##
 ## @zgr2788
 
