@@ -34,6 +34,6 @@ rule CIBERSORT_run:
 
     shell:
         """
-        Rscript Modules/CDSeq/CDSeq_run.R {input} 
+        Rscript Modules/CIBERSORT/CIBERSORT_run.R {input} 
         touch {output}
         """

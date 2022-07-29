@@ -29,7 +29,7 @@ Credits:
 	"OLS" - DONE
 	"nnls" - DONE
 	"FARDEEP" - LONG RUNTIME, STILL I.P.
-	"RLR" - LONG RUNTIME, STIL I.P.
+	"RLR" - DONE
 	"DCQ"
 	"elasticNet"
 	"lasso"
