@@ -80,6 +80,7 @@ include: "Modules/DeconRNASeq/Snakefile"
 include: "Modules/OLS/Snakefile"
 include: "Modules/NNLS/Snakefile"
 include: "Modules/CIBERSORT/Snakefile"
+include: "Modules/RLR/Snakefile"
 
 
 outFile = list()
@@ -140,7 +141,8 @@ rule all:
         "Output/Hrvatin_afteint_DeconRNASeq.txt",
         "Output/Hrvatin_afteint_OLS.txt",
         "Output/Hrvatin_afteint_NNLS.txt",
-        "Output/Hrvatin_afteint_CIBERSORT.txt"
+        "Output/Hrvatin_afteint_CIBERSORT.txt",
+        "Output/Hrvatin_afteint_RLR.txt"
 
 
 #    output:
