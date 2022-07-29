@@ -1,0 +1,36 @@
+## Rule index for RLR deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run RLR with C1 reference.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule RLR_run:
+    input:
+        getC1(getBulks())
+
+    output:
+        "Output/{sample}_RLR.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/RLR/RLR_run.R {input} {threads}
+        touch {output}
+        """
