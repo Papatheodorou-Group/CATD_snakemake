@@ -19,55 +19,6 @@
 ##
 ##
 
-def getBulks():
-    inList = []
-
-    if config['seededRun']:
-        seedStatus = "_seeded"
-    else:
-        seedStatus = ""
-
-    if config["stParam"]['scaleFirst']:
-        st = "_scaled_transformed"
-    else:
-        st = "_transformed_scaled"
-
-    filename_T = str("Input/Normalized_tables/" + config['sampleName'] + "_pbulks" + seedStatus + st + ".rds")
-    filename_P = str("Input/Psuedobulks/" + config['sampleName'] + "_props" + seedStatus + ".rds")
-
-    inList.append(filename_T)
-    inList.append(filename_P)
-
-    return inList
-
-
-def getC2(inList):
-    if config['seededRun']:
-        seedStatus = "_seeded"
-    else:
-        seedStatus = ""
-
-    filename_C2 = str("Input/References/" + config["sampleName"] + "_C2" + seedStatus + ".rds")
-
-    inList.append(filename_C2)
-
-    return inList
-
-
-def getC1(inList):
-        if config['seededRun']:
-            seedStatus = "_seeded"
-        else:
-            seedStatus = ""
-
-        filename_C1 = str("Input/References/" + config["sampleName"] + "_C1" + seedStatus + ".rds")
-
-        inList.append(filename_C1)
-
-        return inList
-
-
-
 rule debCAM_unsupervised:
     input:
         getBulks()

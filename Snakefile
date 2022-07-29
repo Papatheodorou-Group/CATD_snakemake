@@ -20,12 +20,62 @@
 ##
 
 
+def getBulks():
+    inList = []
+
+    if config['seededRun']:
+        seedStatus = "_seeded"
+    else:
+        seedStatus = ""
+
+    if config["stParam"]['scaleFirst']:
+        st = "_scaled_transformed"
+    else:
+        st = "_transformed_scaled"
+
+    filename_T = str("Input/Normalized_tables/" + config['sampleName'] + "_pbulks" + seedStatus + st + ".rds")
+    filename_P = str("Input/Psuedobulks/" + config['sampleName'] + "_props" + seedStatus + ".rds")
+
+    inList.append(filename_T)
+    inList.append(filename_P)
+
+    return inList
+
+
+def getC2(inList):
+    if config['seededRun']:
+        seedStatus = "_seeded"
+    else:
+        seedStatus = ""
+
+    filename_C2 = str("Input/References/" + config["sampleName"] + "_C2" + seedStatus + ".rds")
+
+    inList.append(filename_C2)
+
+    return inList
+
+
+def getC1(inList):
+        if config['seededRun']:
+            seedStatus = "_seeded"
+        else:
+            seedStatus = ""
+
+        filename_C1 = str("Input/References/" + config["sampleName"] + "_C1" + seedStatus + ".rds")
+
+        inList.append(filename_C1)
+
+        return inList
+
+
+
 configfile: 'config.yaml'
 include: "Modules/Convert_split/Snakefile"
 include: "Modules/Psuedobulk/Snakefile"
 include: "Modules/C_generation/Snakefile"
 include: "Modules/Scale_transform/Snakefile"
 include: "Modules/debCAM/Snakefile"
+include: "Modules/CDSeq/Snakefile"
 
 
 outFile = list()
@@ -81,7 +131,8 @@ rule all:
         #outFile,
         "Output/Hrvatin_afteint_debCAM_unsupervised.txt",
         "Output/Hrvatin_afteint_debCAM_marker.txt",
-        "Output/Hrvatin_afteint_debCAM_C1.txt"
+        "Output/Hrvatin_afteint_debCAM_C1.txt",
+        "Output/Hrvatin_afteint_CDSeq.txt"
 
 #    output:
 #        "passPrep"

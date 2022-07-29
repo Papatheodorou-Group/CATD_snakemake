@@ -6,15 +6,15 @@ seededRun: 0 #Use if you want this run of the pipeline to be reproducible
 cores:
   pbulks: 32
   c_gen: 32
-
+  CDSeq: 16
 
 
 #pbulk parameters below
 pbulkParam:
   pbulkMode: 2  #Different mode for building pbulks
   cellCount: 100000  #How many cells should be used to create a bulk sample
-  nSamples: 350  #How many different samples should be generated
-  propVar: -1 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
+  nSamples: 400  #How many different samples should be generated
+  propVar: 40 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
   sampleCT: 1 #Sampling for cell types allowed or not (1 or 0) (DEPRECATED)
 
 
@@ -36,7 +36,7 @@ pbulkParam:
 #   CLR #Not working
 #   RC
 refgenDgeParam:
-    test_1: 't'
+    test_1: 'bimod'
     test_2: 'wilcox'
     seuratNorm: 'LogNormalize'
 
@@ -83,7 +83,7 @@ refgenDgeParam:
 #   median_ratios
 
 stParam:
-  scaleC: TMM
+  scaleC: SCTransform
   scaleT: TMM
   transform: sqrt
   scaleFirst: 0 #1 = scale first, 0 = transform first
@@ -95,4 +95,4 @@ unsupervisedParams:
 
 #Marker selection params
 markerParams:
-  topN: 3   #How many top markers to select
+  topN: 4   #How many top markers to select
