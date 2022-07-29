@@ -79,6 +79,7 @@ include: "Modules/CDSeq/Snakefile"
 include: "Modules/DeconRNASeq/Snakefile"
 include: "Modules/OLS/Snakefile"
 include: "Modules/NNLS/Snakefile"
+include: "Modules/CIBERSORT/Snakefile"
 
 
 outFile = list()
@@ -138,7 +139,9 @@ rule all:
         "Output/Hrvatin_afteint_CDSeq.txt",
         "Output/Hrvatin_afteint_DeconRNASeq.txt",
         "Output/Hrvatin_afteint_OLS.txt",
-        "Output/Hrvatin_afteint_NNLS.txt"
+        "Output/Hrvatin_afteint_NNLS.txt",
+        "Output/Hrvatin_afteint_CIBERSORT.txt"
+
 
 #    output:
 #        "passPrep"

@@ -1,0 +1,39 @@
+## Rule index for CIBERSORT deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run CIBERSORT with C1 reference.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule CIBERSORT_run:
+    input:
+        getC1(getBulks())
+
+    output:
+        "Output/{sample}_CIBERSORT.txt"
+
+    conda:
+        "env.yaml"
+
+    threads: 3
+
+
+    shell:
+        """
+        Rscript Modules/CDSeq/CDSeq_run.R {input} 
+        touch {output}
+        """

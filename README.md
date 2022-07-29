@@ -24,12 +24,12 @@ Credits:
 # Live tracker for implemented methods:
 
 ## Bulk        
-	"CIBERSORT" - TOO LONG RUNTIME, STILL IP.
+	"CIBERSORT" - DONE
 	"DeconRNASeq" - DONE
 	"OLS" - DONE
 	"nnls" - DONE
-	"FARDEEP"
-	"RLR"
+	"FARDEEP" - LONG RUNTIME, STILL I.P.
+	"RLR" - LONG RUNTIME, STIL I.P.
 	"DCQ"
 	"elasticNet"
 	"lasso"
