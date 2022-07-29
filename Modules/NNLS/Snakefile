@@ -1,0 +1,36 @@
+## Rule index for NNLS deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run NNLS with C1 reference.
+## Can be parallelized but not advised as the runtime is slower.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule NNLS_run:
+    input:
+        getC1(getBulks())
+
+    output:
+        "Output/{sample}_NNLS.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/NNLS/NNLS_run.R {input} {threads}
+        touch {output}
+        """

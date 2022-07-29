@@ -78,6 +78,7 @@ include: "Modules/debCAM/Snakefile"
 include: "Modules/CDSeq/Snakefile"
 include: "Modules/DeconRNASeq/Snakefile"
 include: "Modules/OLS/Snakefile"
+include: "Modules/NNLS/Snakefile"
 
 
 outFile = list()
@@ -136,7 +137,8 @@ rule all:
         "Output/Hrvatin_afteint_debCAM_C1.txt",
         "Output/Hrvatin_afteint_CDSeq.txt",
         "Output/Hrvatin_afteint_DeconRNASeq.txt",
-        "Output/Hrvatin_afteint_OLS.txt"
+        "Output/Hrvatin_afteint_OLS.txt",
+        "Output/Hrvatin_afteint_NNLS.txt"
 
 #    output:
 #        "passPrep"
