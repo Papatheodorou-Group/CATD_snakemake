@@ -1,0 +1,37 @@
+## Rule index for DeconRNASeq deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run DeconRNASeq with C1 reference.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule DeconRNASeq_run:
+    input:
+        getC1(getBulks())
+
+    output:
+        "Output/{sample}_DeconRNASeq.txt"
+
+    conda:
+        "env.yaml"
+
+
+    shell:
+        """
+        Rscript Modules/DeconRNASeq/DeconRNASeq_run.R {input} 
+        touch {output}
+        """
