@@ -15,9 +15,15 @@
                                                    .*' /  .*' ; .*`- +'  `*'
                                                     `*-*   `*-*  `*-*'    
 
-Credits:
-  snake: jgs
-  cat: bug
+
+
+
+                                                    Credits:
+                                                      snake: jgs
+                                                      cat: bug
+
+
+
 
 </pre>
 
@@ -55,3 +61,7 @@ Credits:
 	"bseqsc"
 	"CPM"
 	"TIMER"
+
+
+# Current flow graph:
+<img src="https://github.com/Functional-Genomics/CATD_snakemake/blob/main/dag.png" alt="drawing">
