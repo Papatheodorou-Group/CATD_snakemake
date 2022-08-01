@@ -42,8 +42,8 @@
 	"ridge" - DONE
 	"EPIC" - DONE
 	"DSA" - DONE
-	"ssKL"-  PART OF CELLMIX, SKIPPED FOR NOW
-	"ssFrobenius" - PART OF CELLMIX, SKIPPED FOR NOW
+	"ssKL"-  DONE
+	"ssFrobenius" - DONE
 	"dtangle"- DONE
 	"deconf" - DONE
 	"proportionsInAdmixture"
