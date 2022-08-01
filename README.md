@@ -34,7 +34,7 @@
 	"DeconRNASeq" - DONE
 	"OLS" - DONE
 	"nnls" - DONE
-	"FARDEEP" - LONG RUNTIME, STILL I.P.
+	"FARDEEP" - DONE
 	"RLR" - DONE
 	"DCQ"
 	"elasticNet"

@@ -1,0 +1,36 @@
+## Rule index for FARDEEP deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run FARDEEP with C1 reference.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule FARDEEP_run:
+    input:
+        getC1(getBulks())
+
+    output:
+        "Output/{sample}_FARDEEP.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/FARDEEP/FARDEEP_run.R {input}
+        touch {output}
+        """
