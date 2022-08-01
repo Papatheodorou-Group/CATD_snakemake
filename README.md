@@ -39,7 +39,7 @@
 	"DCQ" - DONE
 	"elasticNet" - DONE
 	"lasso" - DONE
-	"ridge"
+	"ridge" - DONE
 	"EPIC"
 	"DSA"
 	"ssKL"

@@ -1,0 +1,36 @@
+## Rule index for ridge regression deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run ridge regression with C1 reference.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule ridge_run:
+    input:
+        getC1(getBulks())
+
+    output:
+        "Output/{sample}_ridge.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/ridge/ridge_run.R {input}
+        touch {output}
+        """
