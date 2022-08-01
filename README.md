@@ -40,7 +40,7 @@
 	"elasticNet" - DONE
 	"lasso" - DONE
 	"ridge" - DONE
-	"EPIC"
+	"EPIC" - DONE
 	"DSA"
 	"ssKL"
 	"ssFrobenius"

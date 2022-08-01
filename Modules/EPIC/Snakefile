@@ -1,0 +1,36 @@
+## Rule index for EPIC deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run EPIC with C1, C2 and refVar references.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule EPIC_run:
+    input:
+        getRefVar(getC2(getC1(getBulks())))
+
+    output:
+        "Output/{sample}_EPIC.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/EPIC/EPIC_run.R {input}
+        touch {output}
+        """

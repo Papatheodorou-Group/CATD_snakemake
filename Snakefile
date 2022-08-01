@@ -20,6 +20,7 @@
 ##
 
 
+#Helper functions to fetch inputs from prep module
 def getBulks():
     inList = []
 
@@ -68,6 +69,19 @@ def getC1(inList):
         return inList
 
 
+def getRefVar(inList):
+        if config['seededRun']:
+            seedStatus = "_seeded"
+        else:
+            seedStatus = ""
+
+        filename_refVar = str("Input/References/" + config["sampleName"] + "_refVar" + seedStatus + ".rds")
+
+        inList.append(filename_refVar)
+
+        return inList
+
+
 
 configfile: 'config.yaml'
 include: "Modules/Convert_split/Snakefile"
@@ -86,7 +100,7 @@ include: "Modules/DCQ/Snakefile"
 include: "Modules/elasticNET/Snakefile"
 include: "Modules/lasso/Snakefile"
 include: "Modules/ridge/Snakefile"
-
+include: "Modules/EPIC/Snakefile"
 
 outFile = list()
 inP = "Input/Psuedobulks/" + config['sampleName']
@@ -152,7 +166,8 @@ rule all:
         "Output/Hrvatin_afteint_DCQ.txt",
         "Output/Hrvatin_afteint_elasticNET.txt",
         "Output/Hrvatin_afteint_lasso.txt",
-        "Output/Hrvatin_afteint_ridge.txt"
+        "Output/Hrvatin_afteint_ridge.txt",
+        "Output/Hrvatin_afteint_EPIC.txt"
 
 
 #    output:
