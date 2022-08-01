@@ -1,0 +1,36 @@
+## Rule index for elasticNET deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run elasticNET with C1 reference.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule elasticNET_run:
+    input:
+        getC1(getBulks())
+
+    output:
+        "Output/{sample}_elasticNET.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/elasticNET/elasticNET_run.R {input}
+        touch {output}
+        """

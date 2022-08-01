@@ -83,6 +83,7 @@ include: "Modules/CIBERSORT/Snakefile"
 include: "Modules/RLR/Snakefile"
 include: "Modules/FARDEEP/Snakefile"
 include: "Modules/DCQ/Snakefile"
+include: "Modules/elasticNET/Snakefile"
 
 
 outFile = list()
@@ -146,7 +147,8 @@ rule all:
         "Output/Hrvatin_afteint_CIBERSORT.txt",
         "Output/Hrvatin_afteint_RLR.txt",
         "Output/Hrvatin_afteint_FARDEEP.txt",
-        "Output/Hrvatin_afteint_DCQ.txt"
+        "Output/Hrvatin_afteint_DCQ.txt",
+        "Output/Hrvatin_afteint_elasticNET.txt"
 
 
 #    output:

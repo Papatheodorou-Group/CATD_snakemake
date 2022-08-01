@@ -37,7 +37,7 @@
 	"FARDEEP" - DONE
 	"RLR" - DONE
 	"DCQ" - DONE
-	"elasticNet"
+	"elasticNet" - DONE
 	"lasso"
 	"ridge"
 	"EPIC"
