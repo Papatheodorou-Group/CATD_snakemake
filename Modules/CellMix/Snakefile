@@ -52,3 +52,21 @@ rule deconf_run:
         Rscript Modules/CellMix/deconf_run.R {input}
         touch {output}
         """
+
+
+#3- ssKL
+rule ssKL_run:
+    input:
+        getC2(getBulks())
+
+    output:
+        "Output/{sample}_ssKL.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/CellMix/ssKL_run.R {input}
+        touch {output}
+        """
