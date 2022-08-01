@@ -70,3 +70,21 @@ rule ssKL_run:
         Rscript Modules/CellMix/ssKL_run.R {input}
         touch {output}
         """
+
+
+#4- ssFrobenius
+rule ssFrobenius_run:
+    input:
+        getC2(getBulks())
+
+    output:
+        "Output/{sample}_ssFrobenius.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/CellMix/ssFrobenius_run.R {input}
+        touch {output}
+        """

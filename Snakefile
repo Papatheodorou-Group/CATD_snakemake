@@ -177,7 +177,8 @@ rule all:
         "Output/Hrvatin_afteint_dtangle.txt",
         "Output/Hrvatin_afteint_DSA.txt",
         "Output/Hrvatin_afteint_deconf.txt",
-        "Output/Hrvatin_afteint_ssKL.txt"
+        "Output/Hrvatin_afteint_ssKL.txt",
+        "Output/Hrvatin_afteint_ssFrobenius.txt"
 
 #    output:
 #        "passPrep"
