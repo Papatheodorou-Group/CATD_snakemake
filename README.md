@@ -41,10 +41,10 @@
 	"lasso" - DONE
 	"ridge" - DONE
 	"EPIC" - DONE
-	"DSA"
-	"ssKL"
-	"ssFrobenius"
-	"dtangle"
+	"DSA" - PART OF CELLMIX, SKIPPED FOR NOW
+	"ssKL"-  PART OF CELLMIX, SKIPPED FOR NOW
+	"ssFrobenius" - PART OF CELLMIX, SKIPPED FOR NOW
+	"dtangle"- DONE
 	"deconf"
 	"proportionsInAdmixture"
 	"svmdecon"

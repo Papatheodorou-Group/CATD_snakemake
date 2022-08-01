@@ -84,10 +84,14 @@ def getRefVar(inList):
 
 
 configfile: 'config.yaml'
+
+#Prep metamodule
 include: "Modules/Convert_split/Snakefile"
 include: "Modules/Psuedobulk/Snakefile"
 include: "Modules/C_generation/Snakefile"
 include: "Modules/Scale_transform/Snakefile"
+
+#Deconv metamodule
 include: "Modules/debCAM/Snakefile"
 include: "Modules/CDSeq/Snakefile"
 include: "Modules/DeconRNASeq/Snakefile"
@@ -101,6 +105,7 @@ include: "Modules/elasticNET/Snakefile"
 include: "Modules/lasso/Snakefile"
 include: "Modules/ridge/Snakefile"
 include: "Modules/EPIC/Snakefile"
+include: "Modules/dtangle/Snakefile"
 
 outFile = list()
 inP = "Input/Psuedobulks/" + config['sampleName']
@@ -167,8 +172,8 @@ rule all:
         "Output/Hrvatin_afteint_elasticNET.txt",
         "Output/Hrvatin_afteint_lasso.txt",
         "Output/Hrvatin_afteint_ridge.txt",
-        "Output/Hrvatin_afteint_EPIC.txt"
-
+        "Output/Hrvatin_afteint_EPIC.txt",
+        "Output/Hrvatin_afteint_dtangle.txt"
 
 #    output:
 #        "passPrep"
