@@ -106,6 +106,7 @@ include: "Modules/lasso/Snakefile"
 include: "Modules/ridge/Snakefile"
 include: "Modules/EPIC/Snakefile"
 include: "Modules/dtangle/Snakefile"
+include: "Modules/CellMix/Snakefile"
 
 outFile = list()
 inP = "Input/Psuedobulks/" + config['sampleName']
@@ -173,7 +174,8 @@ rule all:
         "Output/Hrvatin_afteint_lasso.txt",
         "Output/Hrvatin_afteint_ridge.txt",
         "Output/Hrvatin_afteint_EPIC.txt",
-        "Output/Hrvatin_afteint_dtangle.txt"
+        "Output/Hrvatin_afteint_dtangle.txt",
+        "Output/Hrvatin_afteint_DSA.txt"
 
 #    output:
 #        "passPrep"

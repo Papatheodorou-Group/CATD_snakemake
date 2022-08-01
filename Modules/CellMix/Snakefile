@@ -1,0 +1,54 @@
+## Rule index for CellMix based deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes all the rules to run deconvolution methods in CellMix.
+##
+##
+##      1- DSA
+##      2- deconf
+##      3- ssKL
+##      4- ssFrobenius
+##
+##
+##
+##
+##
+##
+##
+
+#1- DSA
+rule DSA_run:
+    input:
+        getC2(getBulks())
+
+    output:
+        "Output/{sample}_DSA.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/CellMix/DSA_run.R {input}
+        touch {output}
+        """
+
+#2- deconf
+rule deconf_run:
+    input:
+        getC2(getBulks())
+
+    output:
+        "Output/{sample}_deconf.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/CellMix/deconf_run.R {input}
+        touch {output}
+        """

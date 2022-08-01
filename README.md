@@ -41,7 +41,7 @@
 	"lasso" - DONE
 	"ridge" - DONE
 	"EPIC" - DONE
-	"DSA" - PART OF CELLMIX, SKIPPED FOR NOW
+	"DSA" - DONE
 	"ssKL"-  PART OF CELLMIX, SKIPPED FOR NOW
 	"ssFrobenius" - PART OF CELLMIX, SKIPPED FOR NOW
 	"dtangle"- DONE
