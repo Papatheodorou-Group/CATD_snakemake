@@ -45,7 +45,7 @@
 	"ssKL"-  PART OF CELLMIX, SKIPPED FOR NOW
 	"ssFrobenius" - PART OF CELLMIX, SKIPPED FOR NOW
 	"dtangle"- DONE
-	"deconf"
+	"deconf" - DONE
 	"proportionsInAdmixture"
 	"svmdecon"
 	"EpiDISH"
