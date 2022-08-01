@@ -1,4 +1,4 @@
-## CDSeq deconv script
+## proportionsInAdmixture deconv script
 ##
 ## @zgr2788
 

@@ -47,8 +47,7 @@
 	"dtangle"- DONE
 	"deconf" - DONE
 	"proportionsInAdmixture" - DONE
-	"svmdecon"
-	"EpiDISH"
+	"EpiDISH" - DONE
 	"debCAM (all three alternatives)" - DONE
 	"CDSeq" - DONE
 

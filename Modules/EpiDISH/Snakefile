@@ -1,0 +1,36 @@
+## Rule index for EpiDISH deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run EpiDISH with C1 reference.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule EpiDISH_run:
+    input:
+        getC1(getBulks())
+
+    output:
+        "Output/{sample}_EpiDISH.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/EpiDISH/EpiDISH_run.R {input}
+        touch {output}
+        """
