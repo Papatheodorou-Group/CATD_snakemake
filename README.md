@@ -38,7 +38,7 @@
 	"RLR" - DONE
 	"DCQ" - DONE
 	"elasticNet" - DONE
-	"lasso"
+	"lasso" - DONE
 	"ridge"
 	"EPIC"
 	"DSA"
