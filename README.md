@@ -36,7 +36,7 @@
 	"nnls" - DONE
 	"FARDEEP" - DONE
 	"RLR" - DONE
-	"DCQ"
+	"DCQ" - DONE
 	"elasticNet"
 	"lasso"
 	"ridge"

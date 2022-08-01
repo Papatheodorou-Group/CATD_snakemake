@@ -1,0 +1,37 @@
+## Rule index for ComICS DCQ deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run DCQ with C1 reference.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule DCQ_run:
+    input:
+        getC1(getBulks())
+
+    output:
+        "Output/{sample}_DCQ.txt"
+
+    conda:
+        "env.yaml"
+
+
+    shell:
+        """
+        Rscript Modules/DCQ/DCQ_run.R {input} {threads}
+        touch {output}
+        """
