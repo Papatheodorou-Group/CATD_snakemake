@@ -46,7 +46,7 @@
 	"ssFrobenius" - DONE
 	"dtangle"- DONE
 	"deconf" - DONE
-	"proportionsInAdmixture"
+	"proportionsInAdmixture" - DONE
 	"svmdecon"
 	"EpiDISH"
 	"debCAM (all three alternatives)" - DONE

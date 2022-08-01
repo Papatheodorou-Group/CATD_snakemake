@@ -1,0 +1,36 @@
+## Rule index for ADAPTS deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run ADAPTS with C1 reference.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule ADAPTS_run:
+    input:
+        getC1(getBulks())
+
+    output:
+        "Output/{sample}_ADAPTS.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/ADAPTS/ADAPTS_run.R {input}
+        touch {output}
+        """
