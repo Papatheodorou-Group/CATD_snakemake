@@ -147,6 +147,7 @@ include: "Modules/EpiDISH/Snakefile"
 include: "Modules/MuSiC/Snakefile"
 include: "Modules/BisqueRNA/Snakefile"
 include: "Modules/SCDC/Snakefile"
+include: "Modules/DWLS/Snakefile"
 
 outFile = list()
 inP = "Input/Psuedobulks/" + config['sampleName']
@@ -223,7 +224,8 @@ rule all:
         "Output/Hrvatin_afteint_EpiDISH.txt",
         "Output/Hrvatin_afteint_MuSiC.txt",
         "Output/Hrvatin_afteint_Bisque.txt",
-        "Output/Hrvatin_afteint_SCDC.txt"
+        "Output/Hrvatin_afteint_SCDC.txt",
+        "Output/Hrvatin_afteint_DWLS.txt"
 
 #    output:
 #        "passPrep"

@@ -54,10 +54,10 @@
 ## SC
 	"MuSiC" - DONE
 	"BisqueRNA" - DONE
-	"DWLS" - LONG RUNTIME IN DGE, IP
+	"DWLS" - DONE
 	"deconvSeq" - LONG RUNTIME IN DGE, IP
 	"SCDC" - DONE
-	"bseqsc"
+	"bseqsc" - LONG RUNTIME IN CIBERSORT, IP
 	"CPM"
 	"TIMER"
 

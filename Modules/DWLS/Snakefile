@@ -1,0 +1,38 @@
+## Rule index for DWLS deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run DWLS with C0 reference.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule DWLS_run:
+    input:
+        getPhenData(getC0(getBulks()))
+
+    output:
+        "Output/{sample}_DWLS.txt"
+
+    conda:
+        "env.yaml"
+
+    threads: 16
+
+    shell:
+        """
+        Rscript Modules/DWLS/DWLS_run.R {input} {threads}
+        touch {output}
+        """
