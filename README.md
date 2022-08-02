@@ -53,7 +53,7 @@
 
 ## SC
 	"MuSiC" - DONE
-	"BisqueRNA"
+	"BisqueRNA" - DONE
 	"DWLS"
 	"deconvSeq"
 	"SCDC"

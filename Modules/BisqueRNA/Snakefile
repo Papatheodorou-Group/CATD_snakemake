@@ -1,0 +1,36 @@
+## Rule index for Bisque deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run Bisque with C0 reference.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule Bisque_run:
+    input:
+        getPhenData(getC0(getBulks()))
+
+    output:
+        "Output/{sample}_Bisque.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/BisqueRNA/Bisque_run.R {input}
+        touch {output}
+        """
