@@ -1,0 +1,36 @@
+## Rule index for SCDC deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run SCDC with C0 reference.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule SCDC_run:
+    input:
+        getPhenData(getC0(getBulks()))
+
+    output:
+        "Output/{sample}_SCDC.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/SCDC/SCDC_run.R {input}
+        touch {output}
+        """

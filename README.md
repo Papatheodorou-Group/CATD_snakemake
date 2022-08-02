@@ -54,9 +54,9 @@
 ## SC
 	"MuSiC" - DONE
 	"BisqueRNA" - DONE
-	"DWLS"
-	"deconvSeq"
-	"SCDC"
+	"DWLS" - LONG RUNTIME IN DGE, IP
+	"deconvSeq" - LONG RUNTIME IN DGE, IP
+	"SCDC" - DONE
 	"bseqsc"
 	"CPM"
 	"TIMER"
