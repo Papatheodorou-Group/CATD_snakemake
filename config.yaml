@@ -96,3 +96,6 @@ unsupervisedParams:
 #Marker selection params
 markerParams:
   topN: 4   #How many top markers to select
+
+#Force MuSiC to run with raw counts
+forceMuSiCRaw: FALSE #MuSiC originally requires raw counts, but can be made FALSE to test for susceptibility to normalization

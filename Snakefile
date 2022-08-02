@@ -43,6 +43,7 @@ def getBulks():
     return inList
 
 
+
 def getC2(inList):
     if config['seededRun']:
         seedStatus = "_seeded"
@@ -54,6 +55,7 @@ def getC2(inList):
     inList.append(filename_C2)
 
     return inList
+
 
 
 def getC1(inList):
@@ -69,6 +71,7 @@ def getC1(inList):
         return inList
 
 
+
 def getRefVar(inList):
         if config['seededRun']:
             seedStatus = "_seeded"
@@ -81,6 +84,38 @@ def getRefVar(inList):
 
         return inList
 
+
+
+def getC0(inList):
+        if config['seededRun']:
+            seedStatus = "_seeded"
+        else:
+            seedStatus = ""
+
+        if config["stParam"]['scaleFirst']:
+            st = "_scaled_transformed"
+        else:
+            st = "_transformed_scaled"
+
+        filename_C0 = str("Input/Normalized_tables/" + config["sampleName"] + "_C0" + seedStatus + st + ".rds")
+
+        inList.append(filename_C0)
+
+        return inList
+
+
+
+def getPhenData(inList):
+        if config['seededRun']:
+            seedStatus = "_seeded"
+        else:
+            seedStatus = ""
+
+        filename_phenData = str("Input/References/" + config["sampleName"] + "_phenData" + seedStatus + ".rds")
+
+        inList.append(filename_phenData)
+
+        return inList
 
 
 configfile: 'config.yaml'
@@ -109,6 +144,7 @@ include: "Modules/dtangle/Snakefile"
 include: "Modules/CellMix/Snakefile"
 include: "Modules/ADAPTS/Snakefile"
 include: "Modules/EpiDISH/Snakefile"
+include: "Modules/MuSiC/Snakefile"
 
 outFile = list()
 inP = "Input/Psuedobulks/" + config['sampleName']
@@ -182,7 +218,8 @@ rule all:
         "Output/Hrvatin_afteint_ssKL.txt",
         "Output/Hrvatin_afteint_ssFrobenius.txt",
         "Output/Hrvatin_afteint_proportionsInAdmixture.txt",
-        "Output/Hrvatin_afteint_EpiDISH.txt"
+        "Output/Hrvatin_afteint_EpiDISH.txt",
+        "Output/Hrvatin_afteint_MuSiC.txt"
 
 #    output:
 #        "passPrep"

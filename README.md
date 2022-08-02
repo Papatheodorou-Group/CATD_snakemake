@@ -52,7 +52,7 @@
 	"CDSeq" - DONE
 
 ## SC
-	"MuSiC"
+	"MuSiC" - DONE
 	"BisqueRNA"
 	"DWLS"
 	"deconvSeq"

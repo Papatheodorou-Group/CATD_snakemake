@@ -1,0 +1,39 @@
+## Rule index for MuSiC deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run MuSiC with C0 reference.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule MuSiC_run:
+    input:
+        getPhenData(getC0(getBulks()))
+
+    output:
+        "Output/{sample}_MuSiC.txt"
+
+    conda:
+        "env.yaml"
+
+    params:
+        forceRaw = config['forceMuSiCRaw']
+
+    shell:
+        """
+        Rscript Modules/MuSiC/MuSiC_run.R {input} {params}
+        touch {output}
+        """
