@@ -1,0 +1,38 @@
+## Rule index for CPM deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run CPM with C0 reference.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule CPM_run:
+    input:
+        getPhenData(getC0(getBulks()))
+
+    output:
+        "Output/{sample}_CPM.txt"
+
+    conda:
+        "env.yaml"
+
+    threads: config['cores']['CPM']
+
+    shell:
+        """
+        Rscript Modules/CPM/CPM_run.R {input} {threads}
+        touch {output}
+        """

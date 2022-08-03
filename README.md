@@ -58,8 +58,8 @@
 	"deconvSeq" - LONG RUNTIME IN DGE, IP
 	"SCDC" - DONE
 	"bseqsc" - DONE
-	"CPM" - LONG RUNTIME IN PRCOMP, IP
-	"TIMER"
+	"CPM" - DONE
+	"TIMER" - 
 
 
 # Current flow graph:

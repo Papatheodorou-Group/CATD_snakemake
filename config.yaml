@@ -7,6 +7,7 @@ cores:
   pbulks: 32
   c_gen: 32
   CDSeq: 16
+  CPM: 16
 
 
 #pbulk parameters below
