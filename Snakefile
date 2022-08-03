@@ -150,6 +150,7 @@ include: "Modules/SCDC/Snakefile"
 include: "Modules/DWLS/Snakefile"
 include: "Modules/bseqsc/Snakefile"
 include: "Modules/CPM/Snakefile"
+include: "Modules/TIMER/Snakefile"
 
 outFile = list()
 inP = "Input/Psuedobulks/" + config['sampleName']
@@ -229,7 +230,8 @@ rule all:
         "Output/Hrvatin_afteint_SCDC.txt",
         "Output/Hrvatin_afteint_DWLS.txt",
         #"Output/Hrvatin_afteint_bseqsc.txt",
-        "Output/Hrvatin_afteint_CPM.txt"
+        "Output/Hrvatin_afteint_CPM.txt",
+        "Output/Hrvatin_afteint_TIMER.txt"
 
 #    output:
 #        "passPrep"

@@ -59,7 +59,7 @@
 	"SCDC" - DONE
 	"bseqsc" - DONE
 	"CPM" - DONE
-	"TIMER" - 
+	"TIMER" - DONE
 
 
 # Current flow graph:
