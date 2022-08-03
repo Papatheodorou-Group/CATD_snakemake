@@ -57,8 +57,8 @@
 	"DWLS" - DONE
 	"deconvSeq" - LONG RUNTIME IN DGE, IP
 	"SCDC" - DONE
-	"bseqsc" - LONG RUNTIME IN CIBERSORT, IP
-	"CPM"
+	"bseqsc" - DONE
+	"CPM" - LONG RUNTIME IN PRCOMP, IP
 	"TIMER"
 
 

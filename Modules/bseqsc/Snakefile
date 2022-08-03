@@ -1,0 +1,38 @@
+## Rule index for bseqsc deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run bseqsc with C0 reference.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule bseqsc_run:
+    input:
+        getPhenData(getC0(getBulks()))
+
+    output:
+        "Output/{sample}_bseqsc.txt"
+
+    conda:
+        "env.yaml"
+
+    threads: 3
+    
+    shell:
+        """
+        Rscript Modules/bseqsc/bseqsc_run.R {input}
+        touch {output}
+        """
