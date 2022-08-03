@@ -24,13 +24,13 @@ rule EpiDISH_run:
         getC1(getBulks())
 
     output:
-        "Output/{sample}_EpiDISH.txt"
+        "Output/{sample}_res_EpiDISH.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_EpiDISH_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/EpiDISH/EpiDISH_run.R {input}
-        touch {output}
-        """
+        "Rscript Modules/EpiDISH/EpiDISH_run.R {input} {output}"

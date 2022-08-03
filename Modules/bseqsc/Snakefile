@@ -24,15 +24,15 @@ rule bseqsc_run:
         getPhenData(getC0(getBulks()))
 
     output:
-        "Output/{sample}_bseqsc.txt"
+        "Output/{sample}_res_bseqsc.rds"
 
     conda:
         "env.yaml"
 
     threads: 3
-    
+
+    benchmark:
+        "Benchmarks/{sample}_bseqsc_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/bseqsc/bseqsc_run.R {input}
-        touch {output}
-        """
+        "Rscript Modules/bseqsc/bseqsc_run.R {input} {output}"

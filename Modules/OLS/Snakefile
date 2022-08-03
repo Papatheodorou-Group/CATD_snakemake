@@ -24,13 +24,13 @@ rule OLS_run:
         getC1(getBulks())
 
     output:
-        "Output/{sample}_OLS.txt"
+        "Output/{sample}_res_OLS.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_OLS_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/OLS/OLS_run.R {input} {threads}
-        touch {output}
-        """
+        "Rscript Modules/OLS/OLS_run.R {input} {output}"

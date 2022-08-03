@@ -19,6 +19,7 @@ filename_P <- args[2]
 filename_C0 <- args[3]
 filename_phenData <- args[4]
 plan('multisession', workers = as.numeric(args[5])) #Paralellism
+filename_O <- args[6]
 
 T <- readRDS(filename_T)
 P <- readRDS(filename_P)
@@ -34,7 +35,7 @@ rm(common)
 
 #Preprocess
 message("Started running sig...")
-Signature <- buildSignatureMatrixMAST(scdata = C0, id = phenData[,"cellType"], path = "Output", diff.cutoff = 0.5, pval.cutoff = 0.01)
+Signature <- buildSignatureMatrixMAST(scdata = C0, id = phenData[,"cellType"], path = "Scratch", diff.cutoff = 0.5, pval.cutoff = 0.01)
 
 
 #Get results and reorder the matrices for correspondence
@@ -47,16 +48,5 @@ res <- future_apply(T,2, function(x){
 rownames(res) <- as.character(unique(phenData$cellType))
 res <- res[order(match(rownames(res), rownames(P))),]
 
-#Calculate RMSE error
-rmse <- sqrt(mean(as.matrix((P - res)^2)))
-
-#Calculate euclidean distance (switch to any minkowski-type by adjusting p)
-m_dist <- dist(rbind(as.vector(res), as.vector(unlist(P))), method = "minkowski", p = 2)
-
-#Calculate Distance corr
-distance_corr <- dcor(P, res)
-
-#print and exit (update later)
-print(paste0("RMSE: ", rmse))
-print(paste0("Euclidean Distance: ", m_dist))
-print(paste0("Distance Correlation: ", distance_corr))
+#Save and exit
+saveRDS(res, file=filename_O)

@@ -24,13 +24,13 @@ rule TIMER_run:
         getPhenData(getC0(getBulks()))
 
     output:
-        "Output/{sample}_TIMER.txt"
+        "Output/{sample}_res_TIMER.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_TIMER_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/TIMER/TIMER_run.R {input}
-        touch {output}
-        """
+        "Rscript Modules/TIMER/TIMER_run.R {input} {output}"

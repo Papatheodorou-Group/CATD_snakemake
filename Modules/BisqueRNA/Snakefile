@@ -24,13 +24,13 @@ rule Bisque_run:
         getPhenData(getC0(getBulks()))
 
     output:
-        "Output/{sample}_Bisque.txt"
+        "Output/{sample}_res_Bisque.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_Bisque_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/BisqueRNA/Bisque_run.R {input}
-        touch {output}
-        """
+        "Rscript Modules/BisqueRNA/Bisque_run.R {input} {output}"

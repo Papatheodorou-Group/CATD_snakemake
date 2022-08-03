@@ -24,6 +24,7 @@ filename_T <- args[1]
 filename_P <- args[2]
 filename_C0 <- args[3]
 filename_phenData <- args[4]
+filename_O <- args[5]
 
 T <- readRDS(filename_T)
 P <- readRDS(filename_P)
@@ -58,16 +59,5 @@ res <- CIBERSORT(B, T, QN = FALSE, absolute = FALSE, perm = 0)
 res <- t(res[,1:(ncol(res)-3)])
 res <- res[order(match(rownames(res), rownames(P))),]
 
-#Calculate RMSE error
-rmse <- sqrt(mean(as.matrix((P - res)^2)))
-
-#Calculate euclidean distance (switch to any minkowski-type by adjusting p)
-m_dist <- dist(rbind(as.vector(res), as.vector(unlist(P))), method = "minkowski", p = 2)
-
-#Calculate Distance corr
-distance_corr <- dcor(P, res)
-
-#print and exit (update later)
-print(paste0("RMSE: ", rmse))
-print(paste0("Euclidean Distance: ", m_dist))
-print(paste0("Distance Correlation: ", distance_corr))
+#Save and exit
+saveRDS(res, file=filename_O)

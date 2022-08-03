@@ -12,10 +12,14 @@ args <- commandArgs(trailingOnly = TRUE)
 filename_T <- args[1]
 filename_P <- args[2]
 filename_C1 <- args[3]
+filename_O <- args[4]
 
 T <- readRDS(filename_T)
 C1 <- readRDS(filename_C1)
 P <- readRDS(filename_P)
+
+#Match cols in C1 to rownames in P for true reference
+C1 <- C1[,order(match(colnames(C1), rownames(P)))]
 
 #Get foldchanges for possible marker genes
 pMGstat <- MGstatistic(C1, colnames(C1))
@@ -27,19 +31,5 @@ pMGlist.FC <- lapply(colnames(C1), function(x) rownames(pMGstat)[pMGstat$idx == 
 res <- redoASest(T, pMGlist.FC, maxIter = 10) #Adjust maxIter later
 res <- t(res$Aest)
 
-#Convert P to matrix
-P <- matrix(unlist(P), nrow = nrow(P), ncol = ncol(P))
-
-#Calculate RMSE error
-rmse <- sqrt(mean((P - res)^2))
-
-#Calculate euclidean distance (switch to any minkowski-type by adjusting p)
-m_dist <- dist(rbind(as.vector(res), as.vector(unlist(P))), method = "minkowski", p = 2)
-
-#Calculate Distance corr
-distance_corr <- dcor(P, res)
-
-#print and exit (update later)
-print(paste0("RMSE: ", rmse))
-print(paste0("Euclidean Distance: ", m_dist))
-print(paste0("Distance Correlation: ", distance_corr))
+#Save and exit
+saveRDS(res, file=filename_O)

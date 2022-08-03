@@ -16,6 +16,7 @@ filename_P <- args[2]
 filename_C0 <- args[3]
 filename_phenData <- args[4]
 cores <- as.numeric(args[5])
+filename_O <- args[6]
 
 T <- readRDS(filename_T)
 P <- readRDS(filename_P)
@@ -41,16 +42,5 @@ res <- apply(res,2,function(x) ifelse(x < 0, 0, x)) #explicit non-negativity con
 res <- apply(res,2,function(x) x/sum(x)) #explicit STO constraint
 res <- res[order(match(rownames(res), rownames(P))),]
 
-#Calculate RMSE error
-rmse <- sqrt(mean(as.matrix((P - res)^2)))
-
-#Calculate euclidean distance (switch to any minkowski-type by adjusting p)
-m_dist <- dist(rbind(as.vector(res), as.vector(unlist(P))), method = "minkowski", p = 2)
-
-#Calculate Distance corr
-distance_corr <- dcor(P, res)
-
-#print and exit (update later)
-print(paste0("RMSE: ", rmse))
-print(paste0("Euclidean Distance: ", m_dist))
-print(paste0("Distance Correlation: ", distance_corr))
+#Save and exit
+saveRDS(res, file=filename_O)

@@ -41,6 +41,9 @@ rule generateReferences:
 
     threads: config['cores']['c_gen']
 
+    benchmark:
+        "Benchmarks/{sample}_Cgen_benchmark.txt"
+
     shell:
         """
         mkdir -p Input/References
@@ -72,6 +75,9 @@ rule generateSeededReferences:
 
     threads: config['cores']['c_gen']
 
+    benchmark:
+        "Benchmarks/{sample}_Cgen_benchmark.txt"
+    
     shell:
         """
         mkdir -p Input/References

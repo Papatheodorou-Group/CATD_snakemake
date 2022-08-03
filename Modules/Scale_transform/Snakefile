@@ -40,6 +40,9 @@ rule scaleTransform_T_C:
 
     threads: 32
 
+    benchmark:
+        "Benchmarks/{sample}_Scaletransform_benchmark.txt"
+
     shell:
         """
         mkdir -p Input/Normalized_tables
@@ -69,6 +72,9 @@ rule transformScale_T_C:
         transMethod = config['stParam']['transform']
 
     threads: 32
+
+    benchmark:
+        "Benchmarks/{sample}_Scaletransform_benchmark.txt"
 
     shell:
         """
@@ -104,6 +110,9 @@ rule scaleTransformSeeded_T_C:
 
     threads: 32
 
+    benchmark:
+        "Benchmarks/{sample}_Scaletransform_benchmark.txt"
+
     shell:
         """
         mkdir -p Input/Normalized_tables
@@ -133,6 +142,9 @@ rule transformScaleSeeded_T_C:
         transMethod = config['stParam']['transform']
 
     threads: 32
+
+    benchmark:
+        "Benchmarks/{sample}_Scaletransform_benchmark.txt"
 
     shell:
         """

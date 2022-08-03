@@ -24,13 +24,13 @@ rule elasticNET_run:
         getC1(getBulks())
 
     output:
-        "Output/{sample}_elasticNET.txt"
+        "Output/{sample}_res_elasticNET.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_elasticNET_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/elasticNET/elasticNET_run.R {input}
-        touch {output}
-        """
+        "Rscript Modules/elasticNET/elasticNET_run.R {input} {output}"

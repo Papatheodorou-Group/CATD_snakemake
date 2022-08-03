@@ -24,13 +24,13 @@ rule ridge_run:
         getC1(getBulks())
 
     output:
-        "Output/{sample}_ridge.txt"
+        "Output/{sample}_res_ridge.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_ridge_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/ridge/ridge_run.R {input}
-        touch {output}
-        """
+        "Rscript Modules/ridge/ridge_run.R {input} {output}"

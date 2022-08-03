@@ -153,8 +153,9 @@ include: "Modules/CPM/Snakefile"
 include: "Modules/TIMER/Snakefile"
 
 #Grab all methods from config
-Methods = [str("Output/" + config['sampleName'] + "_" + methods + ".txt") for methods in config['deconMethods']]
+Methods = [str("Output/" + config['sampleName'] + "_res_" + methods + ".rds") for methods in config['deconMethods']]
 
+#Target methods
 rule all:
     input:
         Methods

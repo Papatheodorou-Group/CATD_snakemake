@@ -127,6 +127,15 @@ switch(method,
 
 )
 
+#Only get rows where there is at least one cell with a count
+T <- T[rowSums(T) != 0,]
+
+#Same for cols
+T <- T[,colSums(T) != 0]
+
+#Only keep rows with different counts after transformations
+T <- T[!apply(T, 1, function(x) var(x) == 0),]
+
 #Save transformed tables
 saveRDS(T, sub(".rds", "_scaled.rds",filename_T))
 

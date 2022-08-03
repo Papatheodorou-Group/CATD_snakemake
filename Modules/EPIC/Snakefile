@@ -24,13 +24,13 @@ rule EPIC_run:
         getRefVar(getC2(getC1(getBulks())))
 
     output:
-        "Output/{sample}_EPIC.txt"
+        "Output/{sample}_res_EPIC.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_EPIC_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/EPIC/EPIC_run.R {input}
-        touch {output}
-        """
+        "Rscript Modules/EPIC/EPIC_run.R {input} {output}"

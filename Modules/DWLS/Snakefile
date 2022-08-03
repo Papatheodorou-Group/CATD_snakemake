@@ -24,15 +24,15 @@ rule DWLS_run:
         getPhenData(getC0(getBulks()))
 
     output:
-        "Output/{sample}_DWLS.txt"
+        "Output/{sample}_res_DWLS.rds"
 
     conda:
         "env.yaml"
 
     threads: 16
 
+    benchmark:
+        "Benchmarks/{sample}_DWLS_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/DWLS/DWLS_run.R {input} {threads}
-        touch {output}
-        """
+        "Rscript Modules/DWLS/DWLS_run.R {input} {threads} {output}"

@@ -24,7 +24,7 @@ rule MuSiC_run:
         getPhenData(getC0(getBulks()))
 
     output:
-        "Output/{sample}_MuSiC.txt"
+        "Output/{sample}_res_MuSiC.rds"
 
     conda:
         "env.yaml"
@@ -32,8 +32,8 @@ rule MuSiC_run:
     params:
         forceRaw = config['forceMuSiCRaw']
 
+    benchmark:
+        "Benchmarks/{sample}_MuSiC_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/MuSiC/MuSiC_run.R {input} {params}
-        touch {output}
-        """
+        "Rscript Modules/MuSiC/MuSiC_run.R {input} {params} {output}"

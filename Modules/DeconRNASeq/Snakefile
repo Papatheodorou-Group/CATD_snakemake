@@ -24,14 +24,13 @@ rule DeconRNASeq_run:
         getC1(getBulks())
 
     output:
-        "Output/{sample}_DeconRNASeq.txt"
+        "Output/{sample}_res_DeconRNASeq.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_DeconRNASeq_benchmark.txt"
 
     shell:
-        """
-        Rscript Modules/DeconRNASeq/DeconRNASeq_run.R {input} 
-        touch {output}
-        """
+        "Rscript Modules/DeconRNASeq/DeconRNASeq_run.R {input} {output}"

@@ -24,15 +24,15 @@ rule CPM_run:
         getPhenData(getC0(getBulks()))
 
     output:
-        "Output/{sample}_CPM.txt"
+        "Output/{sample}_res_CPM.rds"
 
     conda:
         "env.yaml"
 
     threads: config['cores']['CPM']
 
+    benchmark:
+        "Benchmarks/{sample}_CPM_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/CPM/CPM_run.R {input} {threads}
-        touch {output}
-        """
+        "Rscript Modules/CPM/CPM_run.R {input} {threads} {output}"

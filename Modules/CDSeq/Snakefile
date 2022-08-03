@@ -24,16 +24,15 @@ rule CDSeq_run:
         getC1(getBulks())
 
     output:
-        "Output/{sample}_CDSeq.txt"
+        "Output/{sample}_res_CDSeq.rds"
 
     conda:
         "env.yaml"
 
     threads: config['cores']['CDSeq']
 
+    benchmark:
+        "Benchmarks/{sample}_CDSeq_benchmark.txt"
 
     shell:
-        """
-        Rscript Modules/CDSeq/CDSeq_run.R {input} {threads}
-        touch {output}
-        """
+        "Rscript Modules/CDSeq/CDSeq_run.R {input} {threads} {output}"

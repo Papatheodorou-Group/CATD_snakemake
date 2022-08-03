@@ -24,7 +24,7 @@ rule debCAM_unsupervised:
         getBulks()
 
     output:
-        "Output/{sample}_debCAM_unsupervised.txt"
+        "Output/{sample}_res_debCAM_unsupervised.rds"
 
     params:
         cellTypes_n = config['unsupervisedParams']['expectedTypes']
@@ -34,12 +34,11 @@ rule debCAM_unsupervised:
 
     threads: 30
 
-    shell:
-        """
-        Rscript Modules/debCAM/debCAM_u.R {input} {params}
-        touch {output}
-        """
+    benchmark:
+        "Benchmarks/{sample}_debCAM_unsupervised_benchmark.txt"
 
+    shell:
+        "Rscript Modules/debCAM/debCAM_u.R {input} {params} {output}"
 
 
 rule debCAM_marker:
@@ -47,7 +46,7 @@ rule debCAM_marker:
         getC2(getBulks())
 
     output:
-        "Output/{sample}_debCAM_marker.txt"
+        "Output/{sample}_res_debCAM_marker.rds"
 
     conda:
         "env.yaml"
@@ -55,11 +54,11 @@ rule debCAM_marker:
     params:
         topN = config['markerParams']['topN']
 
+    benchmark:
+        "Benchmarks/{sample}_debCAM_marker_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/debCAM/debCAM_marker.R {input} {params}
-        touch {output}
-        """
+        "Rscript Modules/debCAM/debCAM_marker.R {input} {params} {output}"
 
 
 
@@ -68,13 +67,13 @@ rule debCAM_C1:
         getC1(getBulks())
 
     output:
-        "Output/{sample}_debCAM_C1.txt"
+        "Output/{sample}_res_debCAM_C1.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_debCAM_C1_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/debCAM/debCAM_C1.R {input}
-        touch {output}
-        """
+        "Rscript Modules/debCAM/debCAM_C1.R {input} {output}"

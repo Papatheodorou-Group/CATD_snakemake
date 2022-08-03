@@ -160,6 +160,7 @@ switch(method,
 
     sizeFactors <- scater::librarySizeFactors(C)
     C <- scater::normalizeCounts(C, sizeFactors, transform = "none")
+    C <- as(C, "matrix")
   },
 
 
@@ -171,6 +172,15 @@ switch(method,
 
 
 )
+
+#Only get rows where there is at least one cell with a count
+C <- C[rowSums(C) != 0,]
+
+#Same for cols
+C <- C[,colSums(C) != 0]
+
+#Only keep rows with different counts after transformations
+C <- C[!apply(C, 1, function(x) var(x) == 0),]
 
 
 

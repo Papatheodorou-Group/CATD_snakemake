@@ -24,13 +24,13 @@ rule lasso_run:
         getC1(getBulks())
 
     output:
-        "Output/{sample}_lasso.txt"
+        "Output/{sample}_res_lasso.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_lasso_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/lasso/lasso_run.R {input}
-        touch {output}
-        """
+        "Rscript Modules/lasso/lasso_run.R {input} {output}"

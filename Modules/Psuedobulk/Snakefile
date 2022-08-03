@@ -39,6 +39,9 @@ rule generatePsuedobulks:
 
     threads: config['cores']['pbulks']
 
+    benchmark:
+        "Benchmarks/{sample}_Pbulks_benchmark.txt"
+
     shell:
         """
         mkdir -p Input/Psuedobulks
@@ -65,6 +68,9 @@ rule generateSeededPsuedobulks:
         "env.yaml"
 
     threads: config['cores']['pbulks']
+
+    benchmark:
+        "Benchmarks/{sample}_Pbulks_benchmark.txt"
 
     shell:
         """

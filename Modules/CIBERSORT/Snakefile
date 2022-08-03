@@ -24,16 +24,15 @@ rule CIBERSORT_run:
         getC1(getBulks())
 
     output:
-        "Output/{sample}_CIBERSORT.txt"
+        "Output/{sample}_res_CIBERSORT.rds"
 
     conda:
         "env.yaml"
 
     threads: 3
 
+    benchmark:
+        "Benchmarks/{sample}_CIBERSORT_benchmark.txt"
 
     shell:
-        """
-        Rscript Modules/CIBERSORT/CIBERSORT_run.R {input} 
-        touch {output}
-        """
+        "Rscript Modules/CIBERSORT/CIBERSORT_run.R {input} {output}"

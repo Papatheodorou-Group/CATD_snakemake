@@ -24,13 +24,13 @@ rule dtangle_run:
         getC2(getC1(getBulks()))
 
     output:
-        "Output/{sample}_dtangle.txt"
+        "Output/{sample}_res_dtangle.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_dtangle_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/dtangle/dtangle_run.R {input} 
-        touch {output}
-        """
+        "Rscript Modules/dtangle/dtangle_run.R {input} {output}"

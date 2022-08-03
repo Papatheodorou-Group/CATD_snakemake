@@ -55,6 +55,24 @@ switch(method,
 
 )
 
+#Only get rows where there is at least one cell with a count
+C <- C[rowSums(C) != 0,]
+
+#Same for cols
+C <- C[,colSums(C) != 0]
+
+#Only keep rows with different counts after transformations
+C <- C[!apply(C, 1, function(x) var(x) == 0),]
+
+#Only get rows where there is at least one cell with a count
+T <- T[rowSums(T) != 0,]
+
+#Same for cols
+T <- T[,colSums(T) != 0]
+
+#Only keep rows with different counts after transformations
+T <- T[!apply(T, 1, function(x) var(x) == 0),]
+
 #Save transformed tables
 saveRDS(T, sub(".rds", "_transformed.rds", filename_T))
 saveRDS(C, sub(".rds", "_transformed.rds", filename_C))

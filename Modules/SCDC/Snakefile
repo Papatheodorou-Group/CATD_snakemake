@@ -24,13 +24,13 @@ rule SCDC_run:
         getPhenData(getC0(getBulks()))
 
     output:
-        "Output/{sample}_SCDC.txt"
+        "Output/{sample}_res_SCDC.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_SCDC_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/SCDC/SCDC_run.R {input}
-        touch {output}
-        """
+        "Rscript Modules/SCDC/SCDC_run.R {input} {output}"

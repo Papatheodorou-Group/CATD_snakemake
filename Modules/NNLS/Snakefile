@@ -24,13 +24,13 @@ rule NNLS_run:
         getC1(getBulks())
 
     output:
-        "Output/{sample}_NNLS.txt"
+        "Output/{sample}_res_NNLS.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_NNLS_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/NNLS/NNLS_run.R {input} {threads}
-        touch {output}
-        """
+        "Rscript Modules/NNLS/NNLS_run.R {input} {output}"

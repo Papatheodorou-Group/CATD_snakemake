@@ -24,13 +24,13 @@ rule FARDEEP_run:
         getC1(getBulks())
 
     output:
-        "Output/{sample}_FARDEEP.txt"
+        "Output/{sample}_res_FARDEEP.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_FARDEEP_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/FARDEEP/FARDEEP_run.R {input}
-        touch {output}
-        """
+        "Rscript Modules/FARDEEP/FARDEEP_run.R {input} {output}"

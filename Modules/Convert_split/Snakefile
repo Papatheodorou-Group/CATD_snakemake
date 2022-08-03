@@ -30,6 +30,9 @@ rule convertAnndata:
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_Convert_benchmark.txt"
+
     shell:
         "Rscript Modules/Convert_split/convert.R Input/{wildcards.sample}.h5ad"
 
@@ -46,6 +49,9 @@ rule splitCells:
 
     conda:
         "env.yaml"
+
+    benchmark:
+        "Benchmarks/{sample}_Split_benchmark.txt"
 
     shell:
         """
@@ -65,6 +71,9 @@ rule splitCellsSeeded:
 
     conda:
         "env.yaml"
+
+    benchmark:
+        "Benchmarks/{sample}_Split_benchmark.txt"
 
     shell:
         """

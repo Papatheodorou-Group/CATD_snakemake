@@ -24,14 +24,13 @@ rule DCQ_run:
         getC1(getBulks())
 
     output:
-        "Output/{sample}_DCQ.txt"
+        "Output/{sample}_res_DCQ.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_DCQ_benchmark.txt"
 
     shell:
-        """
-        Rscript Modules/DCQ/DCQ_run.R {input} {threads}
-        touch {output}
-        """
+        "Rscript Modules/DCQ/DCQ_run.R {input} {output}"

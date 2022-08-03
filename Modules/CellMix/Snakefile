@@ -25,16 +25,16 @@ rule DSA_run:
         getC2(getBulks())
 
     output:
-        "Output/{sample}_DSA.txt"
+        "Output/{sample}_res_DSA.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_DSA_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/CellMix/DSA_run.R {input}
-        touch {output}
-        """
+        "Rscript Modules/CellMix/DSA_run.R {input} {output}"
 
 #2- deconf
 rule deconf_run:
@@ -42,16 +42,16 @@ rule deconf_run:
         getC2(getBulks())
 
     output:
-        "Output/{sample}_deconf.txt"
+        "Output/{sample}_res_deconf.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_deconf_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/CellMix/deconf_run.R {input}
-        touch {output}
-        """
+        "Rscript Modules/CellMix/deconf_run.R {input} {output}"
 
 
 #3- ssKL
@@ -60,16 +60,16 @@ rule ssKL_run:
         getC2(getBulks())
 
     output:
-        "Output/{sample}_ssKL.txt"
+        "Output/{sample}_res_ssKL.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_ssKL_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/CellMix/ssKL_run.R {input}
-        touch {output}
-        """
+        "Rscript Modules/CellMix/ssKL_run.R {input} {output}"
 
 
 #4- ssFrobenius
@@ -78,13 +78,13 @@ rule ssFrobenius_run:
         getC2(getBulks())
 
     output:
-        "Output/{sample}_ssFrobenius.txt"
+        "Output/{sample}_res_ssFrobenius.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_ssFrobenius_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/CellMix/ssFrobenius_run.R {input}
-        touch {output}
-        """
+        "Rscript Modules/CellMix/ssFrobenius_run.R {input} {output}"

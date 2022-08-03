@@ -24,13 +24,13 @@ rule RLR_run:
         getC1(getBulks())
 
     output:
-        "Output/{sample}_RLR.txt"
+        "Output/{sample}_res_RLR.rds"
 
     conda:
         "env.yaml"
 
+    benchmark:
+        "Benchmarks/{sample}_RLR_benchmark.txt"
+
     shell:
-        """
-        Rscript Modules/RLR/RLR_run.R {input} {threads}
-        touch {output}
-        """
+        "Rscript Modules/RLR/RLR_run.R {input} {output}"

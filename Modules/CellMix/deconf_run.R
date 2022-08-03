@@ -18,6 +18,7 @@ args <- commandArgs(trailingOnly = TRUE)
 filename_T <- args[1]
 filename_P <- args[2]
 filename_C2 <- args[3]
+filename_O <- args[4]
 
 T <- readRDS(filename_T)
 P <- readRDS(filename_P)
@@ -36,16 +37,5 @@ res <- CellMix::ged(T, x=length(unique(as.character(C2$cellType))), method = "de
 res <- CellMix::match.nmf(res, ML)@fit@H
 res <- res[order(match(rownames(res), rownames(P))),]
 
-#Calculate RMSE error
-rmse <- sqrt(mean(as.matrix((P - res)^2)))
-
-#Calculate euclidean distance (switch to any minkowski-type by adjusting p)
-m_dist <- dist(rbind(as.vector(res), as.vector(unlist(P))), method = "minkowski", p = 2)
-
-#Calculate Distance corr
-distance_corr <- dcor(P, res)
-
-#print and exit (update later)
-print(paste0("RMSE: ", rmse))
-print(paste0("Euclidean Distance: ", m_dist))
-print(paste0("Distance Correlation: ", distance_corr))
+#Save and exit
+saveRDS(res, file=filename_O)
