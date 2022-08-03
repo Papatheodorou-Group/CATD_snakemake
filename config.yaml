@@ -90,6 +90,75 @@ stParam:
   scaleFirst: 0 #1 = scale first, 0 = transform first
 
 
+### METHODS ###
+## Bulk
+# CIBERSORT
+# DeconRNASeq
+# OLS
+# NNLS
+# FARDEEP
+# RLR
+# DCQ
+# elasticNET
+# lasso
+# ridge
+# EPIC
+# DSA
+# ssKL
+# ssFrobenius
+# dtangle
+# deconf
+# proportionsInAdmixture
+# EpiDISH
+# debCAM_unsupervised
+# debCAM_marker
+# debCAM_C1
+# CDSeq
+
+## SC
+# MuSiC
+# Bisque
+# DWLS
+# SCDC
+# bseqsc
+# CPM
+# TIMER
+# deconvSeq - UNDER DEVELOPMENT
+
+# Add or delete//comment the methods below to run them.
+deconMethods:
+  - CIBERSORT
+  - DeconRNASeq
+  - OLS
+  - NNLS
+  - FARDEEP
+  - RLR
+  - DCQ
+  - elasticNET
+  - lasso
+  - ridge
+  - EPIC
+  - DSA
+  - ssKL
+  - ssFrobenius
+  - dtangle
+  - deconf
+  - proportionsInAdmixture
+  - EpiDISH
+  - debCAM_unsupervised
+  - debCAM_marker
+  - debCAM_C1
+  - CDSeq
+  - MuSiC
+  - Bisque
+  - DWLS
+  - SCDC
+  - bseqsc
+  - CPM
+  - TIMER
+
+
+
 #Unsupervised params:
 unsupervisedParams:
   expectedTypes: 9  #Unsupervised expected cell type count
