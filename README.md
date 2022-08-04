@@ -55,7 +55,7 @@
 	"MuSiC" - DONE
 	"BisqueRNA" - DONE
 	"DWLS" - DONE
-	"deconvSeq" - LONG RUNTIME IN DGE, IP
+	"deconvSeq" - FAILED
 	"SCDC" - DONE
 	"bseqsc" - DONE
 	"CPM" - DONE

@@ -1,0 +1,55 @@
+## Rule index for results & benchmark automated exploration in pipeline
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rules which explore the resulting prediction matrices
+## from the deconvolution stage of the pipeline. It also includes the rule
+## which summarizes the computational benchmark of the entire pipeline,
+## which was gauged through snakemake's 'benchmark' directive.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule exploreResults:
+    input:
+        getMethods(),
+        props = getBulks()[1] #Only proportions needed
+
+    output:
+        getSelectedMetrics()
+
+    conda:
+        "env.yaml"
+
+    params:
+        metrics = config['resMetrics'],
+        min_p = config['minkowski_p']
+
+    shell:
+        """
+        mkdir -p Output/Metrics
+        Rscript Modules/Res_explore/Res_explore.R {input.props} {params.metrics} {params.min_p}
+        """
+
+
+rule exploreBenchmarks:
+    input:
+        getMethods()
+
+    output:
+        "Benchmarks_summarized.png"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        "Rscript Modules/Res_explore/Benchmarks_explore.R"

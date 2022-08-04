@@ -20,7 +20,22 @@
 ##
 
 
-#Helper functions to fetch inputs from prep module
+#Helper functions to fetch inputs from other modules
+def getSelectedMetrics():
+        metricsList = config['resMetrics']
+        outputList = [str("Output/Metrics/res_" + metric + ".rds") for metric in metricsList]
+
+        return(outputList)
+
+
+
+def getMethods():
+        Methods = [str("Output/" + config['sampleName'] + "_res_" + methods + ".rds") for methods in config['deconMethods']]
+
+        return(Methods)
+
+
+
 def getBulks():
         inList = []
 
@@ -119,6 +134,8 @@ def getPhenData(inList):
 
 
 configfile: 'config.yaml'
+Methods = [str("Output/" + config['sampleName'] + "_res_" + methods + ".rds") for methods in config['deconMethods']]
+
 
 #Prep metamodule
 include: "Modules/Convert_split/Snakefile"
@@ -152,10 +169,13 @@ include: "Modules/bseqsc/Snakefile"
 include: "Modules/CPM/Snakefile"
 include: "Modules/TIMER/Snakefile"
 
+#Results metamodule
+include: "Modules/Res_explore/Snakefile"
+
 #Grab all methods from config
-Methods = [str("Output/" + config['sampleName'] + "_res_" + methods + ".rds") for methods in config['deconMethods']]
 
 #Target methods
 rule all:
     input:
-        Methods
+        getSelectedMetrics(),
+        "Benchmarks_summarized.png"

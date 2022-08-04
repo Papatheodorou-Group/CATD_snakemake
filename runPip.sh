@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #BSUB -n 64
-#BSUB -M 409600
-#BSUB -R "rusage[mem=409600]"
+#BSUB -M 307200
+#BSUB -R "rusage[mem=307200]"
 #BSUB -o "pipOut.log"
 #BSUB -J "runPip"
 

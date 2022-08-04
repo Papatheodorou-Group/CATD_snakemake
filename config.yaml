@@ -123,7 +123,6 @@ stParam:
 # bseqsc
 # CPM
 # TIMER
-# deconvSeq - UNDER DEVELOPMENT
 
 # Add or delete//comment the methods below to run them.
 deconMethods:
@@ -169,3 +168,25 @@ markerParams:
 
 #Force MuSiC to run with raw counts
 forceMuSiCRaw: TRUE #MuSiC originally requires raw counts, but can be made FALSE to test for susceptibility to normalization
+
+
+
+### RESULTS ###
+
+## Implemented metrics:
+#rmse        (Root Mean Squared Error)
+#mdist      (Minkowski Distance, use p=2 for euclidean)
+#dcor        (Distance correlation)
+#pcor        (Pearson correlation)
+#avgcos     (Average cosine similarity, considering each sample as vector of genes)
+#mae         (Mean Absolute Error)
+#R2          (R-squared)
+resMetrics:
+  - rmse
+  - mdist
+  - dcor
+  - pcor
+  - avgcos
+  - mae
+  - R2
+minkowski_p: 2
