@@ -14,8 +14,8 @@ cores:
 pbulkParam:
   pbulkMode: 2  #Different mode for building pbulks
   cellCount: 100000  #How many cells should be used to create a bulk sample
-  nSamples: 400  #How many different samples should be generated
-  propVar: 40 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
+  nSamples: 450  #How many different samples should be generated
+  propVar: 60 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
   sampleCT: 1 #Sampling for cell types allowed or not (1 or 0) (DEPRECATED)
 
 
@@ -34,12 +34,12 @@ pbulkParam:
 
 #Normalizations available in Seurat:
 #   LogNormalize
-#   CLR #Not working
+#   CLR # NOT WORKING, DO NOT USE
 #   RC
 refgenDgeParam:
     test_1: 'bimod'
     test_2: 'wilcox'
-    seuratNorm: 'LogNormalize'
+    seuratNorm: 'RC'
 
 
 #params for scale_transform
@@ -168,4 +168,4 @@ markerParams:
   topN: 4   #How many top markers to select (AS OF NOW, FOR DEBCAM ONLY)
 
 #Force MuSiC to run with raw counts
-forceMuSiCRaw: FALSE #MuSiC originally requires raw counts, but can be made FALSE to test for susceptibility to normalization
+forceMuSiCRaw: TRUE #MuSiC originally requires raw counts, but can be made FALSE to test for susceptibility to normalization

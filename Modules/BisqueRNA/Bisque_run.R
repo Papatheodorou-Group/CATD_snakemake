@@ -4,7 +4,6 @@
 
 
 #Load Bisque
-suppressMessages(library(Matrix))
 suppressMessages(library(BisqueRNA))
 suppressMessages(library(Biobase))
 suppressMessages(library(energy))

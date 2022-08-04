@@ -4,7 +4,6 @@
 
 
 #Load ADAPTS
-suppressMessages(library(Matrix))
 if (!require("ADAPTS", quietly = TRUE))
     install.packages("ADAPTS", repos='http://cran.us.r-project.org')
 if (!require("WGCNA", quietly = TRUE))
