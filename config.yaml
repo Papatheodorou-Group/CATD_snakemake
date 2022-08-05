@@ -144,7 +144,7 @@ deconMethods:
   - deconf
   - proportionsInAdmixture
   - EpiDISH
-  - debCAM_unsupervised
+  #- debCAM_unsupervised   # remove if giving too many iterations error
   - debCAM_marker
   - debCAM_C1
   - CDSeq

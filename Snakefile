@@ -21,6 +21,14 @@
 
 
 #Helper functions to fetch inputs from other modules
+def getPlots():
+        metricsList = config['resMetrics']
+        plotsList = [str("Plots/Barplot_" + metric + ".png") for metric in metricsList]
+
+        return(plotsList)
+
+
+
 def getSelectedMetrics():
         metricsList = config['resMetrics']
         outputList = [str("Metrics/res_" + metric + ".rds") for metric in metricsList]
@@ -177,5 +185,5 @@ include: "Modules/Res_explore/Snakefile"
 #Target methods
 rule all:
     input:
-        getSelectedMetrics(),
+        getPlots(),
         "Benchmarks_summarized.png"

@@ -50,3 +50,18 @@ rule exploreBenchmarks:
 
     shell:
         "Rscript Modules/Res_explore/Benchmarks_explore.R"
+
+
+
+rule visualizeResults:
+    input:
+        getSelectedMetrics()
+
+    output:
+        getPlots()
+
+    conda:
+        "env.yaml"
+
+    shell:
+        "Rscript Modules/Res_explore/Metrics_viz.R"

@@ -4,5 +4,5 @@
 #
 # @zgr2788
 
-mkdir -p Input Output Scratch Benchmarks Metrics
+mkdir -p Input Output Scratch Benchmarks Metrics Plots
 printf -- "Steps:\n1-Put the input file in the 'Input' folder.\n2-Set up config.\n3-Run using runPip.sh.\n"
