@@ -19,10 +19,29 @@
 ##
 ##
 
+#Pre-installer check
+rule CellmixInstall:
+    input:
+        getC2(getBulks())
+
+    output:
+        "Modules/CellMix/Installed_correctly.txt"
+
+    conda:
+        "env.yaml"
+
+    shell:
+        """
+        Rscript Modules/CellMix/Install.R
+        touch {output}
+        """
+
+
 #1- DSA
 rule DSA_run:
     input:
-        getC2(getBulks())
+        getC2(getBulks()),
+        "Modules/CellMix/Installed_correctly.txt"
 
     output:
         "Output/{sample}_res_DSA.rds"
@@ -39,7 +58,8 @@ rule DSA_run:
 #2- deconf
 rule deconf_run:
     input:
-        getC2(getBulks())
+        getC2(getBulks()),
+        "Modules/CellMix/Installed_correctly.txt"
 
     output:
         "Output/{sample}_res_deconf.rds"
@@ -57,7 +77,8 @@ rule deconf_run:
 #3- ssKL
 rule ssKL_run:
     input:
-        getC2(getBulks())
+        getC2(getBulks()),
+        "Modules/CellMix/Installed_correctly.txt"
 
     output:
         "Output/{sample}_res_ssKL.rds"
@@ -75,7 +96,8 @@ rule ssKL_run:
 #4- ssFrobenius
 rule ssFrobenius_run:
     input:
-        getC2(getBulks())
+        getC2(getBulks()),
+        "Modules/CellMix/Installed_correctly.txt"
 
     output:
         "Output/{sample}_res_ssFrobenius.rds"

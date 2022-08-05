@@ -168,6 +168,7 @@ switch(method,
     suppressMessages(library(Linnorm))
 
     C <- expm1(Linnorm::Linnorm(as.matrix(C)))
+    C <- as(C, "matrix")
   }
 
 

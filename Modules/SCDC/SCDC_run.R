@@ -4,9 +4,12 @@
 
 
 #Load SCDC
+suppressMessages(library(remotes))
+suppressMessages(library(devtools))
+remotes::install_github("renozao/xbioc")
+devtools::install_github("meichendong/SCDC")
 suppressMessages(library(SCDC))
 suppressMessages(library(Biobase))
-suppressMessages(library(energy))
 
 
 
