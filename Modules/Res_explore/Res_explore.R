@@ -79,7 +79,7 @@ for (i in 1:length(metrics))
     saveRDS(mae, "Metrics/res_mae.rds")
   },
 
-  "R2"={
+  "r2"={
     R2_s <- lapply(files, function(x) R2(c(as.matrix(P)), c(as.matrix(x))))
     R2_s <- R2_s[order(unlist(R2_s),decreasing=TRUE)]
     saveRDS(R2_s, "Metrics/res_r2.rds")

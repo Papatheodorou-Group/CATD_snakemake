@@ -35,10 +35,7 @@ rule exploreResults:
         min_p = config['minkowski_p']
 
     shell:
-        """
-        mkdir -p Output/Metrics
-        Rscript Modules/Res_explore/Res_explore.R {input.props} {params.metrics} {params.min_p}
-        """
+        "Rscript Modules/Res_explore/Res_explore.R {input.props} {params.metrics} {params.min_p}"
 
 
 rule exploreBenchmarks:

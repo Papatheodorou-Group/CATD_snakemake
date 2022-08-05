@@ -1,7 +1,7 @@
 #Input file name - to be implemented fully later on
 
 sampleName: 'Hrvatin_afteint'   #Enter the part BEFORE file extension (ex. 'data.h5ad' should be entered as 'data')
-seededRun: 1 #Use if you want this run of the pipeline to be reproducible
+seededRun: 0 #Use if you want this run of the pipeline to be reproducible
 
 cores:
   pbulks: 32
@@ -39,7 +39,7 @@ pbulkParam:
 refgenDgeParam:
     test_1: 'bimod'
     test_2: 'wilcox'
-    seuratNorm: 'RC'
+    seuratNorm: 'LogNormalize'
 
 
 #params for scale_transform
@@ -84,10 +84,10 @@ refgenDgeParam:
 #   median_ratios
 
 stParam:
-  scaleC: scater
-  scaleT: TMM
+  scaleC: scran
+  scaleT: QN
   transform: sqrt
-  scaleFirst: 1 #1 = scale first, 0 = transform first
+  scaleFirst: 0 #1 = scale first, 0 = transform first
 
 
 ### METHODS ###
@@ -188,5 +188,5 @@ resMetrics:
   - pcor
   - avgcos
   - mae
-  - R2
+  - r2
 minkowski_p: 2

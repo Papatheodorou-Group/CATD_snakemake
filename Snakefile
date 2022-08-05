@@ -23,7 +23,7 @@
 #Helper functions to fetch inputs from other modules
 def getSelectedMetrics():
         metricsList = config['resMetrics']
-        outputList = [str("Output/Metrics/res_" + metric + ".rds") for metric in metricsList]
+        outputList = [str("Metrics/res_" + metric + ".rds") for metric in metricsList]
 
         return(outputList)
 
