@@ -40,8 +40,8 @@ rule CellmixInstall:
 #1- DSA
 rule DSA_run:
     input:
-        getC2(getBulks()),
-        "Modules/CellMix/Installed_correctly.txt"
+        "Modules/CellMix/Installed_correctly.txt",
+        main = getC2(getBulks())
 
     output:
         "Output/{sample}_res_DSA.rds"
@@ -53,13 +53,13 @@ rule DSA_run:
         "Benchmarks/{sample}_DSA_benchmark.txt"
 
     shell:
-        "Rscript Modules/CellMix/DSA_run.R {input} {output}"
+        "Rscript Modules/CellMix/DSA_run.R {input.main} {output}"
 
 #2- deconf
 rule deconf_run:
     input:
-        getC2(getBulks()),
-        "Modules/CellMix/Installed_correctly.txt"
+        "Modules/CellMix/Installed_correctly.txt",
+        main = getC2(getBulks())
 
     output:
         "Output/{sample}_res_deconf.rds"
@@ -71,14 +71,14 @@ rule deconf_run:
         "Benchmarks/{sample}_deconf_benchmark.txt"
 
     shell:
-        "Rscript Modules/CellMix/deconf_run.R {input} {output}"
+        "Rscript Modules/CellMix/deconf_run.R {input.main} {output}"
 
 
 #3- ssKL
 rule ssKL_run:
     input:
-        getC2(getBulks()),
-        "Modules/CellMix/Installed_correctly.txt"
+        "Modules/CellMix/Installed_correctly.txt",
+        main = getC2(getBulks())
 
     output:
         "Output/{sample}_res_ssKL.rds"
@@ -90,14 +90,14 @@ rule ssKL_run:
         "Benchmarks/{sample}_ssKL_benchmark.txt"
 
     shell:
-        "Rscript Modules/CellMix/ssKL_run.R {input} {output}"
+        "Rscript Modules/CellMix/ssKL_run.R {input.main} {output}"
 
 
 #4- ssFrobenius
 rule ssFrobenius_run:
     input:
-        getC2(getBulks()),
-        "Modules/CellMix/Installed_correctly.txt"
+        "Modules/CellMix/Installed_correctly.txt",
+        main = getC2(getBulks())
 
     output:
         "Output/{sample}_res_ssFrobenius.rds"
@@ -109,4 +109,4 @@ rule ssFrobenius_run:
         "Benchmarks/{sample}_ssFrobenius_benchmark.txt"
 
     shell:
-        "Rscript Modules/CellMix/ssFrobenius_run.R {input} {output}"
+        "Rscript Modules/CellMix/ssFrobenius_run.R {input.main} {output}"
