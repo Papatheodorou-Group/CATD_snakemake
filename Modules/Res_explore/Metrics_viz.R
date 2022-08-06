@@ -52,7 +52,7 @@ generateBarPlot <- function(files, metric){
     points <- barplot(df[,1], beside=TRUE, col = viridis(nrow(df), direction = -1), yaxp = y_axp)
     mtext(side=1, line=3, "Methods", font=2,cex=1)
     mtext(side=2, line=3, y_lab, font=2,cex=1)
-    text(x = points, y = par("usr")[3], labels = rownames(avg_cos), xpd = NA, srt = 30, adj = 1, cex = 0.9)
+    text(x = points, y = par("usr")[3], labels = rownames(df), xpd = NA, srt = 30, adj = 1, cex = 0.9)
     dev.off()
   }
 
