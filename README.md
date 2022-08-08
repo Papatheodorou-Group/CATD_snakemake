@@ -1,3 +1,4 @@
+# CATD_snakemake
 <pre>
 
                                                     \`*-.                   
@@ -27,40 +28,56 @@
 
 </pre>
 
-# Live tracker for implemented methods:
+# Running the pipeline
+## Self-reference
+### Description
+Uses **one** single-cell reference to generate the pseudobulks and references for deconvolution benchmarking. One important assumption is that the cell types should be annotated in the .h5ad or seurat object in the metadata **strictly** under the column name **cellType** (written in camelCase).
+### Inputs:
+	Input/{sampleName}.h5ad				
 
-## Bulk        
-	"CIBERSORT" - DONE
-	"DeconRNASeq" - DONE
-	"OLS" - DONE
-	"nnls" - DONE
-	"FARDEEP" - DONE
-	"RLR" - DONE
-	"DCQ" - DONE
-	"elasticNet" - DONE
-	"lasso" - DONE
-	"ridge" - DONE
-	"EPIC" - DONE
-	"DSA" - DONE
-	"ssKL"-  DONE
-	"ssFrobenius" - DONE
-	"dtangle"- DONE
-	"deconf" - DONE
-	"proportionsInAdmixture" - DONE
-	"EpiDISH" - DONE
-	"debCAM (all three alternatives)" - DONE
-	"CDSeq" - DONE
+	OR				
 
-## SC
-	"MuSiC" - DONE
-	"BisqueRNA" - DONE
-	"DWLS" - DONE
-	"deconvSeq" - FAILED
-	"SCDC" - DONE
-	"bseqsc" - DONE
-	"CPM" - DONE
-	"TIMER" - DONE
+	Input/{sampleName}.rds    (Should be a Seurat object)
 
+### Outputs:
+- Evaluation of selected methods based on selected metrics in config, found in: **Metrics/**
+- Resource usage of each step, summarized in: **Benchmarks_summarized.png**
+- Individual benchmarks for steps, found in: **Benchmarks/**
+- Predictions produced by methods, found in: **Results/**
 
-# Current flow graph:
+### Directions
+
+ 1. Download the pipeline to your directory of choice.
+	`git clone https://github.com/Functional-Genomics/CATD_snakemake.git`
+
+ 2. Set up Conda environment with snakemake, use [mamba](https://github.com/mamba-org/mamba) for much faster environment setup.
+	  `mamba create -n snakemake snakemake`
+ 3. Run `basicSetup.sh` to configure conda profile.
+ 4.  Place the input file into the newly created `Input` directory.
+ 5. Adjust settings in `config.yaml`.
+ 6. **(Optional)** Run `getDag.sh` to generate the updated DAG after adjusting config.
+ 7. Set up cluster resources in `runPip.sh`.
+ 8. Run the pipeline using `bsub < runPip.sh`.
+
+## Cross-reference
+### Description
+Uses **two** single-cell references to generate the pseudobulks and references for deconvolution benchmarking.  Important assumptions are
+-	The cell types should be annotated in **seurat objects** in the metadata **strictly** under the column name **cellType** (written in camelCase).
+-	The **levels** (i.e unique list) of cell types must be the **same** in both references provided.
+
+### Inputs:
+	Input/Cell_splits/{sampleName}_gen.rds		(Will be used to generate psuedobulks)				
+	Input/Cell_splits/{sampleName}_C0.rds    	(Will be used to generate references)
+
+### Outputs:
+Same as self-reference.
+
+### Directions
+Same as self-reference, except after the **3rd** step, create a directory named `Cell_splits` within input, using:
+
+	mkdir -p Input/Cell_splits
+
+Then, **place the input files in this folder**. Make sure that the inputs **conform to the standards written in the 'Inputs' section above**. Then continue with the **5th** step.
+
+# Current flow graph
 <img src="https://github.com/Functional-Genomics/CATD_snakemake/blob/main/dag.png" alt="drawing">

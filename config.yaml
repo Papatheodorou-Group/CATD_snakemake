@@ -14,8 +14,8 @@ cores:
 pbulkParam:
   pbulkMode: 2  #Different mode for building pbulks
   cellCount: 150000  #How many cells should be used to create a bulk sample
-  nSamples: 60  #How many different samples should be generated
-  propVar: 500 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
+  nSamples: 500  #How many different samples should be generated
+  propVar: 450 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
   sampleCT: 1 #Sampling for cell types allowed or not (1 or 0) (DEPRECATED)
 
 
@@ -37,7 +37,7 @@ pbulkParam:
 #   CLR # NOT WORKING, DO NOT USE
 #   RC
 refgenDgeParam:
-    test_1: 't'
+    test_1: 'bimod'
     test_2: 'wilcox'
     seuratNorm: 'LogNormalize'
 
@@ -86,7 +86,7 @@ refgenDgeParam:
 stParam:
   scaleC: SCTransform
   scaleT: TMM
-  transform: log
+  transform: sqrt
   scaleFirst: 1 #1 = scale first, 0 = transform first
 
 
@@ -167,7 +167,7 @@ markerParams:
   topN: 4   #How many top markers to select (AS OF NOW, FOR DEBCAM ONLY)
 
 #Force MuSiC to run with raw counts
-forceMuSiCRaw: FALSE #MuSiC originally requires raw counts, but can be made FALSE to test for susceptibility to normalization
+forceMuSiCRaw: TRUE #MuSiC originally requires raw counts, but can be made FALSE to test for susceptibility to normalization
 
 
 
