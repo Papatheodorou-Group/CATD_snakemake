@@ -101,7 +101,7 @@ switch(mode,
       else
       {
         #Fit the distribution with given variance
-        P <- round(runif(nlevels(T_prep@meta.data$cellType), 100 - propVar, 100 + propVar))/100
+        P <- round(runif(nlevels(T_prep@meta.data$cellType), 100, 100 + (propVar*2)))/100
       }
 
       #Sum to 1
