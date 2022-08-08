@@ -1,0 +1,29 @@
+1- Github API Rate Limit Exceeded when installing SCDC, bseqsc etc.:
+  Reason: Gıthub API limit is ~60 downloads, this crash only happens in the first
+  run of a new workflow
+
+  Action: Not taken, one time error
+
+
+
+2- Cannot solve least square algorithms, singular
+  Reason: Random sampling creates very similar bulk samples (mean cosine 0.99)
+  therefore, there is not enough variance inbetween columns to solve the system
+
+  Action: Either remove crashing method & restart, or use mode 2 with high
+  propvar.
+
+
+
+3- Cluster exits job with code 120 after stopping for no apparent reason
+
+  Action (Not consistent): Remove all outputs after cell splits manually before
+  restarting the run.
+
+
+
+4- DWLS dims dont match
+  Reason (Most likely): No significant genes found during MAST DGE tests in
+  DWLS, returns NA with no dims.
+
+  Action: Use sqrt transform instead of log, or remove method through config.
