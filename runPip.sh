@@ -6,9 +6,9 @@
 #BSUB -o "pipOut.log"
 #BSUB -J "runPip"
 
+condaDir="/nfs/research/irene/ozgurb/soft/mambaforge/etc/profile.d/conda.sh"
 
-
-source /nfs/research/irene/ozgurb/soft/mambaforge/etc/profile.d/conda.sh
+source $condaDir
 conda activate snakemake
 snakemake \
 	--use-conda \
