@@ -4,6 +4,12 @@
 
 
 #Load SCDC
+if (!require("L1pack", quietly = TRUE)){
+  install.packages("Modules/SCDC/fastmatrix_0.4.tar.gz", repos=NULL, type = "source")
+  install.packages("Modules/SCDC/L1pack_0.40.tar.gz", repos=NULL, type = "source")
+
+}
+
 suppressMessages(library(remotes))
 suppressMessages(library(devtools))
 remotes::install_github("renozao/xbioc")
