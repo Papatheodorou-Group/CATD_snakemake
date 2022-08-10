@@ -31,7 +31,10 @@
 # Running the pipeline
 ## Self-reference
 ### Description
-Uses **one** single-cell reference to generate the pseudobulks and references for deconvolution benchmarking. One important assumption is that the cell types should be annotated in the .h5ad or seurat object in the metadata **strictly** under the column name **cellType** (written in camelCase).
+Uses **one** single-cell reference to generate the pseudobulks and references for deconvolution benchmarking. Important assumptions:
+1. The cell types should be annotated in the .h5ad or seurat object in the metadata **strictly** under the column name **cellType** (written in camelCase).
+2. In the metadata, there needs to be **cellID** and **sampleID** columns, **strictly** under those names. If they don't exist, simply assign rownames to those columns.
+
 ### Inputs:
 	Input/{sampleName}.h5ad				
 
