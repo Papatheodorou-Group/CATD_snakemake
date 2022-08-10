@@ -27,3 +27,11 @@
   DWLS, returns NA with no dims.
 
   Action: Use sqrt transform instead of log, or remove method through config.
+
+
+
+5- Errors in environments
+  Reason (Most likely): A package has been moved from CRAN or github to another
+  location
+
+  Action: Download source and build package from source within pipeline.

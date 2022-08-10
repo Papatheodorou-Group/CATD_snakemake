@@ -2,10 +2,17 @@
 ##
 ## @zgr2788
 
+if (!require("FamilyRank", quietly = TRUE)){
+    install.packages("FamilyRank", repos='http://cran.us.r-project.org')
+}
+
 suppressMessages(library(Seurat))
 suppressMessages(library(foreach))
 suppressMessages(library(doParallel))
 suppressMessages(library(dplyr))
+suppressMessages(library(FamilyRank))
+
+
 
 
 
@@ -76,23 +83,16 @@ switch(mode,
     T_P <- foreach (i=1:nSamples, .combine = combFunc) %dopar%
     {
 
-      #Sampling cell types
-      #if (sampleCT)
-      #{
-      #  includedTypeCount <- as.numeric(sample(3:nlevels(as.factor(T_prep@meta.data$cellType)), 1)) #Minimum 3 cell types needed
-      #  toKeep <- sample(levels(T_prep@meta.data$cellType), includedTypeCount, replace = FALSE) #Sample the cell types
-      #  T_prep@meta.data$toKeep <- as.numeric(T_prep@meta.data$cellType %in% toKeep) #Assign kept/unkept to cells
-      #  keepObj <- SplitObject(T_prep, split.by = 'toKeep') #Keep the selected cell types
-      #  if(all(keepObj[[1]]@meta.data$toKeep == 1)) { keepObj <- keepObj[[1]] } else { keepObj <- keepObj[[2]] } #Need to differentiate between kept cell types
-      #  keepObj@meta.data$cellType <- droplevels(keepObj@meta.data$cellType) #Drop unused cell types
-      #}
-
-      #else { keepObj <- T_prep }
-
 
 
       #Applying distributions
-      if (propVar <= 0)
+      if (sampleCT && (propVar > 0))
+      {
+        P <- abs(rbinorm(nlevels(T_prep@meta.data$cellType), 0, 1, 0.0001, propVar, 0.5))
+        P <- as.numeric(lapply(P, function(x) ifelse(x == 0, 1e-9, x)))
+      }
+
+      else if (propVar <= 0)
       {
         #Sample with min max bound 1-99
         P <- runif(nlevels(T_prep@meta.data$cellType), 1, 99)
@@ -105,10 +105,10 @@ switch(mode,
       }
 
       #Sum to 1
-      P <- round(P/sum(P), digits = log10(cellCount))
+      P <- P/sum(P)
 
       #Get how many cells will be sampled by multiplying with prop matrix
-      correspondingCounts <- cellCount * P
+      correspondingCounts <- round(cellCount * P)
 
       #Sample to create T
       splitObj <- SplitObject(T_prep, split.by = 'cellType') #Split by cell type
@@ -120,7 +120,14 @@ switch(mode,
       {
         #Get sample per cell type
         whichCols <- sample(seq_len(ncol(splitObj[[j]]@assays$RNA@counts)), correspondingCounts[[j]], replace = TRUE)
-        T <- T + rowSums(splitObj[[j]]@assays$RNA@counts[,whichCols])
+        tryCatch(
+          expr={
+            T <- T + rowSums(splitObj[[j]]@assays$RNA@counts[,whichCols])
+          }
+          ,
+          error= function(e){
+          }
+        )
       }
 
       #Append the bulk to dataframes
