@@ -65,3 +65,23 @@ rule visualizeResults:
 
     shell:
         "Rscript Modules/Res_explore/Metrics_viz.R"
+
+
+
+rule vioplotResults:
+    input:
+        getMethods(),
+        props = getBulks()[1] #Only proportions needed
+
+    output:
+        getVioPlots()
+
+    conda:
+        "env.yaml"
+
+    params:
+        metrics = config['resMetrics'],
+        min_p = config['minkowski_p']
+
+    shell:
+        "Rscript Modules/Res_explore/Res_vioplot.R {input.props} {params.metrics} {params.min_p}"

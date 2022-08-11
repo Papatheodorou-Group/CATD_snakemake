@@ -21,6 +21,12 @@
 
 
 #Helper functions to fetch inputs from other modules
+def getVioPlots():
+        metricsList = config['resMetrics']
+        plotsList = [str("Plots/Vioplot_" + metric + ".png") for metric in metricsList if (metric == "rmse" or metric == "avgcos")]
+
+        return(plotsList)
+
 def getPlots():
         metricsList = config['resMetrics']
         plotsList = [str("Plots/Barplot_" + metric + ".png") for metric in metricsList]
@@ -186,4 +192,5 @@ include: "Modules/Res_explore/Snakefile"
 rule all:
     input:
         getPlots(),
+        getVioPlots(),
         "Benchmarks_summarized.png"
