@@ -44,6 +44,7 @@ Uses **one** single-cell reference to generate the pseudobulks and references fo
 
 ### Outputs:
 - Evaluation of selected methods based on selected metrics in config, found in: **Metrics/**
+- Plots describing the metrics, found in: **Plots/**
 - Resource usage of each step, summarized in: **Benchmarks_summarized.png**
 - Individual benchmarks for steps, found in: **Benchmarks/**
 - Predictions produced by methods, found in: **Results/**
