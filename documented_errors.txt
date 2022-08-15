@@ -44,3 +44,10 @@
 
   Action: Remove failed methods or change dge tests in config. Changing norm
   method could also help.
+  
+
+
+7- Conda checksum error during first run
+  Reason: One of the packages in the environment where the crash occurs is corrupt
+  
+  Action: Remove build info + version info, if still fails downgrade.
