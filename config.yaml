@@ -4,10 +4,19 @@ sampleName: 'Hrvatin_afteint'   #Enter the part BEFORE file extension (ex. 'data
 seededRun: 0 #Use if you want this run of the pipeline to be reproducible
 
 cores:
-  pbulks: 32
-  c_gen: 32
-  CDSeq: 16
-  CPM: 16
+  #The concurrency of operations are indicated by the number commented to their right.
+  #Those with the same numbers have a possiblity to run concurrently
+  #Make sure that concurrent sums do not exceed what is defined on runPip.
+
+  pbulks: 32            #1
+  c_gen: 32             #1
+  CDSeq: 16               #2
+  CPM: 16                 #2
+  CIBERSORT: 3            #2       #Using more than 3 has no effect
+  bseqsc: 3               #2       #Using more than 3 has no effect, uses CIBERSORT internally
+  DWLS: 16                #2
+  debCAM_unsupervised: 30   #NaN       #Runs last if runs, but fails mostly
+  scaleTransform: 32            #3
 
 
 #pbulk parameters below

@@ -29,7 +29,7 @@ rule CIBERSORT_run:
     conda:
         "env.yaml"
 
-    threads: 3
+    threads: config["cores"]["CIBERSORT"]
 
     benchmark:
         "Benchmarks/{sample}_CIBERSORT_benchmark.txt"
