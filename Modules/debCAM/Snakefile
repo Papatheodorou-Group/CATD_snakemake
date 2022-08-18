@@ -32,7 +32,7 @@ rule debCAM_unsupervised:
     conda:
         "env.yaml"
 
-    threads: 30
+    threads: config["cores"]["debCAM_unsupervised"]
 
     priority: -50
 
@@ -40,7 +40,7 @@ rule debCAM_unsupervised:
         "Benchmarks/{sample}_debCAM_unsupervised_benchmark.txt"
 
     shell:
-        "Rscript Modules/debCAM/debCAM_u.R {input} {params} {output}"
+        "Rscript Modules/debCAM/debCAM_u.R {input} {params} {output} {threads}"
 
 
 rule debCAM_marker:

@@ -4,8 +4,8 @@
 ##
 ## Description:
 ##
-##
-##
+## Includes 4 rules, depending on seeded unseeded and scale first or transform
+## first.
 ##
 ##
 ##
@@ -38,7 +38,7 @@ rule scaleTransform_T_C:
         scaleCMethod = config['stParam']['scaleC'],
         transMethod = config['stParam']['transform']
 
-    threads: 32
+    threads: config["cores"]["scaleTransform"]
 
     benchmark:
         "Benchmarks/{sample}_Scaletransform_benchmark.txt"
@@ -46,9 +46,9 @@ rule scaleTransform_T_C:
     shell:
         """
         mkdir -p Input/Normalized_tables
-        Rscript Modules/Scale_transform/scaleTable_T.R {input.T_table} {params.scaleTMethod}
-        Rscript Modules/Scale_transform/scaleTable_C.R {input.C_table} {input.C_phenData} {params.scaleCMethod}
-        Rscript Modules/Scale_transform/transformTables.R Input/Normalized_tables/{wildcards.sample}_pbulks_scaled.rds Input/Normalized_tables/{wildcards.sample}_C0_scaled.rds {params.transMethod}
+        Rscript Modules/Scale_transform/scaleTable_T.R {input.T_table} {params.scaleTMethod} {threads}
+        Rscript Modules/Scale_transform/scaleTable_C.R {input.C_table} {input.C_phenData} {params.scaleCMethod} {threads}
+        Rscript Modules/Scale_transform/transformTables.R Input/Normalized_tables/{wildcards.sample}_pbulks_scaled.rds Input/Normalized_tables/{wildcards.sample}_C0_scaled.rds {params.transMethod} {threads}
         """
 
 
@@ -71,7 +71,7 @@ rule transformScale_T_C:
         scaleCMethod = config['stParam']['scaleC'],
         transMethod = config['stParam']['transform']
 
-    threads: 32
+    threads: config["cores"]["scaleTransform"]
 
     benchmark:
         "Benchmarks/{sample}_Scaletransform_benchmark.txt"
@@ -79,9 +79,9 @@ rule transformScale_T_C:
     shell:
         """
         mkdir -p Input/Normalized_tables
-        Rscript Modules/Scale_transform/transformTables.R {input.T_table} {input.C_table} {params.transMethod}
-        Rscript Modules/Scale_transform/scaleTable_T.R Input/Normalized_tables/{wildcards.sample}_pbulks_transformed.rds {params.scaleTMethod}
-        Rscript Modules/Scale_transform/scaleTable_C.R Input/Normalized_tables/{wildcards.sample}_C0_transformed.rds {input.C_phenData} {params.scaleCMethod}
+        Rscript Modules/Scale_transform/transformTables.R {input.T_table} {input.C_table} {params.transMethod} {threads}
+        Rscript Modules/Scale_transform/scaleTable_T.R Input/Normalized_tables/{wildcards.sample}_pbulks_transformed.rds {params.scaleTMethod} {threads}
+        Rscript Modules/Scale_transform/scaleTable_C.R Input/Normalized_tables/{wildcards.sample}_C0_transformed.rds {input.C_phenData} {params.scaleCMethod} {threads}
         """
 
 
@@ -108,7 +108,7 @@ rule scaleTransformSeeded_T_C:
         scaleCMethod = config['stParam']['scaleC'],
         transMethod = config['stParam']['transform']
 
-    threads: 32
+    threads: config["cores"]["scaleTransform"]
 
     benchmark:
         "Benchmarks/{sample}_Scaletransform_benchmark.txt"
@@ -116,9 +116,9 @@ rule scaleTransformSeeded_T_C:
     shell:
         """
         mkdir -p Input/Normalized_tables
-        Rscript Modules/Scale_transform/scaleTable_T.R {input.T_table} {params.scaleTMethod}
-        Rscript Modules/Scale_transform/scaleTable_C.R {input.C_table} {input.C_phenData} {params.scaleCMethod}
-        Rscript Modules/Scale_transform/transformTables.R Input/Normalized_tables/{wildcards.sample}_pbulks_seeded_scaled.rds Input/Normalized_tables/{wildcards.sample}_C0_seeded_scaled.rds {params.transMethod}
+        Rscript Modules/Scale_transform/scaleTable_T.R {input.T_table} {params.scaleTMethod} {threads}
+        Rscript Modules/Scale_transform/scaleTable_C.R {input.C_table} {input.C_phenData} {params.scaleCMethod} {threads}
+        Rscript Modules/Scale_transform/transformTables.R Input/Normalized_tables/{wildcards.sample}_pbulks_seeded_scaled.rds Input/Normalized_tables/{wildcards.sample}_C0_seeded_scaled.rds {params.transMethod} {threads}
         """
 
 
@@ -141,7 +141,7 @@ rule transformScaleSeeded_T_C:
         scaleCMethod = config['stParam']['scaleC'],
         transMethod = config['stParam']['transform']
 
-    threads: 32
+    threads: config["cores"]["scaleTransform"]
 
     benchmark:
         "Benchmarks/{sample}_Scaletransform_benchmark.txt"
@@ -149,7 +149,7 @@ rule transformScaleSeeded_T_C:
     shell:
         """
         mkdir -p Input/Normalized_tables
-        Rscript Modules/Scale_transform/transformTables.R {input.T_table} {input.C_table} {params.transMethod}
-        Rscript Modules/Scale_transform/scaleTable_T.R Input/Normalized_tables/{wildcards.sample}_pbulks_seeded_transformed.rds {params.scaleTMethod}
-        Rscript Modules/Scale_transform/scaleTable_C.R Input/Normalized_tables/{wildcards.sample}_C0_seeded_transformed.rds {input.C_phenData} {params.scaleCMethod}
+        Rscript Modules/Scale_transform/transformTables.R {input.T_table} {input.C_table} {params.transMethod} {threads}
+        Rscript Modules/Scale_transform/scaleTable_T.R Input/Normalized_tables/{wildcards.sample}_pbulks_seeded_transformed.rds {params.scaleTMethod} {threads}
+        Rscript Modules/Scale_transform/scaleTable_C.R Input/Normalized_tables/{wildcards.sample}_C0_seeded_transformed.rds {input.C_phenData} {params.scaleCMethod} {threads}
         """

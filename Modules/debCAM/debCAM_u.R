@@ -25,7 +25,7 @@ P <- readRDS(filename_P)
 # Adjust config.yaml accordingly
 
 #Run deconv
-camObj <- CAM(T, K = length(rownames(P)), cores = 30)
+camObj <- CAM(T, K = length(rownames(P)), cores = as.numeric(args[5]))
 
 #Extract results
 res <- t(camObj@ASestResult[[1]]@Aest)

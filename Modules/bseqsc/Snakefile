@@ -29,7 +29,7 @@ rule bseqsc_run:
     conda:
         "env.yaml"
 
-    threads: 3
+    threads: config["cores"]["bseqsc"]
 
     benchmark:
         "Benchmarks/{sample}_bseqsc_benchmark.txt"
