@@ -4,7 +4,7 @@
 
 suppressMessages(library(devtools))
 suppressMessages(library(BiocManager))
-devtools::install_github('shenorrlab/csSAM')
+devtools::install_github('shenorrlab/csSAM', auth_token = "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")
 
 if (!require("GSEABase", quietly = TRUE)){
     BiocManager::install("GSEABase")

@@ -12,8 +12,8 @@ if (!require("L1pack", quietly = TRUE)){
 
 suppressMessages(library(remotes))
 suppressMessages(library(devtools))
-remotes::install_github("renozao/xbioc")
-devtools::install_github("meichendong/SCDC")
+remotes::install_github("renozao/xbioc", auth_token = "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")
+devtools::install_github("meichendong/SCDC", auth_token = "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")
 suppressMessages(library(SCDC))
 suppressMessages(library(Biobase))
 

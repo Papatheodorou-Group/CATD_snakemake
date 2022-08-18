@@ -4,13 +4,14 @@
 
 suppressMessages(library(Matrix))
 suppressMessages(library(future))
-plan('multisession', workers = as.numeric(args[3])) #Paralellism
 
 
 #Read data
 args <- commandArgs(trailingOnly = TRUE)
 filename_T <- args[1]
 method <- args[2]
+plan('multisession', workers = as.numeric(args[3])) #Paralellism
+
 
 T <- readRDS(filename_T)
 filename_T <- sub("Input/Psuedobulks", "Input/Normalized_tables", filename_T)
