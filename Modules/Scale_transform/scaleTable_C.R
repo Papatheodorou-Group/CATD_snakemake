@@ -4,7 +4,6 @@
 
 suppressMessages(library(Matrix))
 suppressMessages(library(future))
-plan('multisession', workers = as.numeric(args[4])) #Paralellism
 
 
 #Read data
@@ -12,6 +11,8 @@ args <- commandArgs(trailingOnly = TRUE)
 filename_C <- args[1]
 phenData_C <- args[2]
 method <- args[3]
+plan('multisession', workers = as.numeric(args[4])) #Paralellism
+
 
 C <- readRDS(filename_C)
 C_data <- readRDS(phenData_C)

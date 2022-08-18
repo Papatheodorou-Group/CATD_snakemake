@@ -4,7 +4,6 @@
 
 suppressMessages(library(DESeq2))
 suppressMessages(library(future))
-plan('multisession', workers = as.numeric(args[4])) #Paralellism
 
 
 
@@ -13,6 +12,8 @@ args <- commandArgs(trailingOnly = TRUE)
 filename_T <- args[1]
 filename_C <- args[2]
 method <- args[3]
+plan('multisession', workers = as.numeric(args[4])) #Paralellism
+
 
 T <- readRDS(filename_T)
 C <- readRDS(filename_C)

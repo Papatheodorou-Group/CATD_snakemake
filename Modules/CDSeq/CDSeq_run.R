@@ -5,7 +5,7 @@
 
 #Load CDseq
 suppressMessages(library(devtools))
-devtools::install_github("kkang7/CDSeq_R_Package")
+devtools::install_github("kkang7/CDSeq_R_Package", auth_token = "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")
 suppressMessages(library(CDSeq))
 suppressMessages(library(energy))
 
