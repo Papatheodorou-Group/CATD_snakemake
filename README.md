@@ -38,7 +38,7 @@ Uses **one** single-cell reference to generate the pseudobulks and references fo
 
 	OR				
 
-	Input/{sampleName}.rds    (Should be a Seurat object)
+	Input/{sampleName}_seurat.rds
 
 ### Outputs:
 - Evaluation of selected methods based on selected metrics in config, found in: **Metrics/**
@@ -90,7 +90,7 @@ Uses **one** reference single cell matrix with **user-defined** bulks and **know
 - All assumptions in the self reference part
 - The **rownames** (cell types) in the proportions should  be the **same** as the cell types annotated in the reference
 ### Inputs
-	Input/{sampleName}.h5ad  /   Input/{sampleName}.rds
+	Input/{sampleName}.h5ad  /   Input/{sampleName}_seurat.rds
 
 	OR
 
