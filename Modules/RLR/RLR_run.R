@@ -1,4 +1,4 @@
-## Non-negative Least Squares deconv script
+## RLR deconv script
 ##
 ## @zgr2788
 
