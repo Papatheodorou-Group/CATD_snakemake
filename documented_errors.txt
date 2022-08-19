@@ -54,3 +54,11 @@
   Reason: One of the packages in the environment where the crash occurs is corrupt
   
   Action: Remove build info + version info, if still fails downgrade.
+
+
+
+8- Mamba error cannot lock package cache
+  Reason: First time running more than one pipeline, one of them cant lock the pkgs
+  because the other already locked it
+  
+  Action: First runs should be done one by one.
