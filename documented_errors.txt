@@ -1,8 +1,11 @@
 1- Github API Rate Limit Exceeded when installing SCDC, bseqsc etc.:
   Reason: Gıthub API limit is ~60 downloads, this crash only happens in the first
   run of a new workflow
+  
+  
 
-  Action: Not taken, one time error
+  Action: Generated public PAT token integrated to scripts, 
+  In case of errors, contact repo owner.
 
 
 
