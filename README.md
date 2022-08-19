@@ -55,7 +55,7 @@ Uses **one** single-cell reference to generate the pseudobulks and references fo
 
  3. Set up Conda environment with snakemake, pipeline strictly uses [mamba](https://github.com/mamba-org/mamba) for much faster environment setup.
 
-		  `mamba create -n snakemake snakemake`
+		  mamba create -n snakemake snakemake
 
  4. Run `basicSetup.sh` to configure conda profile.
  5.  Place the input file into the newly created `Input` directory.
