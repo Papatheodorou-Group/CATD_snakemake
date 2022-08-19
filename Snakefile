@@ -153,7 +153,12 @@ Methods = [str("Output/" + config['sampleName'] + "_res_" + methods + ".rds") fo
 
 #Prep metamodule
 include: "Modules/Convert_split/Snakefile"
-include: "Modules/Psuedobulk/Snakefile"
+
+if not config['realBulk']:
+    include: "Modules/Psuedobulk/Snakefile"
+else:
+    print("You chose to use real bulks.\nIf you see an error after this message, you either:\n-Forgot to place the pbulks and proportions\n-Placed them in the wrong place (should be under Input/Psuedobulks, typo intended)\n-The naming is wrong")
+
 include: "Modules/C_generation/Snakefile"
 include: "Modules/Scale_transform/Snakefile"
 
