@@ -148,7 +148,6 @@ def getPhenData(inList):
 
 
 configfile: 'config.yaml'
-Methods = [str("Output/" + config['sampleName'] + "_res_" + methods + ".rds") for methods in config['deconMethods']]
 
 
 #Prep metamodule
