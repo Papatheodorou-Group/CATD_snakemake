@@ -16,8 +16,8 @@
 ##      -also at this step, refVar table (Standard deviations of rows by cell types)
 ##
 ##      Type 2: Marker genes list with respect to cell types (C2)
-## TODO:
-## -Add seeded version
+##
+##
 
 rule generateReferences:
     input:
