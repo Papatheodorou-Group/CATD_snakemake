@@ -3,7 +3,7 @@
 #BSUB -n 64
 #BSUB -M 307200
 #BSUB -R "rusage[mem=307200]"
-#BSUB -o "pipOut.log"
+#BSUB -o "pipOut_%J.log"
 #BSUB -J "runPip"
 
 condaDir="/nfs/research/irene/ozgurb/soft/mambaforge/etc/profile.d/conda.sh"

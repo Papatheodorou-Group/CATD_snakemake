@@ -6,7 +6,7 @@
 
 #/nfs/research/irene/ozgurb/soft/mambaforge/etc/profile.d/conda.sh
 clear
-mkdir -p Input Output Scratch Benchmarks Metrics Plots
+mkdir -p Input Output Benchmarks Metrics Plots
 printf -- "Please enter the ABSOLUTE PATH to your conda profile.\n\nShould look something like this:\n/nfs/research/irene/ozgurb/soft/mambaforge/etc/profile.d/conda.sh"
 
 while true
