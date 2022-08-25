@@ -20,6 +20,7 @@ filename_C0 <- args[3]
 filename_phenData <- args[4]
 plan('multisession', workers = as.numeric(args[5])) #Paralellism
 filename_O <- args[6]
+scratchDir <- args[7]
 
 T <- readRDS(filename_T)
 P <- readRDS(filename_P)
@@ -35,7 +36,7 @@ rm(common)
 
 #Preprocess
 message("Started running sig...")
-Signature <- buildSignatureMatrixMAST(scdata = C0, id = phenData[,"cellType"], path = "Scratch", diff.cutoff = 0.5, pval.cutoff = 0.01)
+Signature <- buildSignatureMatrixMAST(scdata = C0, id = phenData[,"cellType"], path = scratchDir, diff.cutoff = 0.5, pval.cutoff = 0.01)
 
 
 #Get results and reorder the matrices for correspondence

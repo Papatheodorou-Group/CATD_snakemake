@@ -36,6 +36,6 @@ rule DWLS_run:
 
     shell:
         """
-        mkdir -p Scratch
-        Rscript Modules/DWLS/DWLS_run.R {input} {threads} {output}
+        mkdir -p {wildcards.sample}_scratch
+        Rscript Modules/DWLS/DWLS_run.R {input} {threads} {output} {wildcards.sample}_scratch
         """
