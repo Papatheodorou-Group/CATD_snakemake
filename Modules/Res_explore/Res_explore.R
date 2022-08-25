@@ -22,13 +22,14 @@ avg_cossim <- function(P, res) {
 #Get metrics to include in comparison
 args <- commandArgs(trailingOnly = TRUE)
 filename_P <- args[1]
-metrics <- args[2:(length(args)-1)]
+sampleName <- args[2]
+metrics <- args[3:(length(args)-1)]
 minkowski_p <- as.numeric(args[length(args)])
 
 P <- readRDS(filename_P)
 
 #Get files as list
-filenames <- list.files("Output") %>% lapply(., function(x) { x <- paste0("Output/", x) }) %>% as.character(.)
+filenames <- list.files("Output") %>% lapply(., function(x) { x <- paste0("Output/", x) }) %>% lapply(., function(x) { grep(sampleName, x, value = TRUE) }) %>% .[lengths(.)!=0] %>% as.character(.)
 files <- lapply(filenames, readRDS)
 names(files) <- lapply(filenames, function(x) gsub("Output/.*res_(.*).rds", "\\1", x))
 
@@ -46,43 +47,43 @@ for (i in 1:length(metrics))
     rmse <- lapply(files, function(x) sqrt(mean(as.matrix((x - P)^2))))
     names(rmse) <- names(files)
     rmse <- rmse[order(unlist(rmse),decreasing=FALSE)]
-    saveRDS(rmse, "Metrics/res_rmse.rds")
+    saveRDS(rmse, paste0("Metrics/", sampleName,"_res_rmse.rds"))
   },
 
   "mdist"={
     m_dist <- lapply(files, function(x) dist(rbind(as.vector(x), as.vector(unlist(P))), method = "minkowski", p = minkowski_p))
     m_dist <- m_dist[order(unlist(m_dist),decreasing=FALSE)]
-    saveRDS(m_dist, "Metrics/res_mdist.rds")
+    saveRDS(m_dist, paste0("Metrics/", sampleName,"_res_mdist.rds"))
   },
 
   "dcor"={
     d_cor <- lapply(files, function(x) dcor(P, x))
     d_cor <- d_cor[order(unlist(d_cor),decreasing=TRUE)]
-    saveRDS(d_cor, "Metrics/res_dcor.rds")
+    saveRDS(d_cor, paste0("Metrics/", sampleName,"_res_dcor.rds"))
   },
 
   "pcor"={
     p_cor <- lapply(files, function(x) cor(c(as.matrix(P)), c(as.matrix(x))))
     p_cor <- p_cor[order(unlist(p_cor),decreasing=TRUE)]
-    saveRDS(p_cor, "Metrics/res_pcor.rds")
+    saveRDS(p_cor, paste0("Metrics/", sampleName,"_res_pcor.rds"))
   },
 
   "avgcos"={
     cos <- lapply(files, function(x) avg_cossim(P,x))
     cos <- cos[order(unlist(cos),decreasing=TRUE)]
-    saveRDS(cos, "Metrics/res_avgcos.rds")
+    saveRDS(cos, paste0("Metrics/", sampleName,"_res_avgcos.rds"))
   },
 
   "mae"={
     mae <- lapply(files, function(x) mean(as.matrix(abs((x - P)))))
     mae <- mae[order(unlist(mae),decreasing=FALSE)]
-    saveRDS(mae, "Metrics/res_mae.rds")
+    saveRDS(mae, paste0("Metrics/", sampleName,"_res_mae.rds"))
   },
 
   "r2"={
     R2_s <- lapply(files, function(x) R2(c(as.matrix(P)), c(as.matrix(x))))
     R2_s <- R2_s[order(unlist(R2_s),decreasing=TRUE)]
-    saveRDS(R2_s, "Metrics/res_r2.rds")
+    saveRDS(R2_s, paste0("Metrics/", sampleName,"_res_r2.rds"))
   }
   #Implement more here!
   )

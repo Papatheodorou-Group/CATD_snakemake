@@ -32,10 +32,11 @@ rule exploreResults:
 
     params:
         metrics = config['resMetrics'],
-        min_p = config['minkowski_p']
+        min_p = config['minkowski_p'],
+        sample = config['sampleName']
 
     shell:
-        "Rscript Modules/Res_explore/Res_explore.R {input.props} {params.metrics} {params.min_p}"
+        "Rscript Modules/Res_explore/Res_explore.R {input.props} {params.sample} {params.metrics} {params.min_p}"
 
 
 rule exploreBenchmarks:
@@ -43,13 +44,16 @@ rule exploreBenchmarks:
         getMethods()
 
     output:
-        "Benchmarks_summarized.png"
+        getBenchmarks()
 
     conda:
         "env.yaml"
 
+    params:
+        sample = config['sampleName']
+
     shell:
-        "Rscript Modules/Res_explore/Benchmarks_explore.R"
+        "Rscript Modules/Res_explore/Benchmarks_explore.R {params.sample}"
 
 
 
@@ -63,8 +67,11 @@ rule visualizeResults:
     conda:
         "env.yaml"
 
+    params:
+        sample = config['sampleName']
+
     shell:
-        "Rscript Modules/Res_explore/Metrics_viz.R"
+        "Rscript Modules/Res_explore/Metrics_viz.R {params.sample}"
 
 
 
@@ -81,7 +88,8 @@ rule vioplotResults:
 
     params:
         metrics = config['resMetrics'],
-        min_p = config['minkowski_p']
+        min_p = config['minkowski_p'],
+        sample = config['sampleName']
 
     shell:
-        "Rscript Modules/Res_explore/Res_vioplot.R {input.props} {params.metrics} {params.min_p}"
+        "Rscript Modules/Res_explore/Res_vioplot.R {input.props} {params.sample} {params.metrics} {params.min_p}"

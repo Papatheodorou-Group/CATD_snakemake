@@ -7,12 +7,12 @@ suppressMessages(library(dplyr))
 suppressMessages(library(RColorBrewer))
 suppressMessages(library(viridis))
 
-
+sampleName <- commandArgs(trailingOnly = TRUE)
 
 #Grab files
-filenames <- list.files("Metrics") %>% paste0("Metrics/", .)
+filenames <- list.files("Metrics") %>% lapply(., function(x) { x <- paste0("Metrics/", x) }) %>% lapply(., function(x) { grep(sampleName, x, value = TRUE) }) %>% as.character(.)
 files <- lapply(filenames, function(x) readRDS(x))
-names(files) <- lapply(filenames, function(x) gsub("Metrics/res_(.*).rds", "\\1", x))
+names(files) <- lapply(filenames, function(x) gsub("Metrics/.*res_(.*).rds", "\\1", x))
 
 
 #Implement visualization for metrics and combinations of metrics below
@@ -48,7 +48,7 @@ generateBarPlot <- function(files, metric){
     )
 
     #Get plot
-    png(filename = paste0("Plots/Barplot_", metric, ".png"), width = 1920*3, height = 1080*3, res=300)
+    png(filename = paste0("Plots/",sampleName, "_barplot_", metric, ".png"), width = 1920*3, height = 1080*3, res=300)
     points <- barplot(df[,1], beside=TRUE, col = viridis(nrow(df), direction = -1), yaxp = y_axp)
     mtext(side=1, line=3, "Methods", font=2,cex=1)
     mtext(side=2, line=3, y_lab, font=2,cex=1)
