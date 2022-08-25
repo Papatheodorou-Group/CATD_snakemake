@@ -21,15 +21,25 @@
 
 
 #Helper functions to fetch inputs from other modules
+def getBenchmarks():
+        sampleName = config['sampleName']
+        return str(sampleName + "_benchmarks_summarized.png")
+
+
+
 def getVioPlots():
         metricsList = config['resMetrics']
-        plotsList = [str("Plots/Vioplot_" + metric + ".png") for metric in metricsList if (metric == "rmse" or metric == "avgcos")]
+        sampleName = config['sampleName']
+        plotsList = [str("Plots/" + sampleName + "_vioplot_" + metric + ".png") for metric in metricsList if (metric == "rmse" or metric == "avgcos")]
 
         return(plotsList)
 
+
+
 def getPlots():
         metricsList = config['resMetrics']
-        plotsList = [str("Plots/Barplot_" + metric + ".png") for metric in metricsList]
+        sampleName = config['sampleName']
+        plotsList = [str("Plots/" + sampleName + "_barplot_" + metric + ".png") for metric in metricsList]
 
         return(plotsList)
 
@@ -37,7 +47,8 @@ def getPlots():
 
 def getSelectedMetrics():
         metricsList = config['resMetrics']
-        outputList = [str("Metrics/res_" + metric + ".rds") for metric in metricsList]
+        sampleName = config['sampleName']
+        outputList = [str("Metrics/" + sampleName + "_res_" + metric + ".rds") for metric in metricsList]
 
         return(outputList)
 
@@ -197,4 +208,4 @@ rule all:
     input:
         getPlots(),
         getVioPlots(),
-        "Benchmarks_summarized.png"
+        getBenchmarks()
