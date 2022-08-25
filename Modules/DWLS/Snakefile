@@ -35,4 +35,7 @@ rule DWLS_run:
         "Benchmarks/{sample}_DWLS_benchmark.txt"
 
     shell:
-        "Rscript Modules/DWLS/DWLS_run.R {input} {threads} {output}"
+        """
+        mkdir -p Scratch
+        Rscript Modules/DWLS/DWLS_run.R {input} {threads} {output}
+        """
