@@ -1,6 +1,6 @@
 #!/bin/bash
 
-condaDir="/nfs/research/irene/ozgurb/soft/mambaforge/etc/profile.d/conda.sh"
+condaDir="Run basicSetup.sh to configure"
 
 source $condaDir
 conda activate snakemake
