@@ -169,8 +169,3 @@ The full list of jobs looks like this:
 	vioplotResults                    1              1              1
 	visualizeResults                  1              1              1
 	total                            40              1             32
-
-## Running concurrent workflows in one directory
-All files along the workflow are indexed by the config entry `sampleName`. As such, no workflows running under two different `sampleName` attributes interact with each other. However, snakemake will lock the directory to avoid collisions. To work around this, run the pipeline with `noLock_runPip.sh` or with the `--nolock` argument on local.
-
-Since snakemake loads config variables during compile time, it is possible to change the config after a workflow is compiled to run under a different `sampleName`, concurrently, within the same directory by using the `nolock` versions. 
