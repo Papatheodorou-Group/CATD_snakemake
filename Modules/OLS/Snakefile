@@ -32,5 +32,8 @@ rule OLS_run:
     benchmark:
         "Benchmarks/{sample}_OLS_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
+
     shell:
         "Rscript Modules/OLS/OLS_run.R {input} {output}"

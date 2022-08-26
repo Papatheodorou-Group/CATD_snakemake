@@ -34,6 +34,9 @@ rule DWLS_run:
     benchmark:
         "Benchmarks/{sample}_DWLS_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['DWLS'])
+
     shell:
         """
         mkdir -p {wildcards.sample}_scratch

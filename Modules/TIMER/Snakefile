@@ -32,5 +32,8 @@ rule TIMER_run:
     benchmark:
         "Benchmarks/{sample}_TIMER_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['TIMER'])
+
     shell:
         "Rscript Modules/TIMER/TIMER_run.R {input} {output}"

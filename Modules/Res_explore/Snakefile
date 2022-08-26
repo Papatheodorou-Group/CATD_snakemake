@@ -35,6 +35,9 @@ rule exploreResults:
         min_p = config['minkowski_p'],
         sample = config['sampleName']
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['resultsExp'])
+
     shell:
         "Rscript Modules/Res_explore/Res_explore.R {input.props} {params.sample} {params.metrics} {params.min_p}"
 
@@ -51,6 +54,9 @@ rule exploreBenchmarks:
 
     params:
         sample = config['sampleName']
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['resultsExp'])
 
     shell:
         "Rscript Modules/Res_explore/Benchmarks_explore.R {params.sample}"
@@ -69,6 +75,9 @@ rule visualizeResults:
 
     params:
         sample = config['sampleName']
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['resultsExp'])
 
     shell:
         "Rscript Modules/Res_explore/Metrics_viz.R {params.sample}"
@@ -90,6 +99,9 @@ rule vioplotResults:
         metrics = config['resMetrics'],
         min_p = config['minkowski_p'],
         sample = config['sampleName']
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['resultsExp'])
 
     shell:
         "Rscript Modules/Res_explore/Res_vioplot.R {input.props} {params.sample} {params.metrics} {params.min_p}"

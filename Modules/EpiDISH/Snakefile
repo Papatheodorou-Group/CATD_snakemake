@@ -32,5 +32,8 @@ rule EpiDISH_run:
     benchmark:
         "Benchmarks/{sample}_EpiDISH_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
+
     shell:
         "Rscript Modules/EpiDISH/EpiDISH_run.R {input} {output}"

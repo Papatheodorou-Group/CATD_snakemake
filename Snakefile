@@ -21,6 +21,11 @@
 
 
 #Helper functions to fetch inputs from other modules
+def getMB(val):
+        return int(val*1024)
+
+
+
 def getBenchmarks():
         sampleName = config['sampleName']
         return str(sampleName + "_benchmarks_summarized.png")

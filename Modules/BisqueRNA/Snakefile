@@ -32,5 +32,8 @@ rule Bisque_run:
     benchmark:
         "Benchmarks/{sample}_Bisque_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['Bisque'])
+
     shell:
         "Rscript Modules/BisqueRNA/Bisque_run.R {input} {output}"

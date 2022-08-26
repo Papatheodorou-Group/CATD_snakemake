@@ -43,6 +43,9 @@ rule scaleTransform_T_C:
     benchmark:
         "Benchmarks/{sample}_Scaletransform_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['scaleTransform'])
+
     shell:
         """
         mkdir -p Input/Normalized_tables
@@ -75,6 +78,9 @@ rule transformScale_T_C:
 
     benchmark:
         "Benchmarks/{sample}_Scaletransform_benchmark.txt"
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['scaleTransform'])
 
     shell:
         """
@@ -113,6 +119,9 @@ rule scaleTransformSeeded_T_C:
     benchmark:
         "Benchmarks/{sample}_Scaletransform_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['scaleTransform'])
+
     shell:
         """
         mkdir -p Input/Normalized_tables
@@ -145,6 +154,9 @@ rule transformScaleSeeded_T_C:
 
     benchmark:
         "Benchmarks/{sample}_Scaletransform_benchmark.txt"
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['scaleTransform'])
 
     shell:
         """

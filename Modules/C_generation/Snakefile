@@ -44,6 +44,9 @@ rule generateReferences:
     benchmark:
         "Benchmarks/{sample}_Cgen_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['c_gen'])
+
     shell:
         """
         mkdir -p Input/References
@@ -77,7 +80,10 @@ rule generateSeededReferences:
 
     benchmark:
         "Benchmarks/{sample}_Cgen_benchmark.txt"
-    
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['c_gen'])
+
     shell:
         """
         mkdir -p Input/References

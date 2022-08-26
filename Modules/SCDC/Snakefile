@@ -32,5 +32,8 @@ rule SCDC_run:
     benchmark:
         "Benchmarks/{sample}_SCDC_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['SCDC'])
+
     shell:
         "Rscript Modules/SCDC/SCDC_run.R {input} {output}"

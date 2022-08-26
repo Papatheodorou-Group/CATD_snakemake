@@ -32,5 +32,8 @@ rule ridge_run:
     benchmark:
         "Benchmarks/{sample}_ridge_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
+
     shell:
         "Rscript Modules/ridge/ridge_run.R {input} {output}"
