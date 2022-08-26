@@ -32,5 +32,8 @@ rule EPIC_run:
     benchmark:
         "Benchmarks/{sample}_EPIC_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
+
     shell:
         "Rscript Modules/EPIC/EPIC_run.R {input} {output}"

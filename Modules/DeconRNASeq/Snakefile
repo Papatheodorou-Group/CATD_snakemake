@@ -32,5 +32,8 @@ rule DeconRNASeq_run:
     benchmark:
         "Benchmarks/{sample}_DeconRNASeq_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
+
     shell:
         "Rscript Modules/DeconRNASeq/DeconRNASeq_run.R {input} {output}"

@@ -32,5 +32,8 @@ rule dtangle_run:
     benchmark:
         "Benchmarks/{sample}_dtangle_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
+
     shell:
         "Rscript Modules/dtangle/dtangle_run.R {input} {output}"

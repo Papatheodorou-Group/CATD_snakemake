@@ -2,28 +2,42 @@
 
 sampleName: 'Hrvatin_afteint'   #Enter the part BEFORE file extension (ex. 'data.h5ad' should be entered as 'data')
 seededRun: 0 #Use if you want this run of the pipeline to be reproducible (0-1)
-realBulk: 1 #Use if you are going to test with real data with known proportions (0-1)
+realBulk: 0 #Use if you are going to test with real data with known proportions (0-1)
 
 cores:
-  #The concurrency of operations are indicated by the number commented to their right.
-  #Those with the same numbers have a possiblity to run concurrently
-  #Make sure that concurrent sums do not exceed what is defined on runPip.
+  pbulks: 32
+  c_gen: 32
+  CDSeq: 16
+  CPM: 16
+  CIBERSORT: 3
+  bseqsc: 3
+  DWLS: 16
+  debCAM_unsupervised: 30
+  scaleTransform: 32
 
-  pbulks: 32            #1
-  c_gen: 32             #1
-  CDSeq: 16               #2
-  CPM: 16                 #2
-  CIBERSORT: 3            #2       #Using more than 3 has no effect
-  bseqsc: 3               #2       #Using more than 3 has no effect, uses CIBERSORT internally
-  DWLS: 16                #2
-  debCAM_unsupervised: 30   #NaN       #Runs last if runs, but fails mostly
-  scaleTransform: 32            #3
+mem_gb: #Will be converted to MB
+
+  resultsExp: 5 #Only needed at last step
+  minorOps: 50 #Will be used for all operations that require relatively less memory
+  pbulks: 300
+  scaleTransform: 300
+  c_gen: 300
+  CDSeq: 300
+  Bisque: 300
+  CPM: 300
+  DWLS: 300
+  MuSiC: 300
+  SCDC: 300
+  TIMER: 300
+  bseqsc: 300
+
+
 
 
 #pbulk parameters below
 pbulkParam:
   pbulkMode: 2  #Different mode for building pbulks
-  cellCount: 10000  #How many cells should be used to create a bulk sample
+  cellCount: 1000  #How many cells should be used to create a bulk sample
   nSamples: 10  #How many different samples should be generated
   propVar: 1000 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
   sampleCT: 0 #Sampling for cell types allowed or not (1 or 0) (EFFECTIVE IN MODE 2 ONLY)

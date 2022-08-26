@@ -42,6 +42,9 @@ rule generatePsuedobulks:
     benchmark:
         "Benchmarks/{sample}_Pbulks_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['pbulks'])
+
     shell:
         """
         mkdir -p Input/Psuedobulks
@@ -71,6 +74,9 @@ rule generateSeededPsuedobulks:
 
     benchmark:
         "Benchmarks/{sample}_Pbulks_benchmark.txt"
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['pbulks'])
 
     shell:
         """

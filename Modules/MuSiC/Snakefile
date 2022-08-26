@@ -35,5 +35,8 @@ rule MuSiC_run:
     benchmark:
         "Benchmarks/{sample}_MuSiC_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['MuSiC'])
+
     shell:
         "Rscript Modules/MuSiC/MuSiC_run.R {input} {params} {output}"

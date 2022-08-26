@@ -32,5 +32,8 @@ rule FARDEEP_run:
     benchmark:
         "Benchmarks/{sample}_FARDEEP_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
+
     shell:
         "Rscript Modules/FARDEEP/FARDEEP_run.R {input} {output}"

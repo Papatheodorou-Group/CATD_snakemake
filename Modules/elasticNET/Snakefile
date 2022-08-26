@@ -32,5 +32,8 @@ rule elasticNET_run:
     benchmark:
         "Benchmarks/{sample}_elasticNET_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
+
     shell:
         "Rscript Modules/elasticNET/elasticNET_run.R {input} {output}"

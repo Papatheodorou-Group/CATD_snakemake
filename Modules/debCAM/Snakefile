@@ -39,6 +39,9 @@ rule debCAM_unsupervised:
     benchmark:
         "Benchmarks/{sample}_debCAM_unsupervised_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
+
     shell:
         "Rscript Modules/debCAM/debCAM_u.R {input} {params} {output} {threads}"
 
@@ -59,6 +62,9 @@ rule debCAM_marker:
     benchmark:
         "Benchmarks/{sample}_debCAM_marker_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
+
     shell:
         "Rscript Modules/debCAM/debCAM_marker.R {input} {params} {output}"
 
@@ -76,6 +82,9 @@ rule debCAM_C1:
 
     benchmark:
         "Benchmarks/{sample}_debCAM_C1_benchmark.txt"
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
 
     shell:
         "Rscript Modules/debCAM/debCAM_C1.R {input} {output}"

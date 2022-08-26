@@ -32,5 +32,8 @@ rule NNLS_run:
     benchmark:
         "Benchmarks/{sample}_NNLS_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
+
     shell:
         "Rscript Modules/NNLS/NNLS_run.R {input} {output}"

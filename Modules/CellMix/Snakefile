@@ -52,6 +52,9 @@ rule DSA_run:
     benchmark:
         "Benchmarks/{sample}_DSA_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
+
     shell:
         "Rscript Modules/CellMix/DSA_run.R {input.main} {output}"
 
@@ -69,6 +72,9 @@ rule deconf_run:
 
     benchmark:
         "Benchmarks/{sample}_deconf_benchmark.txt"
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
 
     shell:
         "Rscript Modules/CellMix/deconf_run.R {input.main} {output}"
@@ -89,6 +95,9 @@ rule ssKL_run:
     benchmark:
         "Benchmarks/{sample}_ssKL_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
+
     shell:
         "Rscript Modules/CellMix/ssKL_run.R {input.main} {output}"
 
@@ -107,6 +116,9 @@ rule ssFrobenius_run:
 
     benchmark:
         "Benchmarks/{sample}_ssFrobenius_benchmark.txt"
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
 
     shell:
         "Rscript Modules/CellMix/ssFrobenius_run.R {input.main} {output}"

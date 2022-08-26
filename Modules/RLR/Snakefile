@@ -32,5 +32,8 @@ rule RLR_run:
     benchmark:
         "Benchmarks/{sample}_RLR_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
+
     shell:
         "Rscript Modules/RLR/RLR_run.R {input} {output}"

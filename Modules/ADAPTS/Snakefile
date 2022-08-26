@@ -8,7 +8,7 @@
 ## C1 reference.
 ##
 ##      1- proportionsInAdmixture
-## 
+##
 ##
 ##
 ##
@@ -31,6 +31,9 @@ rule proportionsInAdmixture_run:
 
     benchmark:
         "Benchmarks/{sample}_proportionsInAdmixture_benchmark.txt"
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
 
     shell:
         "Rscript Modules/ADAPTS/proportionsInAdmixture_run.R {input} {output}"

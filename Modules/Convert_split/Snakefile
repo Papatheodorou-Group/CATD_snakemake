@@ -33,6 +33,9 @@ rule convertAnndata:
     benchmark:
         "Benchmarks/{sample}_Convert_benchmark.txt"
 
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
+
     shell:
         "Rscript Modules/Convert_split/convert.R Input/{wildcards.sample}.h5ad"
 
@@ -52,6 +55,9 @@ rule splitCells:
 
     benchmark:
         "Benchmarks/{sample}_Split_benchmark.txt"
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
 
     shell:
         """
@@ -74,6 +80,9 @@ rule splitCellsSeeded:
 
     benchmark:
         "Benchmarks/{sample}_Split_benchmark.txt"
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
 
     shell:
         """
