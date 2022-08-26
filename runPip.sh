@@ -1,16 +1,13 @@
 #!/bin/bash
 
-#BSUB -n 64
-#BSUB -M 307200
-#BSUB -R "rusage[mem=307200]"
 #BSUB -o "pipOut_%J.log"
 #BSUB -J "runPip"
 
-condaDir="/nfs/research/irene/ozgurb/soft/mambaforge/etc/profile.d/conda.sh"
+condaDir="Run basicSetup.sh to configure"
 
 source $condaDir
 conda activate snakemake
+
 snakemake \
-	--use-conda \
-	--cores 64 \
-	--conda-frontend mamba
+  --profile lsf \
+  --conda-frontend mamba \
