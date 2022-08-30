@@ -64,7 +64,7 @@ Uses **one** single-cell reference to generate the pseudobulks and references fo
  6. Adjust settings in `config.yaml`.
  7. **(Optional)** Run `getDag.sh` to generate the updated DAG after adjusting config.
  8. **(Optional)** If on cluster set up cluster profile if you haven't, instructions available [here](https://github.com/Snakemake-Profiles/lsf).
- 9. Run the pipeline using `bsub < runPip.sh` or through snakemake if on local.
+ 9. Run the pipeline using `bsub < runPip.sh` or through `snakemake --use-conda --cores [N]` if on local.
 
 ## Cross-reference
 ### Description
