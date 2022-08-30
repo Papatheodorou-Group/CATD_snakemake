@@ -21,7 +21,7 @@
 
 rule lasso_run:
     input:
-        getC1(getBulks())
+        getC1(getBulks('{sample}'), '{sample}')
 
     output:
         "Output/{sample}_res_lasso.rds"

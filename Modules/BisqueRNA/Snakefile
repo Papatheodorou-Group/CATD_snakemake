@@ -21,7 +21,7 @@
 
 rule Bisque_run:
     input:
-        getPhenData(getC0(getBulks()))
+        getPhenData(getC0(getBulks('{sample}'), '{sample}'), '{sample}')
 
     output:
         "Output/{sample}_res_Bisque.rds"

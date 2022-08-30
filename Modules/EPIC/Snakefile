@@ -21,7 +21,7 @@
 
 rule EPIC_run:
     input:
-        getRefVar(getC2(getC1(getBulks())))
+        getRefVar(getC2(getC1(getBulks('{sample}'), '{sample}'), '{sample}'), '{sample}')
 
     output:
         "Output/{sample}_res_EPIC.rds"

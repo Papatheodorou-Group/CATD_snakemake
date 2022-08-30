@@ -22,7 +22,7 @@
 #Pre-installer check
 rule CellmixInstall:
     input:
-        getC2(getBulks())
+        
 
     output:
         "Modules/CellMix/Installed_correctly.txt"
@@ -41,7 +41,7 @@ rule CellmixInstall:
 rule DSA_run:
     input:
         "Modules/CellMix/Installed_correctly.txt",
-        main = getC2(getBulks())
+        main = getC2(getBulks('{sample}'), '{sample}')
 
     output:
         "Output/{sample}_res_DSA.rds"
@@ -62,7 +62,7 @@ rule DSA_run:
 rule deconf_run:
     input:
         "Modules/CellMix/Installed_correctly.txt",
-        main = getC2(getBulks())
+        main = getC2(getBulks('{sample}'), '{sample}')
 
     output:
         "Output/{sample}_res_deconf.rds"
@@ -84,7 +84,7 @@ rule deconf_run:
 rule ssKL_run:
     input:
         "Modules/CellMix/Installed_correctly.txt",
-        main = getC2(getBulks())
+        main = getC2(getBulks('{sample}'), '{sample}')
 
     output:
         "Output/{sample}_res_ssKL.rds"
@@ -106,7 +106,7 @@ rule ssKL_run:
 rule ssFrobenius_run:
     input:
         "Modules/CellMix/Installed_correctly.txt",
-        main = getC2(getBulks())
+        main = getC2(getBulks('{sample}'), '{sample}')
 
     output:
         "Output/{sample}_res_ssFrobenius.rds"
