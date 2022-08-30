@@ -114,7 +114,7 @@ Same as self-reference, except after the **3rd** step, note the following direct
 
 	Input/Psuedobulks
 
-This is where the bulks should go. If you wish to use all the data for the reference, go to: 
+This is where the bulks should go. Also, **enable realBulk in config.** If you wish to use all the data for the reference, go to: 
 
 	Input/Cell_splits
 
