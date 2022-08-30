@@ -21,7 +21,7 @@
 
 rule dtangle_run:
     input:
-        getC2(getC1(getBulks()))
+        getC2(getC1(getBulks('{sample}'), '{sample}'), '{sample}')
 
     output:
         "Output/{sample}_res_dtangle.rds"

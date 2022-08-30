@@ -10,7 +10,7 @@ suppressMessages(library(viridis))
 sampleName <- commandArgs(trailingOnly = TRUE)
 
 #Grab files
-filenames <- list.files("Metrics") %>% lapply(., function(x) { x <- paste0("Metrics/", x) }) %>% lapply(., function(x) { grep(sampleName, x, value = TRUE) }) %>% as.character(.)
+filenames <- list.files("Metrics") %>% lapply(., function(x) { x <- paste0("Metrics/", x) }) %>% lapply(., function(x) { grep(sampleName, x, value = TRUE) }) %>% .[lengths(.)!=0] %>% as.character(.)
 files <- lapply(filenames, function(x) readRDS(x))
 names(files) <- lapply(filenames, function(x) gsub("Metrics/.*res_(.*).rds", "\\1", x))
 

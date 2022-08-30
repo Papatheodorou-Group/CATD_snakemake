@@ -21,87 +21,79 @@
 
 rule exploreResults:
     input:
-        getMethods(),
-        props = getBulks()[1] #Only proportions needed
+        getMethods('{sample}'),
+        props = getBulks('{sample}')[1] #Only proportions needed
 
     output:
-        getSelectedMetrics()
+        getSelectedMetrics('{sample}')
 
     conda:
         "env.yaml"
 
     params:
         metrics = config['resMetrics'],
-        min_p = config['minkowski_p'],
-        sample = config['sampleName']
+        min_p = config['minkowski_p']
 
     resources:
         mem_mb=getMB(config['mem_gb']['resultsExp'])
 
     shell:
-        "Rscript Modules/Res_explore/Res_explore.R {input.props} {params.sample} {params.metrics} {params.min_p}"
+        "Rscript Modules/Res_explore/Res_explore.R {input.props} {wildcards.sample} {params.metrics} {params.min_p}"
 
 
 rule exploreBenchmarks:
     input:
-        getMethods()
+        getMethods('{sample}')
 
     output:
-        getBenchmarks()
+        getBenchmarks('{sample}')
 
     conda:
         "env.yaml"
-
-    params:
-        sample = config['sampleName']
 
     resources:
         mem_mb=getMB(config['mem_gb']['resultsExp'])
 
     shell:
-        "Rscript Modules/Res_explore/Benchmarks_explore.R {params.sample}"
+        "Rscript Modules/Res_explore/Benchmarks_explore.R {wildcards.sample}"
 
 
 
 rule visualizeResults:
     input:
-        getSelectedMetrics()
+        getSelectedMetrics('{sample}')
 
     output:
-        getPlots()
+        getPlots('{sample}')
 
     conda:
         "env.yaml"
-
-    params:
-        sample = config['sampleName']
 
     resources:
         mem_mb=getMB(config['mem_gb']['resultsExp'])
 
     shell:
-        "Rscript Modules/Res_explore/Metrics_viz.R {params.sample}"
+        "Rscript Modules/Res_explore/Metrics_viz.R {wildcards.sample}"
 
 
 
 rule vioplotResults:
     input:
-        getMethods(),
-        props = getBulks()[1] #Only proportions needed
+        getMethods('{sample}'),
+        props = getBulks('{sample}')[1] #Only proportions needed
 
     output:
-        getVioPlots()
+        getVioPlots('{sample}')
 
     conda:
         "env.yaml"
 
     params:
         metrics = config['resMetrics'],
-        min_p = config['minkowski_p'],
-        sample = config['sampleName']
+        min_p = config['minkowski_p']
 
     resources:
         mem_mb=getMB(config['mem_gb']['resultsExp'])
 
     shell:
-        "Rscript Modules/Res_explore/Res_vioplot.R {input.props} {params.sample} {params.metrics} {params.min_p}"
+        "Rscript Modules/Res_explore/Res_vioplot.R {input.props} {wildcards.sample} {params.metrics} {params.min_p}"

@@ -21,7 +21,7 @@
 
 rule debCAM_unsupervised:
     input:
-        getBulks()
+        getBulks('{sample}')
 
     output:
         "Output/{sample}_res_debCAM_unsupervised.rds"
@@ -48,7 +48,7 @@ rule debCAM_unsupervised:
 
 rule debCAM_marker:
     input:
-        getC2(getBulks())
+        getC2(getBulks('{sample}'), '{sample}')
 
     output:
         "Output/{sample}_res_debCAM_marker.rds"
@@ -72,7 +72,7 @@ rule debCAM_marker:
 
 rule debCAM_C1:
     input:
-        getC1(getBulks())
+        getC1(getBulks('{sample}'), '{sample}')
 
     output:
         "Output/{sample}_res_debCAM_C1.rds"
