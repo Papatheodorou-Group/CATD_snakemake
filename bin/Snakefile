@@ -19,6 +19,9 @@
 ##
 ##
 
+#Set config here
+configfile: 'config.yaml'
+
 
 #Helper functions to fetch inputs from other modules
 def getMB(val):
@@ -26,47 +29,43 @@ def getMB(val):
 
 
 
-def getBenchmarks():
-        sampleName = config['sampleName']
+def getBenchmarks(sampleName):
         return str(sampleName + "_benchmarks_summarized.png")
 
 
 
-def getVioPlots():
+def getVioPlots(sampleName):
         metricsList = config['resMetrics']
-        sampleName = config['sampleName']
         plotsList = [str("Plots/" + sampleName + "_vioplot_" + metric + ".png") for metric in metricsList if (metric == "rmse" or metric == "avgcos")]
 
         return(plotsList)
 
 
 
-def getPlots():
+def getPlots(sampleName):
         metricsList = config['resMetrics']
-        sampleName = config['sampleName']
         plotsList = [str("Plots/" + sampleName + "_barplot_" + metric + ".png") for metric in metricsList]
 
         return(plotsList)
 
 
 
-def getSelectedMetrics():
+def getSelectedMetrics(sampleName):
         metricsList = config['resMetrics']
-        sampleName = config['sampleName']
         outputList = [str("Metrics/" + sampleName + "_res_" + metric + ".rds") for metric in metricsList]
 
         return(outputList)
 
 
 
-def getMethods():
-        Methods = [str("Output/" + config['sampleName'] + "_res_" + methods + ".rds") for methods in config['deconMethods']]
+def getMethods(sampleName):
+        Methods = [str("Output/" + sampleName + "_res_" + methods + ".rds") for methods in config['deconMethods']]
 
         return(Methods)
 
 
 
-def getBulks():
+def getBulks(sampleName):
         inList = []
 
         if config['seededRun']:
@@ -79,8 +78,8 @@ def getBulks():
         else:
             st = "_transformed_scaled"
 
-        filename_T = str("Input/Normalized_tables/" + config['sampleName'] + "_pbulks" + seedStatus + st + ".rds")
-        filename_P = str("Input/Psuedobulks/" + config['sampleName'] + "_props" + seedStatus + ".rds")
+        filename_T = str("Input/Normalized_tables/" + sampleName + "_pbulks" + seedStatus + st + ".rds")
+        filename_P = str("Input/Psuedobulks/" + sampleName + "_props" + seedStatus + ".rds")
 
         inList.append(filename_T)
         inList.append(filename_P)
@@ -89,13 +88,13 @@ def getBulks():
 
 
 
-def getC2(inList):
+def getC2(inList, sampleName):
         if config['seededRun']:
             seedStatus = "_seeded"
         else:
             seedStatus = ""
 
-        filename_C2 = str("Input/References/" + config["sampleName"] + "_C2" + seedStatus + ".rds")
+        filename_C2 = str("Input/References/" + sampleName + "_C2" + seedStatus + ".rds")
 
         inList.append(filename_C2)
 
@@ -103,13 +102,13 @@ def getC2(inList):
 
 
 
-def getC1(inList):
+def getC1(inList, sampleName):
         if config['seededRun']:
             seedStatus = "_seeded"
         else:
             seedStatus = ""
 
-        filename_C1 = str("Input/References/" + config["sampleName"] + "_C1" + seedStatus + ".rds")
+        filename_C1 = str("Input/References/" + sampleName + "_C1" + seedStatus + ".rds")
 
         inList.append(filename_C1)
 
@@ -117,13 +116,13 @@ def getC1(inList):
 
 
 
-def getRefVar(inList):
+def getRefVar(inList, sampleName):
         if config['seededRun']:
             seedStatus = "_seeded"
         else:
             seedStatus = ""
 
-        filename_refVar = str("Input/References/" + config["sampleName"] + "_refVar" + seedStatus + ".rds")
+        filename_refVar = str("Input/References/" + sampleName + "_refVar" + seedStatus + ".rds")
 
         inList.append(filename_refVar)
 
@@ -131,7 +130,7 @@ def getRefVar(inList):
 
 
 
-def getC0(inList):
+def getC0(inList, sampleName):
         if config['seededRun']:
             seedStatus = "_seeded"
         else:
@@ -142,7 +141,7 @@ def getC0(inList):
         else:
             st = "_transformed_scaled"
 
-        filename_C0 = str("Input/Normalized_tables/" + config["sampleName"] + "_C0" + seedStatus + st + ".rds")
+        filename_C0 = str("Input/Normalized_tables/" + sampleName + "_C0" + seedStatus + st + ".rds")
 
         inList.append(filename_C0)
 
@@ -150,20 +149,18 @@ def getC0(inList):
 
 
 
-def getPhenData(inList):
+def getPhenData(inList, sampleName):
         if config['seededRun']:
             seedStatus = "_seeded"
         else:
             seedStatus = ""
 
-        filename_phenData = str("Input/References/" + config["sampleName"] + "_phenData" + seedStatus + ".rds")
+        filename_phenData = str("Input/References/" + sampleName + "_phenData" + seedStatus + ".rds")
 
         inList.append(filename_phenData)
 
         return inList
 
-
-configfile: 'config.yaml'
 
 
 #Prep metamodule
@@ -211,6 +208,6 @@ include: "Modules/Res_explore/Snakefile"
 #Target methods
 rule all:
     input:
-        getPlots(),
-        getVioPlots(),
-        getBenchmarks()
+        expand(getPlots('{sampleName}'), sampleName = config['sampleNames']),
+        expand(getVioPlots('{sampleName}'), sampleName = config['sampleNames']),
+        expand(getBenchmarks('{sampleName}'), sampleName = config['sampleNames'])

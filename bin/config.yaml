@@ -1,6 +1,8 @@
 #Input file name - to be implemented fully later on
 
-sampleName: 'Hrvatin_afteint'   #Enter the part BEFORE file extension (ex. 'data.h5ad' should be entered as 'data')
+sampleNames: #Enter the part BEFORE file extension (ex. 'data.h5ad' should be entered as 'data')
+  - Hrvatin_1
+  - Hrvatin_2
 seededRun: 0 #Use if you want this run of the pipeline to be reproducible (0-1)
 realBulk: 0 #Use if you are going to test with real data with known proportions (0-1)
 
@@ -37,9 +39,9 @@ mem_gb: #Will be converted to MB
 #pbulk parameters below
 pbulkParam:
   pbulkMode: 2  #Different mode for building pbulks
-  cellCount: 1000  #How many cells should be used to create a bulk sample
-  nSamples: 10  #How many different samples should be generated
-  propVar: 1000 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
+  cellCount: 100000  #How many cells should be used to create a bulk sample
+  nSamples: 1000  #How many different samples should be generated
+  propVar: 500 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
   sampleCT: 0 #Sampling for cell types allowed or not (1 or 0) (EFFECTIVE IN MODE 2 ONLY)
 
 
@@ -182,13 +184,13 @@ deconMethods:
 
 
 
-#Unsupervised params:
+#Unsupervised params (DEPRECATED):
 unsupervisedParams:
-  expectedTypes: 9  #Unsupervised expected cell type count
+  expectedTypes: 9
 
-#Marker selection params
+#Marker selection params (DEPRECATED)
 markerParams:
-  topN: 4   #How many top markers to select (AS OF NOW, FOR DEBCAM ONLY)
+  topN: 4
 
 #Force MuSiC to run with raw counts
 forceMuSiCRaw: TRUE #MuSiC originally requires raw counts, but can be made FALSE to test for susceptibility to normalization
