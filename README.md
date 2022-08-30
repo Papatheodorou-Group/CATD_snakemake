@@ -56,8 +56,11 @@ Uses **one** single-cell reference to generate the pseudobulks and references fo
 
 		mamba create -n snakemake snakemake
 
- 4. Run `basicSetup.sh` to configure conda profile.
- 5.  Place the input file into the newly created `Input` directory.
+ 4. Build the pipeline.
+ 		
+		make
+		
+ 5.  Place the input file in the `Input` directory.
  6. Adjust settings in `config.yaml`.
  7. **(Optional)** Run `getDag.sh` to generate the updated DAG after adjusting config.
  8. **(Optional)** If on cluster set up cluster profile if you haven't, instructions available [here](https://github.com/Snakemake-Profiles/lsf).
@@ -77,11 +80,11 @@ Uses **two** single-cell references to generate the pseudobulks and references f
 Same as self-reference.
 
 ### Directions
-Same as self-reference, except after the **3rd** step, create a directory named `Cell_splits` within input, using:
+Same as self-reference, except after the **3rd** step, note the following directory:
 
-	mkdir -p Input/Cell_splits
+	Input/Cell_splits
 
-Then, **place the input files in this folder**. Make sure that the inputs **conform to the standards written in the 'Inputs' section above**. Then continue with the **5th** step.
+**The input files should go in this folder**. Make sure that the inputs **conform to the standards written in the 'Inputs' section above**. Then continue with the **5th** step.
 
 ## Real Bulk
 ### Description
@@ -101,21 +104,21 @@ Uses **one** reference single cell matrix with **user-defined** bulks and **know
 	Input/Psuedobulks/{sampleName}_props.rds
 
 
-The first two options will only use **half** of the data to generate references. The third will use **all** of the data to generate the reference. Alongside the reference, you need to input the pseudo-bulks inside the folder specified under those names (note that there is a typo in the "Psuedobulks", still the folder should be under that name.)
+The first two options will only use **half** of the data to generate references. The third will use **all** of the data to generate the reference. Alongside the reference, you need to input the pseudo-bulks inside the folder specified under those names.
 
 ### Outputs
 Same as self-reference.
 
 ### Directions
-Same as self-reference, except after the **3rd** step, create a directory named `Psuedobulks` within input, using:
+Same as self-reference, except after the **3rd** step, note the following directory:
 
-	mkdir -p Input/Psuedobulks
+	Input/Psuedobulks
 
-This is where the bulks should go. If you wish to use all the data for the reference, also create a directory named Cell_splits using
+This is where the bulks should go. If you wish to use all the data for the reference, go to: 
 
-	mkdir -p Input/Cell_splits
+	Input/Cell_splits
 
-and place the reference here under the name **{sampleName}_C0.rds**
+and place the reference here under the name **{sampleName}_C0.rds**. Otherwise, you can use the `Input` directory with **{sampleName}.h5ad / {sampleName}_seurat.rds**
 
 
 # Appendices
@@ -169,3 +172,6 @@ The full list of jobs looks like this:
 	vioplotResults                    1              1              1
 	visualizeResults                  1              1              1
 	total                            40              1             32
+
+## Cleaning all outputs
+Use `make clean` to delete all outputs from a workflow. Keep in mind that this will delete **ALL** outputs including results.
