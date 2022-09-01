@@ -23,7 +23,10 @@ C1 <- readRDS(filename_C1)
 
 
 #Toss out the genes tossed out in T normalization from C as well
-C1 <- C1[rownames(C1) %in% rownames(T),]
+common <- intersect(rownames(C1), rownames(T))
+C1 <- C1[common,]
+T  <- T[common,]
+
 
 #Get res and reorder the matrices for correspondence
 res <- t(dcq(reference_data = C1, mix_data = T, marker_set = as.data.frame(row.names(C1)) , alpha_used = 0.05, lambda_min = 0.2, number_of_repeats = 10)$average)

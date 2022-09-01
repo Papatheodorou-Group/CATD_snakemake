@@ -18,7 +18,9 @@ C1 <- readRDS(filename_C1)
 
 
 #Toss out the genes tossed out in T normalization from C as well
-C1 <- C1[rownames(C1) %in% rownames(T),]
+common <- intersect(rownames(C1), rownames(T))
+C1 <- C1[common,]
+T  <- T[common,]
 
 #Run NNLS and reorder for correspondence
 res <- do.call(cbind.data.frame,lapply(apply(T,2,function(x) nnls::nnls(as.matrix(C1),x)), function(y) y$x))

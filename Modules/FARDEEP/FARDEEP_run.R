@@ -23,8 +23,9 @@ C1 <- readRDS(filename_C1)
 
 
 #Toss out the genes tossed out in T normalization from C as well
-C1 <- C1[rownames(C1) %in% rownames(T),]
-
+common <- intersect(rownames(C1), rownames(T))
+C1 <- C1[common,]
+T  <- T[common,]
 #Get results and reorder the matrices for correspondence
 message('Started running')
 res <- fardeep(C1, T, nn = TRUE, intercept = TRUE, permn = 10, QN = FALSE)

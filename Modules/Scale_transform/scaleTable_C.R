@@ -140,7 +140,6 @@ switch(method,
     suppressMessages(library(sctransform))
 
     C <- sctransform::vst(C, return_corrected_umi=TRUE, verbosity = FALSE)$umi_corrected
-    C <- as(C, "matrix")
   },
 
 
@@ -161,7 +160,6 @@ switch(method,
 
     sizeFactors <- scater::librarySizeFactors(C)
     C <- scater::normalizeCounts(C, sizeFactors, transform = "none")
-    C <- as(C, "matrix")
   },
 
 
@@ -169,7 +167,6 @@ switch(method,
     suppressMessages(library(Linnorm))
 
     C <- expm1(Linnorm::Linnorm(as.matrix(C)))
-    C <- as(C, "matrix")
   }
 
 
@@ -184,6 +181,8 @@ C <- C[,colSums(C) != 0]
 #Only keep rows with different counts after transformations
 C <- C[!apply(C, 1, function(x) var(x) == 0),]
 
+
+C <- as(C, "matrix")
 
 
 #Save transformed tables
