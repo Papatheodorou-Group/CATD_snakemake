@@ -8,5 +8,5 @@ clean :
 	@rm -rf Input Output Metrics Plots Benchmarks getDag.sh runPip.sh Snakefile config.yaml && \
 		find . -maxdepth 1 -name '*scratch*' -exec rm -rf {} \; && \
 		find . -maxdepth 1 -name '*benchmarks*' -exec rm -rf {} \; && \
-		find . -maxdepth 1 -name '*pipOut*' -exec rm -rf {} \;
+		find . -maxdepth 1 -name '*pipOut*' -exec rm -rf {} \; && \
 		find . -maxdepth 1 -name '*runSum*' -exec rm -rf {} \;
