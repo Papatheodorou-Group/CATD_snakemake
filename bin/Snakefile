@@ -29,6 +29,11 @@ def getMB(val):
 
 
 
+def getRunSums(sampleName):
+    return str("runSum_" + sampleName + "/config.yaml")
+
+
+
 def getBenchmarks(sampleName):
         return str(sampleName + "_benchmarks_summarized.png")
 
@@ -199,6 +204,7 @@ include: "Modules/DWLS/Snakefile"
 include: "Modules/bseqsc/Snakefile"
 include: "Modules/CPM/Snakefile"
 include: "Modules/TIMER/Snakefile"
+include: "Modules/omnideconv/Snakefile"
 
 #Results metamodule
 include: "Modules/Res_explore/Snakefile"
@@ -208,6 +214,4 @@ include: "Modules/Res_explore/Snakefile"
 #Target methods
 rule all:
     input:
-        expand(getPlots('{sampleName}'), sampleName = config['sampleNames']),
-        expand(getVioPlots('{sampleName}'), sampleName = config['sampleNames']),
-        expand(getBenchmarks('{sampleName}'), sampleName = config['sampleNames'])
+        expand(getRunSums('{sampleName}'), sampleName = config['sampleNames'])

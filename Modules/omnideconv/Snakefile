@@ -1,0 +1,82 @@
+## Rule index for  omnideconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run MOMF and Autogenes with C0 reference.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+rule OmniInstall:
+    input:
+
+    output:
+        "Modules/omnideconv/Installed_successfully.txt"
+
+    conda:
+        "env.yaml"
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
+
+    shell:
+        """
+        Rscript Modules/omnideconv/Install.R
+        touch {output}
+        """
+
+
+
+rule Autogenes_run:
+    input:
+        "Modules/omnideconv/Installed_successfully.txt",
+        files = getPhenData(getC0(getBulks('{sample}'), '{sample}'), '{sample}')
+
+    output:
+        "Output/{sample}_res_Autogenes.rds"
+
+    conda:
+        "env.yaml"
+
+    benchmark:
+        "Benchmarks/{sample}_Autogenes_benchmark.txt"
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['minorOps'])
+
+    shell:
+        "Rscript Modules/omnideconv/Autogenes_run.R {input.files} {output}"
+
+
+
+rule Momf_run:
+    input:
+        "Modules/omnideconv/Installed_successfully.txt",
+        files = getPhenData(getC0(getBulks('{sample}'), '{sample}'), '{sample}')
+
+    output:
+        "Output/{sample}_res_MOMF.rds"
+
+    conda:
+        "env.yaml"
+
+    benchmark:
+        "Benchmarks/{sample}_MOMF_benchmark.txt"
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['MOMF'])
+
+    shell:
+        "Rscript Modules/omnideconv/MOMF_run.R {input.files} {output}"
