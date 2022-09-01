@@ -32,6 +32,7 @@ mem_gb: #Will be converted to MB
   SCDC: 300
   TIMER: 300
   bseqsc: 300
+  MOMF: 300
 
 
 
@@ -181,6 +182,8 @@ deconMethods:
   - bseqsc
   - CPM
   - TIMER
+  - MOMF
+  - Autogenes
 
 
 

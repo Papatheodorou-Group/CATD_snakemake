@@ -97,3 +97,30 @@ rule vioplotResults:
 
     shell:
         "Rscript Modules/Res_explore/Res_vioplot.R {input.props} {wildcards.sample} {params.metrics} {params.min_p}"
+
+
+
+rule sumRun:
+    input:
+        getPlots('{sample}'),
+        getVioPlots('{sample}'),
+        getBenchmarks('{sample}')
+
+    output:
+        getRunSums('{sample}')
+
+    params:
+        mode = config['pbulkParam']['pbulkMode'],
+        cellCount = config['pbulkParam']['cellCount'],
+        nSamples = config['pbulkParam']['nSamples'],
+        propVar = config['pbulkParam']['propVar'],
+        sampleCT = config['pbulkParam']['sampleCT'],
+        scaleT = config['stParam']['scaleT'],
+        scaleC = config['stParam']['scaleC'],
+        transform = config['stParam']['transform']
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['resultsExp'])
+
+    shell:
+        "bash Modules/Res_explore/extractRun.sh {wildcards.sample} {params}"
