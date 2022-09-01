@@ -21,7 +21,9 @@ C1 <- readRDS(filename_C1)
 
 
 #Toss out the genes tossed out in T normalization from C as well
-C1 <- C1[rownames(C1) %in% rownames(T),]
+common <- intersect(rownames(C1), rownames(T))
+C1 <- C1[common,]
+T  <- T[common,]
 
 #Get res and reorder the matrices for correspondence
 res <- apply(T, 2, function(z) coef(glmnet::glmnet(x = as.matrix(C1), y = z, alpha = 1, standardize = TRUE, lambda = glmnet::cv.glmnet(as.matrix(C1), z)$lambda.1se))[1:ncol(C1)+1,])

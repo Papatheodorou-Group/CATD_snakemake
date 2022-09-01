@@ -25,8 +25,11 @@ C2 <- readRDS(filename_C2)
 
 
 #Toss out the genes tossed out in T normalization from C as well
-C1 <- C1[rownames(C1) %in% rownames(T),]
-C2 <- C2[rownames(C2) %in% rownames(T),]
+common <- intersect(rownames(C1), rownames(T))
+common <- intersect(common, rownames(C2))
+C1 <- C1[common,]
+C2 <- C2[common,]
+T  <- T[common,]
 
 #Preprocess
 mixtures <- t(T)

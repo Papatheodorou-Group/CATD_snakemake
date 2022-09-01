@@ -27,9 +27,13 @@ refVar <- readRDS(filename_refVar)
 
 
 #Toss out the genes tossed out in T normalization from C as well
-C1 <- C1[rownames(C1) %in% rownames(T),]
-C2 <- C2[rownames(C2) %in% rownames(T),]
-refVar <- refVar[rownames(refVar) %in% rownames(T),]
+common <- intersect(rownames(C1), rownames(T))
+common <- intersect(common, rownames(C2))
+common <- intersect(common, rownames(refVar))
+C1 <- C1[common,]
+C2 <- C2[common,]
+T  <- T[common,]
+refVar <- refVar[common,]
 
 #Preprocess references for EPIC
 markers <- as.character(C2$geneName)

@@ -22,7 +22,9 @@ C2 <- readRDS(filename_C2)
 
 
 #Toss out the genes tossed out in T normalization from C as well
-C2 <- C2[rownames(C2) %in% rownames(T),]
+common <- intersect(rownames(C2), rownames(T))
+C2 <- C2[common,]
+T  <- T[common,]
 
 #Preprocess
 ML <- CellMix::MarkerList()
