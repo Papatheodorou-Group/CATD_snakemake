@@ -131,6 +131,7 @@ The full list of jobs looks like this:
 
 	job                           count    min threads    max threads
 	--------------------------  -------  -------------  -------------
+	Autogenes_run                     1              1              1
 	Bisque_run                        1              1              1
 	CDSeq_run                         1             16             16
 	CIBERSORT_run                     1              3              3
@@ -143,9 +144,11 @@ The full list of jobs looks like this:
 	EPIC_run                          1              1              1
 	EpiDISH_run                       1              1              1
 	FARDEEP_run                       1              1              1
+	Momf_run                          1              1              1
 	MuSiC_run                         1              1              1
 	NNLS_run                          1              1              1
 	OLS_run                           1              1              1
+	OmniInstall                       1              1              1
 	RLR_run                           1              1              1
 	SCDC_run                          1              1              1
 	TIMER_run                         1              1              1
@@ -154,7 +157,6 @@ The full list of jobs looks like this:
 	convertAnndata                    1              1              1
 	debCAM_C1                         1              1              1
 	debCAM_marker                     1              1              1
-	debCAM_unsupervised               1             30             30
 	deconf_run                        1              1              1
 	dtangle_run                       1              1              1
 	elasticNET_run                    1              1              1
@@ -169,9 +171,10 @@ The full list of jobs looks like this:
 	splitCells                        1              1              1
 	ssFrobenius_run                   1              1              1
 	ssKL_run                          1              1              1
+	sumRun                            1              1              1
 	vioplotResults                    1              1              1
 	visualizeResults                  1              1              1
-	total                            40              1             32
+	total                            43              1             32
 
 ## Cleaning all outputs
 Use `make clean` to delete all outputs from a workflow. Keep in mind that this will delete **ALL** outputs including results.
