@@ -18,7 +18,7 @@ test_2 <- args[3]
 seurNorm <- args[4]
 C_0 <- readRDS(filename)
 filename <- sub("Input/Cell_splits", "Input/References", filename)
-options(future.globals.maxSize = 600 * 1024^2)
+options(future.globals.maxSize = 2000 * 1024^2)
 
 message(paste0('Running DGE with tests: ', test_1, ' & ', test_2, ", Seurat normalization: ", seurNorm))
 
