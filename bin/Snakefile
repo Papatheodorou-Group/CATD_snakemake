@@ -29,6 +29,11 @@ def getMB(val):
 
 
 
+def getHeatmap(sampleName):
+    return str("Plots/" + sampleName + "_metricsHeatmap.png")
+
+
+
 def getRunSums(sampleName):
     return str("runSum_" + sampleName + "/config.yaml")
 

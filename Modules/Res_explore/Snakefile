@@ -104,7 +104,8 @@ rule sumRun:
     input:
         getPlots('{sample}'),
         getVioPlots('{sample}'),
-        getBenchmarks('{sample}')
+        getBenchmarks('{sample}'),
+        getHeatmap('{sample}')
 
     output:
         getRunSums('{sample}')
@@ -124,3 +125,21 @@ rule sumRun:
 
     shell:
         "bash Modules/Res_explore/extractRun.sh {wildcards.sample} {params}"
+
+
+
+rule getHeatmap:
+    input:
+        getMethods('{sample}'),
+
+    output:
+        getHeatmap('{sample}')
+
+    conda:
+        "env.yaml"
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['resultsExp'])
+
+    shell:
+        "Rscript Modules/Res_explore/Heatmap_agr.R {wildcards.sample}"
