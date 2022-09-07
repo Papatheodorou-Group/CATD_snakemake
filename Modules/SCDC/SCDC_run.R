@@ -12,8 +12,8 @@ if (!require("L1pack", quietly = TRUE)){
 
 suppressMessages(library(remotes))
 suppressMessages(library(devtools))
-remotes::install_github("renozao/xbioc", auth_token = "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")
 options(timeout=400) # to avoid problems when connection slow
+remotes::install_github("renozao/xbioc", auth_token = "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")
 devtools::install_github("meichendong/SCDC", auth_token = "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")
 suppressMessages(library(SCDC))
 suppressMessages(library(Biobase))
@@ -47,7 +47,7 @@ C0 <- ExpressionSet(C0, phenoData = as(phenData, "AnnotatedDataFrame"))
 
 #Get results and reorder the matrices for correspondence
 res <- t(SCDC::SCDC_prop(bulk.eset = T, sc.eset = C0, ct.varname = "cellType", sample = "sampleID", ct.sub = levels(phenData$cellType), iter.max = 200)$prop.est.mvw)
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

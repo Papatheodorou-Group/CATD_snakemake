@@ -38,7 +38,7 @@ C0$SubjectName <- C0$sampleID #BisqueRNA uses hard-coded colname
 
 #Get results and reorder the matrices for correspondence
 res <- BisqueRNA::ReferenceBasedDecomposition(T, C0, markers=NULL, use.overlap=FALSE)$bulk.props
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

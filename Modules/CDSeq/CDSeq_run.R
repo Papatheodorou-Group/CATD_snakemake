@@ -31,7 +31,7 @@ T  <- T[common,]
 #Get results and reorder the matrices for correspondence
 res <- CDSeq(bulk_data = T, reference_gep = C1, cell_type_number = ncol(C1), mcmc_iterations = 1000, cpu_number = cores, block_number = 6, gene_subset_size=15)
 res <- res$estProp
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

@@ -32,7 +32,7 @@ T  <- T[common,]
 res <- t(dcq(reference_data = C1, mix_data = T, marker_set = as.data.frame(row.names(C1)) , alpha_used = 0.05, lambda_min = 0.2, number_of_repeats = 10)$average)
 res <- apply(res,2,function(x) ifelse(x < 0, 0, x)) #explicit non-negativity constraint
 res <- apply(res,2,function(x) x/sum(x)) #explicit STO constraint
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

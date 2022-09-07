@@ -26,6 +26,8 @@ cat: bug
 </pre>
 
 # Running the pipeline
+**IMPORTANT**: If running for the first time, use one sample only as the environments are
+installed throughout the workflow
 ## Self-reference
 ### Description
 Uses **one** single-cell reference to generate the pseudobulks and references for deconvolution benchmarking. Important assumptions:
@@ -57,9 +59,9 @@ Uses **one** single-cell reference to generate the pseudobulks and references fo
 		mamba create -n snakemake snakemake
 
  4. Build the pipeline.
- 		
+
 		make
-		
+
  5.  Place the input file in the `Input` directory.
  6. Adjust settings in `config.yaml`.
  7. **(Optional)** Run `getDag.sh` to generate the updated DAG after adjusting config.
@@ -114,7 +116,7 @@ Same as self-reference, except after the **3rd** step, note the following direct
 
 	Input/Psuedobulks
 
-This is where the bulks should go. Also, **enable realBulk in config.** If you wish to use all the data for the reference, go to: 
+This is where the bulks should go. Also, **enable realBulk in config.** If you wish to use all the data for the reference, go to:
 
 	Input/Cell_splits
 

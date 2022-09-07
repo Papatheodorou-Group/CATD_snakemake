@@ -41,7 +41,7 @@ MD <- lapply(MD,function(x) sapply(x, function(y) which(y==rownames(C1))))
 
 #Get results and reorder the matrices for correspondence
 res <- t(dtangle::dtangle(Y=mixtures, reference=refs, markers = MD)$estimates)
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

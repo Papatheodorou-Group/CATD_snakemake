@@ -30,7 +30,7 @@ res <- apply(T, 2, function(z) coef(glmnet::glmnet(x = as.matrix(C1), y = z, alp
 res <- apply(res,2,function(x) ifelse(x < 0, 0, x)) #explicit non-negativity constraint
 res <- apply(res,2,function(x) x/sum(x)) #explicit STO constraint
 res[is.na(res)] <- 0 #Needed for models where glmnet drops all terms of a model and fit an intercept-only model (very unlikely but possible).
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

@@ -40,7 +40,7 @@ cellTypes <- as.character(phenData$cellType)
 res <- t(CPM(C0, cellTypes, T, p, quantifyTypes = TRUE, no_cores = cores)$cellTypePredictions)
 res <- apply(res,2,function(x) ifelse(x < 0, 0, x)) #explicit non-negativity constraint
 res <- apply(res,2,function(x) x/sum(x)) #explicit STO constraint
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

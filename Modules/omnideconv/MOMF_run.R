@@ -30,7 +30,7 @@ rm(common)
 cellTypes <- phenData$cellType
 model <- omnideconv::build_model(C0, cellTypes, bulk_gene_expression = T, method = "momf")
 res <- t(omnideconv::deconvolute(T, signature = model, single_cell_object = C0, method = "momf"))
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

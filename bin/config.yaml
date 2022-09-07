@@ -5,6 +5,8 @@ sampleNames: #Enter the part BEFORE file extension (ex. 'data.h5ad' should be en
   - Hrvatin_2
 seededRun: 0 #Use if you want this run of the pipeline to be reproducible (0-1)
 realBulk: 0 #Use if you are going to test with real data with known proportions (0-1)
+realBulk-noProp: 0 #Use to get results only if no ground truths are present
+
 
 cores:
   pbulks: 32
@@ -172,8 +174,6 @@ deconMethods:
   - proportionsInAdmixture
   - EpiDISH
   #- debCAM_unsupervised   # remove if giving too many iterations error
-  - debCAM_marker
-  - debCAM_C1
   - CDSeq
   - MuSiC
   - Bisque

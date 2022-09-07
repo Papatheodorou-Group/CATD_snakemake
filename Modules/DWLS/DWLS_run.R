@@ -47,7 +47,7 @@ res <- future_apply(T,2, function(x){
 }, future.seed = TRUE)
 
 rownames(res) <- as.character(unique(phenData$cellType))
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

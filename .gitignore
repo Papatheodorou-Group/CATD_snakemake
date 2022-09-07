@@ -6,7 +6,6 @@ Output
 Scratch
 .snakemake
 *pbulks*
-*props*
 notes
 log.txt
 C_1*

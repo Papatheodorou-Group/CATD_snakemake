@@ -57,7 +57,7 @@ B <- bseqsc_basis(C0, markers, clusters = 'cellType', samples = 'sampleID', ct.s
 message("Running CIBERSORT with B...")
 res <- CIBERSORT(B, T, QN = FALSE, absolute = FALSE, perm = 0)
 res <- t(res[,1:(ncol(res)-3)])
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

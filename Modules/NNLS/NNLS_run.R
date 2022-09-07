@@ -26,7 +26,7 @@ T  <- T[common,]
 res <- do.call(cbind.data.frame,lapply(apply(T,2,function(x) nnls::nnls(as.matrix(C1),x)), function(y) y$x))
 rownames(res) <- colnames(C1)
 res <- apply(res,2,function(x) x/sum(x)) #explicit STO constraint
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

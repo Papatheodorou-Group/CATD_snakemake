@@ -29,7 +29,7 @@ C1 <- data.frame(C1)
 #Run DeconRNASeq and reorder rows for correspondence
 res <- DeconRNASeq(datasets = T, signatures = C1, proportions = NULL, checksig = FALSE, known.prop = FALSE, use.scale = TRUE, fig = FALSE)
 res <- t(res$out.all)
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)
