@@ -28,7 +28,7 @@ T  <- T[common,]
 res <- apply(T, 2, function(z) coef(glmnet::glmnet(x = as.matrix(C1), y = z, alpha = 0.2, standardize = TRUE, lambda = glmnet::cv.glmnet(as.matrix(C1), z)$lambda.1se))[1:ncol(C1)+1,])
 res <- apply(res,2,function(x) ifelse(x < 0, 0, x)) #explicit non-negativity constraint
 res <- apply(res,2,function(x) x/sum(x)) #explicit STO constraint
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

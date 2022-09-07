@@ -5,11 +5,9 @@
 ##
 ## Description:
 ## This file includes all rules associated with deconvolution using debCAM
-## package. The 3 different modes are
+## package
 ##
-##      1- Unsupervised with k coefficient
-##      2- Semi-supervised with C1 reference
-##      3- Semi-supervised with C2 reference
+##      Semi-supervised with C2 reference
 ##
 ##
 ##
@@ -18,33 +16,8 @@
 ##
 ##
 ##
-
-rule debCAM_unsupervised:
-    input:
-        getBulks('{sample}')
-
-    output:
-        "Output/{sample}_res_debCAM_unsupervised.rds"
-
-    params:
-        cellTypes_n = config['unsupervisedParams']['expectedTypes']
-
-    conda:
-        "env.yaml"
-
-    threads: config["cores"]["debCAM_unsupervised"]
-
-    priority: -50
-
-    benchmark:
-        "Benchmarks/{sample}_debCAM_unsupervised_benchmark.txt"
-
-    resources:
-        mem_mb=getMB(config['mem_gb']['minorOps'])
-
-    shell:
-        "Rscript Modules/debCAM/debCAM_u.R {input} {params} {output} {threads}"
-
+##
+##
 
 rule debCAM_marker:
     input:
@@ -67,24 +40,3 @@ rule debCAM_marker:
 
     shell:
         "Rscript Modules/debCAM/debCAM_marker.R {input} {params} {output}"
-
-
-
-rule debCAM_C1:
-    input:
-        getC1(getBulks('{sample}'), '{sample}')
-
-    output:
-        "Output/{sample}_res_debCAM_C1.rds"
-
-    conda:
-        "env.yaml"
-
-    benchmark:
-        "Benchmarks/{sample}_debCAM_C1_benchmark.txt"
-
-    resources:
-        mem_mb=getMB(config['mem_gb']['minorOps'])
-
-    shell:
-        "Rscript Modules/debCAM/debCAM_C1.R {input} {output}"

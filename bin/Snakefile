@@ -89,10 +89,16 @@ def getBulks(sampleName):
             st = "_transformed_scaled"
 
         filename_T = str("Input/Normalized_tables/" + sampleName + "_pbulks" + seedStatus + st + ".rds")
-        filename_P = str("Input/Psuedobulks/" + sampleName + "_props" + seedStatus + ".rds")
+
+        if not config['realBulk-noProp']:
+            filename_P = str("Input/Psuedobulks/" + sampleName + "_props" + seedStatus + ".rds")
 
         inList.append(filename_T)
-        inList.append(filename_P)
+
+        if not config['realBulk-noProp']:
+            inList.append(filename_P)
+        else:
+            inList.append("Modules/Psuedobulk/dummy_props.rds")
 
         return inList
 
@@ -176,10 +182,8 @@ def getPhenData(inList, sampleName):
 #Prep metamodule
 include: "Modules/Convert_split/Snakefile"
 
-if not config['realBulk']:
+if not (config['realBulk'] or config['realBulk-noProp']):
     include: "Modules/Psuedobulk/Snakefile"
-else:
-    pass
 
 include: "Modules/C_generation/Snakefile"
 include: "Modules/Scale_transform/Snakefile"
@@ -217,6 +221,13 @@ include: "Modules/Res_explore/Snakefile"
 #Grab all methods from config
 
 #Target methods
-rule all:
-    input:
-        expand(getRunSums('{sampleName}'), sampleName = config['sampleNames'])
+#Target methods
+if not config['realBulk-noProp']:
+    rule all:
+        input:
+            expand(getRunSums('{sampleName}'), sampleName = config['sampleNames'])
+
+else:
+    rule all:
+        input:
+            expand(getHeatmap('{sampleName}'), sampleName = config['sampleNames'])

@@ -33,7 +33,7 @@ T <- data.frame(T)
 #Run deconv, params may be exported to config later
 res <- CIBERSORT(sig_matrix = C1, mixture_file = T, QN = FALSE, absolute = FALSE, perm = 0)
 res <- t(res[,1:(ncol(res)-3)])
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

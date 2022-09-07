@@ -52,7 +52,7 @@ C0 <- ExpressionSet(C0, phenoData = as(phenData, "AnnotatedDataFrame"))
 
 #Get results and reorder the matrices for correspondence
 res <- t(music_prop(bulk.eset = T, sc.eset = C0, clusters = "cellType", samples = "sampleID", select.ct = levels(C0@phenoData$cellType), markers = NULL, normalize = FALSE, verbose = FALSE)$Est.prop.weighted)
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

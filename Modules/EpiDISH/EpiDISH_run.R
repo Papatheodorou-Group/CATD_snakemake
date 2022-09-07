@@ -30,7 +30,7 @@ C1 <- as.matrix(C1) #Explicit typecasting needed
 res <- t(EpiDISH::epidish(beta.m = T, ref.m = C1, method = "RPC")$estF)
 res <- apply(res,2,function(x) ifelse(x < 0, 0, x)) #explicit non-negativity constraint
 res <- apply(res,2,function(x) x/sum(x)) #explicit STO constraint
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

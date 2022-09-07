@@ -31,7 +31,7 @@ message('Started running')
 res <- fardeep(C1, T, nn = TRUE, intercept = TRUE, permn = 10, QN = FALSE)
 res <- t(res$abs.beta)
 res <- apply(res,2,function(x) x/sum(x)) #explicit STO constraint
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

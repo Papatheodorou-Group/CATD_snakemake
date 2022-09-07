@@ -31,7 +31,7 @@ ML@.Data <- tapply(as.character(C2$geneName),as.character(C2$cellType),list)
 #Get res and reorder the matrices for correspondence
 res <- CellMix::ged(as.matrix(T), x=length(unique(as.character(C2$cellType))), method = "ssKL",markers= "semi", sscale = FALSE, maxIter=500, log = FALSE, verbose= TRUE)
 res <- CellMix::match.nmf(res, ML)@fit@H
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

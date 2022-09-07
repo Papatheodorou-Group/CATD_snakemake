@@ -38,7 +38,7 @@ names(ref_anno) <- phenData$cellType
 
 #Get results and reorder the matrices for correspondence
 res <-t(TIMER_deconv(mix = T, ref = C0, curated.cell.types = ref_anno, sig = rownames(T)))
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

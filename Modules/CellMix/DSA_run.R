@@ -34,7 +34,7 @@ ML@.Data <- tapply(as.character(C2$geneName),as.character(C2$cellType),list)
 res <- CellMix::ged(as.matrix(T), ML, method = "DSA", log = FALSE)@fit@H
 res <- apply(res,2,function(x) ifelse(x < 0, 0, x)) #explicit non-negativity constraint
 res <- apply(res,2,function(x) x/sum(x)) #explicit STO constraint
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)

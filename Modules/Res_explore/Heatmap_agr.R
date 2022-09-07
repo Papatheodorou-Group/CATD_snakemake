@@ -23,6 +23,9 @@ filenames <- list.files("Output") %>% lapply(., function(x) { x <- paste0("Outpu
 files <- lapply(filenames, readRDS)
 names(files) <- lapply(filenames, function(x) gsub("Output/.*res_(.*).rds", "\\1", x))
 
+#Reorder files in case this was without proportions
+files <- lapply(files, function(x) x[order(match(rownames(x), rownames(files[[1]]))),])
+
 #Generate combs to iterate over
 combs <- combn(files, 2)
 colnames(combs) <- combn(names(files), 2, paste0, collapse="@")

@@ -49,7 +49,7 @@ C_EPIC[["refProfiles.var"]] <- refVar[markers, cellTypes]
 res <- t(EPIC(bulk=as.matrix(T), reference=C_EPIC, withOtherCells=TRUE, scaleExprs=FALSE)$cellFractions) #scaleExprs=TRUE by default: only keep genes in common between matrices
 res <- res[!rownames(res) %in% "otherCells",]
 res[is.na(res)] <- 0
-res <- res[order(match(rownames(res), rownames(P))),]
+if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit
 saveRDS(res, file=filename_O)
