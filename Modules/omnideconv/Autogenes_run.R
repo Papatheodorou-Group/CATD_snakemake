@@ -3,7 +3,7 @@
 ## @zgr2788
 
 
-#Load MOMF
+#Load omnideconv
 suppressMessages(library(omnideconv))
 
 #Get args and load files
