@@ -11,11 +11,14 @@ suppressMessages(library(viridis))
 sampleName <- commandArgs(trailingOnly = TRUE)
 
 
-getAvgDist <- function(x,y){
+function(x,y){
   idx <- seq_len(ncol(x))
   distances <- sapply(idx, function(z) cosine(x[,z], y[,z]))
   return(mean(distances))
 }
+
+
+
 
 
 #Get files as list
@@ -29,17 +32,22 @@ files <- lapply(files, function(x) x[order(match(rownames(x), rownames(files[[1]
 #Generate combs to iterate over
 combs <- combn(files, 2)
 colnames(combs) <- combn(names(files), 2, paste0, collapse="@")
-avgDists <- sapply(seq_len(ncol(combs)), function(z) getAvgDist(combs[,z][[1]], combs[,z][[2]]))
+avgDists <- sapply(seq_len(ncol(combs)), function(z)  as.numeric(table(diag(cor(combs[,z][[1]], combs[,z][[2]])) > 0.9)["TRUE"]) )
+#avgDists <- sapply(seq_len(ncol(combs)), function(z)  getAvgDist(combs[,z][[1]], combs[,z][[2]]) )
+#avgDists <- sapply(seq_len(ncol(combs)), function(z) mean(diag(cor(combs[,z][[1]], combs[,z][[2]]))) )
 names(avgDists) <- colnames(combs)
+avgDists[is.na(avgDists)] <- 0
+
 
 #Generate matrix
 mat <- matrix(0, nrow = length(files), ncol = length(files))
-diag(mat) <- 1
+diag(mat) <- ncol(combs[,1][[1]])
 colnames(mat) <- names(files)
 rownames(mat) <- names(files)
 
 #Copy upper triangle to lower
-mat[upper.tri(mat)] <- avgDists
+mat[lower.tri(mat, diag=FALSE)] <- avgDists
+mat <- t(mat)
 mat[lower.tri(mat)] <- t(mat)[lower.tri(mat)]
 
 #Save plot
