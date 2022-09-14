@@ -30,7 +30,7 @@ P <- readRDS(filename_P)
 
 #Get files as list
 filenames <- list.files("Output") %>% lapply(., function(x) { x <- paste0("Output/", x) }) %>% lapply(., function(x) { grep(sampleName, x, value = TRUE) }) %>% .[lengths(.)!=0] %>% as.character(.)
-files <- lapply(filenames, readRDS)
+files <- lapply(filenames, readRDS) %>% lapply(., function(x) ifelse(is.na(x), 0, x))
 names(files) <- lapply(filenames, function(x) gsub("Output/.*res_(.*).rds", "\\1", x))
 
 
