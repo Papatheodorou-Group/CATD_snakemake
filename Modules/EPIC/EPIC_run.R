@@ -5,7 +5,7 @@
 
 #Load EPIC
 suppressMessages(library(devtools))
-devtools::install_github("GfellerLab/EPIC", auth_token = "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")
+devtools::install_github("GfellerLab/EPIC")
 suppressMessages(library(EPIC))
 suppressMessages(library(energy))
 

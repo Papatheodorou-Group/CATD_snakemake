@@ -5,7 +5,7 @@
 
 #Load MuSiC
 suppressMessages(library(devtools))
-devtools::install_github('xuranw/MuSiC', auth_token = "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")
+devtools::install_github('xuranw/MuSiC')
 suppressMessages(library(MuSiC))
 suppressMessages(library(Biobase))
 suppressMessages(library(energy))

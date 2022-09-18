@@ -5,7 +5,7 @@
 
 #Load bseqsc
 suppressMessages(library(devtools))
-devtools::install_github('shenorrlab/bseq-sc', auth_token = "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")
+devtools::install_github('shenorrlab/bseq-sc')
 suppressMessages(library(bseqsc))
 suppressMessages(library(Biobase))
 suppressMessages(library(energy))
