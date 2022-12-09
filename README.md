@@ -1,4 +1,4 @@
-# CATD_snakemake
+# CATd_snakemake
 <pre>
 
                                                     \`*-.                   
