@@ -22,7 +22,6 @@ Credits:
 snake: jgs
 cat: bug
 
-
 </pre>
 
 # Running the pipeline
