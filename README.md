@@ -80,7 +80,7 @@ Uses **two** single-cell references to generate the pseudobulks and references f
 ### Outputs:
 Same as self-reference.
 
-### Directions
+### Instructions
 Same as self-reference, except after the **3rd** step, note the following directory:
 
 	Input/Cell_splits
