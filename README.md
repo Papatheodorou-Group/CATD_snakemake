@@ -25,24 +25,29 @@ cat: https://ascii.co.uk/art/bug
 </pre>
 
 # Table of contents
-1. [Overview](#overview)
-2. [Repo contents](#repo contents)
-3. [System requirements](#system requirements)
+[Overview](#overview)
+[Repo contents](#repo contents)
+[System requirements](#system requirements)
 	1.Hardware requirements
 	2.Software requirements
 4.Installation guide(#installation guide)
-	1.Instructions(#instructions)
-	2.Time
+	Instructions(#instructions)
+	Time(#time)
 5.Functionalities(#functionalities)
 	1.Self-reference(Task type 1)(#self-reference)
 	2.Cross-reference(Task type 2)(#cross-reference)
 	3.Real bulk RNA-seq deconvolution
 
 ## This is the overview <a name="overview"></a>
-Some introduction text, formatted in heading 2 style
+
+## This is the repo contents <a name="repo contents"></a>
+
+## This is the system requirements <a name="system requirements"></a>
+
+## This is the installation guide<a name="installation guide"></a>
 
 
-
+## This is the functionalities<a name="functionalities"></a>
 
 
 
