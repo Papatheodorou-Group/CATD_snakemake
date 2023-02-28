@@ -1,4 +1,4 @@
-# CATd_snakemake
+# CATD_snakemake(Critical Assesment of Transcriptomic Deconvonvolution-snakemake pipeline)
 <pre>
 
                                                     \`*-.                   
@@ -18,11 +18,36 @@
 
 
 
-Credits:
-snake: jgs
-cat: bug
+source:
+snake: https://ascii.co.uk/art/snake
+cat: https://ascii.co.uk/art/bug
 
 </pre>
+
+# Table of contents
+1. [Overview](#overview)
+2. [Repo contents](#repo contents)
+3. [System requirements](#system requirements)
+	1.Hardware requirements
+	2.Software requirements
+4.Installation guide(#installation guide)
+	1.Instructions(#instructions)
+	2.Time
+5.Functionalities(#functionalities)
+	1.Self-reference(Task type 1)(#self-reference)
+	2.Cross-reference(Task type 2)(#cross-reference)
+	3.Real bulk RNA-seq deconvolution
+
+## This is the overview <a name="overview"></a>
+Some introduction text, formatted in heading 2 style
+
+
+
+
+
+
+
+
 
 # Running the pipeline
 **IMPORTANT**: If running for the first time, use one sample only as the environments are
