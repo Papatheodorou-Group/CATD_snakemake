@@ -1,10 +1,11 @@
-# CATD_snakemake(Critical Assesment of Transcriptomic Deconvonvolution-snakemake pipeline)
+# CATD_snakemake
+(Critical Assesment of Transcriptomic Deconvonvolution-snakemake pipeline)
 <pre>
 
                                                     \`*-.                   
-                                                     )  _`-.                
+                                                     )  _`-.    Hi          
                                                     .  : `. .               
-                                                    : _   '  \              
+                                     Hey               : _   '  \              
                      .-=-.          .--.            ; *` _.   `*-._         
          __        .'     '.       /  " )           `-.-'          `-.      
  _     .'  '.     /   .-.   \     /  .-'\             ;       `       `.    
@@ -28,32 +29,59 @@ cat: https://ascii.co.uk/art/bug
 1. [Overview](#overview)
 2. [Repo contents](#repocontents)
 3. [System requirements](#systemrequirements)
-4. [Installation guide](#installation guide)
-	1.[Instructions](#instructions)
+4. [Installation guide](#installationguide)
+ 	1.[Instructions](#instructions)
 	2.[Time](#time)
 5. [Functionalities](#functionalities)
-	1.[Self-reference(Task type 1)](#self-reference)
+ 	1.[Self-reference(Task type 1)](#self-reference)
 	2.[Cross-reference(Task type 2)](#cross-reference)
 	3.[Real bulk RNA-seq deconvolution](#realbulk)
 
-## <a name="overview"></a>
+## Overview <a name="overview"></a>
 
-## <a name="repocontents"></a>
+Describe the pipeline in few words
 
-## <a name="systemrequirements"></a>
+## Repo contents <a name="repocontents"></a>
 
-## <a name="installation guide"></a>
+Describe the folders in this repo
 
-## <a name="functionalities"></a>
+## System Requirements <a name="systemrequirements"></a>
+
+Hardware requirements
+
+Software requirements
+    
+    
+## Installation guide <a name="installationguide"></a>
+
+ 1. Download the pipeline to your directory of choice.
+
+		git clone https://github.com/Functional-Genomics/CATD_snakemake.git
+
+ 3. Set up Conda environment with snakemake, pipeline strictly uses [mamba](https://github.com/mamba-org/mamba) for much faster environment setup.
+
+		mamba create -n snakemake snakemake
+
+ 4. Build the pipeline.
+
+		make
+
+ 5.  Place the input file in the `Input` directory.
+ 6. Adjust settings in `config.yaml`.
+ 7. **(Optional)** Run `getDag.sh` to generate the updated DAG after adjusting config.
+ 8. **(Optional)** If on cluster set up cluster profile if you haven't, instructions available [here](https://github.com/Snakemake-Profiles/lsf).
+ 9. Run the pipeline using `bsub < runPip.sh` or through `snakemake --use-conda --cores [N]` if on local.
 
 
 
-
+## Functionalities <a name="functionalities"></a>
 
 
 # Running the pipeline
 **IMPORTANT**: If running for the first time, use one sample only as the environments are
 installed throughout the workflow.
+
+
 ## Self-reference
 ### Description
 Uses **one** single-cell reference to generate the pseudobulks and references for deconvolution benchmarking. Important assumptions:
@@ -74,27 +102,9 @@ Uses **one** single-cell reference to generate the pseudobulks and references fo
 - Individual benchmarks for steps, found in: **Benchmarks/**
 - Predictions produced by methods, found in: **Results/**
 
-### Directions
-
- 1. Download the pipeline to your directory of choice.
-
-		git clone https://github.com/Functional-Genomics/CATD_snakemake.git
-
- 3. Set up Conda environment with snakemake, pipeline strictly uses [mamba](https://github.com/mamba-org/mamba) for much faster environment setup.
-
-		mamba create -n snakemake snakemake
-
- 4. Build the pipeline.
-
-		make
-
- 5.  Place the input file in the `Input` directory.
- 6. Adjust settings in `config.yaml`.
- 7. **(Optional)** Run `getDag.sh` to generate the updated DAG after adjusting config.
- 8. **(Optional)** If on cluster set up cluster profile if you haven't, instructions available [here](https://github.com/Snakemake-Profiles/lsf).
- 9. Run the pipeline using `bsub < runPip.sh` or through `snakemake --use-conda --cores [N]` if on local.
 
 ## Cross-reference
+
 ### Description
 Uses **two** single-cell references to generate the pseudobulks and references for deconvolution benchmarking.  Important assumptions are:
 -	All assumptions in the self-reference part
@@ -115,6 +125,7 @@ Same as self-reference, except after the **3rd** step, note the following direct
 **The input files should go in this folder**. Make sure that the inputs **conform to the standards written in the 'Inputs' section above**. Then continue with the **5th** step.
 
 ## Real Bulk
+
 ### Description
 Uses **one** reference single cell matrix with **user-defined** bulks and **known** proportions for deconvolution benchmarking. Assumptions are:
 - All assumptions in the self reference part
@@ -137,7 +148,7 @@ The first two options will only use **half** of the data to generate references.
 ### Outputs
 Same as self-reference.
 
-### Directions
+### Instructions
 Same as self-reference, except after the **3rd** step, note the following directory:
 
 	Input/Psuedobulks
