@@ -25,17 +25,16 @@ cat: https://ascii.co.uk/art/bug
 </pre>
 
 # Table of contents
-[Overview](#overview)
-[Repo contents](#repocontents)
-[System requirements](#systemrequirements)
-
-[Installation guide](#installation guide)
-	[Instructions](#instructions)
-	[Time](#time)
-[Functionalities](#functionalities)
-	[Self-reference(Task type 1)](#self-reference)
-	[Cross-reference(Task type 2)](#cross-reference)
-	[Real bulk RNA-seq deconvolution](#realbulk)
+1. [Overview](#overview)
+2. [Repo contents](#repocontents)
+3. [System requirements](#systemrequirements)
+4. [Installation guide](#installation guide)
+	1.[Instructions](#instructions)
+	2.[Time](#time)
+5. [Functionalities](#functionalities)
+	1.[Self-reference(Task type 1)](#self-reference)
+	2.[Cross-reference(Task type 2)](#cross-reference)
+	3.[Real bulk RNA-seq deconvolution](#realbulk)
 
 ## <a name="overview"></a>
 
