@@ -52,7 +52,7 @@ The pipeline includes:
 
 For more details check our preprint: 
 
-Vathrakokoili Pournara, A., Miao, Z., Beker, O. Y., Brazma, A. & Papatheodorou, I. Power analysis of cell-type deconvolution methods across tissues. http://biorxiv.org/lookup/doi/10.1101/2023.01.19.523443 (2023) doi:10.1101/2023.01.19.523443.![image](https://user-images.githubusercontent.com/77834045/222140419-542a13c0-02ff-43e8-b0e1-000756e169a3.png)
+Vathrakokoili Pournara, A., Miao, Z., Beker, O. Y., Brazma, A. & Papatheodorou, I. Power analysis of cell-type deconvolution methods across tissues. http://biorxiv.org/lookup/doi/10.1101/2023.01.19.523443 (2023) doi:10.1101/2023.01.19.523443.
 
 ## Repo contents <a name="repocontents"></a>
 
