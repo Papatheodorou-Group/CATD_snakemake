@@ -44,11 +44,11 @@ Please use the [issue tracker](https://github.com/Functional-Genomics/CATD_snake
 The CATD pipeline is a benchmarking pipeline meant to facilitate the assessment of cell-type deconvolution methods(29 now) across different simulation scenarios in a standardised way. It also allows the deconvolution of real bulk samples with many user-unput parameters so that users can deconvolute their own in-house data following our proporsed guidelines.
 The pipeline includes:
 * Pseudobulk generation methods that allow to create diverse bulk samples and compare deconvolution methods across different scenarios.
-* Seventeen(17) normalization methods implemented in the pipeline for the normalization of the input single-cell reference and the (pseudo)bulk samples
-* Four(4) transformation methods implemented
-* Nine(9) DE tests for the selection of marker genes from single-cell reference data(Seurat)
-* Twenty-nine(29) deconvolution methods
-* Seven(7) metrics to assess the results when we test deconvolution methods on pseudo-bulks or when ground truth proportions from real data are available.
+* 17 normalization methods implemented in the pipeline for the normalization of the input single-cell reference and the (pseudo)bulk samples
+* 4 transformation methods implemented
+* 9 DE tests for the selection of marker genes from single-cell reference data(Seurat)
+* 29 deconvolution methods
+* 7 metrics to assess the results when we test deconvolution methods on pseudo-bulks or when ground truth proportions from real data are available.
 
 For more details check our preprint: 
 
@@ -81,11 +81,11 @@ e.g
 └── Snakefile
 ```
 
-*A README file 
+* A README file 
 
-*Demo for running self-reference, cross-reference as well as real bulk.
+* Demo for running self-reference, cross-reference as well as real bulk.
 
-*Example datasets to run the pipeline
+* Example datasets to run the pipeline
 
 
 ## System Requirements <a name="systemrequirements"></a>
