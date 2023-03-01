@@ -56,11 +56,37 @@ Vathrakokoili Pournara, A., Miao, Z., Beker, O. Y., Brazma, A. & Papatheodorou, 
 
 ## Repo contents <a name="repocontents"></a>
 
-Describe the folders in this repo
+The github repository includes: 
+* The CATD pipeline with the driver snakefile and main pipeline scripts 
+/bin
+.
+├── basicSetup.sh  script for the basic set up 
+├── config.yaml config file with all the user-defined parameters 
+├── getDag.sh  get DAG graphic aka a directed acyclic graph (DAG) of jobs where the edges represent dependencies
+├── runPip.sh  script to run the pipeline
+└── Snakefile  Driver script for the deconvolution assessment pipeline
+
+* All the modules used by the pipeline.
+
+Each Module consists of an enviroment file, a snakefile with the rule(s) used in this module & the script to run the method
+e.g 
+/EpiDISH
+.
+├── env.yaml
+├── EpiDISH_run.R
+└── Snakefile
+
+*A README file 
+
+*Demo for running self-reference, cross-reference as well as real bulk.
+
+*Example datasets to run the pipeline
+
 
 ## System Requirements <a name="systemrequirements"></a>
 
-Hardware requirements
+# Hardware requirements
+
 
 Software requirements
     
