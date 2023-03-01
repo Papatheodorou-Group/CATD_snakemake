@@ -21,7 +21,7 @@ https://ascii.co.uk/art/snake                         ; '   : :`-:     _.`* ;
 
 
 Author & maintainer contact : Anna Vathrakokoili Pournara annavp@ebi.ac.uk\
-Snakemake Pipeline implementation : Ozgur Beker ozgurbeker@sabanciuniv.edu\
+Snakemake Pipeline implementation : Ozgur Beker ozgurbeker@sabanciuniv.edu
 
 If you are interested in our pipeline or you would like to include your method in the CATD pipeline please contact us or create a pull request.
 
@@ -33,11 +33,11 @@ Please use the [issue tracker](https://github.com/Functional-Genomics/CATD_snake
 3. [System requirements](#systemrequirements)
 4. [Installation guide](#installationguide)\
  	1.[Instructions](#instructions)\
-	2.[Time](#time)\
+	2.[Time](#time)
 5. [Functionalities](#functionalities)\
  	1.[Self-reference(Task type 1)](#self-reference)\
 	2.[Cross-reference(Task type 2)](#cross-reference)\
-	3.[Real bulk RNA-seq deconvolution](#realbulk)\
+	3.[Real bulk RNA-seq deconvolution](#realbulk)
 
 ## Overview <a name="overview"></a>
 
