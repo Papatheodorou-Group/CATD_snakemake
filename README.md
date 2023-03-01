@@ -105,7 +105,7 @@ OS Requirements:
 
 The CATD pipeline has been tested on Rocky Linux 8.5 (RHEL) 
 
-Prerequisities:
+**Prerequisities**
 * git
 * conda
 * mamba
