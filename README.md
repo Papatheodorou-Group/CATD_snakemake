@@ -15,8 +15,9 @@ Critical Assesment of Transcriptomic Deconvonvolution-snakemake pipeline
                                                       :  '  |    ;       ;-.
 https://ascii.co.uk/art/snake                         ; '   : :`-:     _.`* ;
                                                    .*' /  .*' ; .*`- +'  `*'
-                                                    `*-*   `*-*  `*-*'     https://ascii.co.uk/art/bug
+                                                    `*-*   `*-*  `*-*'     
 
+                                                   https://ascii.co.uk/art/bug
 </pre>
 
 
