@@ -1,11 +1,11 @@
 # CATD_snakemake
-(Critical Assesment of Transcriptomic Deconvonvolution-snakemake pipeline)
+Critical Assesment of Transcriptomic Deconvonvolution-snakemake pipeline
 <pre>
 
                                                     \`*-.                   
                                                      )  _`-.    Hi          
                                                     .  : `. .               
-                                     Hey               : _   '  \              
+                                  Hey               : _   '  \              
                      .-=-.          .--.            ; *` _.   `*-._         
          __        .'     '.       /  " )           `-.-'          `-.      
  _     .'  '.     /   .-.   \     /  .-'\             ;       `       `.    
@@ -13,17 +13,19 @@
  \ `-` /   \  `-'   /     \   `-`  /                  . \  .   :   .-'   .  
   `-.-`     '.____.'       `.____.'                   '  `+.;  ;  '      :  
                                                       :  '  |    ;       ;-.
-                                                      ; '   : :`-:     _.`* ;
+https://ascii.co.uk/art/snake                         ; '   : :`-:     _.`* ;
                                                    .*' /  .*' ; .*`- +'  `*'
-                                                    `*-*   `*-*  `*-*'    
-
-
-
-source:
-snake: https://ascii.co.uk/art/snake
-cat: https://ascii.co.uk/art/bug
+                                                    `*-*   `*-*  `*-*'     https://ascii.co.uk/art/bug
 
 </pre>
+
+
+Author & maintainer contact : Anna Vathrakokoili Pournara annavp@ebi.ac.uk 
+Snakemake Pipeline implementation : Ozgur Beker ozgurbeker@sabanciuniv.edu
+
+If you are interested in our pipeline or you would like to include your method in the CATD pipeline please contact us or create a pull request.
+
+Please use the [issue tracker](https://github.com/Functional-Genomics/CATD_snakemake/issues) if you encounter a problem
 
 # Table of contents
 1. [Overview](#overview)
@@ -39,7 +41,18 @@ cat: https://ascii.co.uk/art/bug
 
 ## Overview <a name="overview"></a>
 
-Describe the pipeline in few words
+The CATD pipeline is a benchmarking pipeline meant to facilitate the assessment of cell-type deconvolution methods(29 now) across different simulation scenarios in a standardised way. It also allows the deconvolution of real bulk samples with many user-unput parameters so that users can deconvolute their own in-house data following our proporsed guidelines.
+The pipeline includes:
+* Pseudobulk generation methods that allow to create diverse bulk samples and compare deconvolution methods across different scenarios.
+* Seventeen(17) normalization methods implemented in the pipeline for the normalization of the input single-cell reference and the (pseudo)bulk samples
+* Four(4) transformation methods implemented
+* Nine(9) DE tests for the selection of marker genes from single-cell reference data(Seurat)
+* Twenty-nine(29) deconvolution methods
+* Seven(7) metrics to assess the results when we test deconvolution methods on pseudo-bulks or when ground truth proportions from real data are available.
+
+For more details check our preprint: 
+
+Vathrakokoili Pournara, A., Miao, Z., Beker, O. Y., Brazma, A. & Papatheodorou, I. Power analysis of cell-type deconvolution methods across tissues. http://biorxiv.org/lookup/doi/10.1101/2023.01.19.523443 (2023) doi:10.1101/2023.01.19.523443.![image](https://user-images.githubusercontent.com/77834045/222140419-542a13c0-02ff-43e8-b0e1-000756e169a3.png)
 
 ## Repo contents <a name="repocontents"></a>
 
