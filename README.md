@@ -90,11 +90,25 @@ e.g
 
 ## System Requirements <a name="systemrequirements"></a>
 
-# Hardware requirements
+**Hardware requirements**
 
+This pipeline had been buil on HPC clusters with LSF job scheduler. Can be adapted to other job schedulers as well by changing the run commands.
+memory and number of cores can be adjusted by the user ( look at the config.yaml file for defaults ) 
 
-Software requirements
-    
+It can also be run on a standard computer with minimal performance :
+CPU: 4+ cores,2.3 GHz
+RAM: 32GB
+
+**Software requirements**
+
+OS Requirements:
+
+The CATD pipeline has been tested on Rocky Linux 8.5 (RHEL) 
+
+Prerequisities:
+* git
+* conda
+* mamba
     
 ## Installation guide <a name="installationguide"></a>
 
