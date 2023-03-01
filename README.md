@@ -90,25 +90,27 @@ e.g
 
 ## System Requirements <a name="systemrequirements"></a>
 
-**Hardware requirements**
+### Hardware requirements
+Except for file format conversion and results generation, it is **NOT** recommended to run the pipeline on personal computers. 
 
-This pipeline had been buil on HPC clusters with LSF job scheduler. Can be adapted to other job schedulers as well by changing the run commands.
-memory and number of cores can be adjusted by the user ( look at the config.yaml file for defaults ) 
+**Memory:** File format conversion and results generation parts of the pipeline require relatively less memory (enough to load the dataset into the session, ~4-5 GBs for single cell data of ~30k cells). The memory requirement for pseudo-bulk generation scales with cores provided, so `numThreads*memData` amount of memory should be allocated, with again a good baseline being ~4-5 GBs per thread allocated. For deconvolution with CDSeq, Bisque, CPM, DWLS, MuSiC, SCDC, TIMER, bseqsc and MOMF the memory requirement should be around the same as pseudo-bulk generation. For all other intermediate operations, minimal memory is needed. Note that the memory requirements will definitely change with the size of data, so users are recommended to check logs for specific runs/modules and scale the baseline values given in `config.yaml` accordingly.   
 
-It can also be run on a standard computer with minimal performance :
-CPU: 4+ cores,2.3 GHz
-RAM: 32GB
+**Threads:** It is highly recommended to run the pipeline with at least 16 threads to avoid long runtimes, especially for pseudo-bulk generation. For bseqsc and CIBERSORT, 3 should be the maximum amount of threads. For DWLS, threads should be equal (ideally) or smaller than the number of cell types. Allocating more threads will not cause any speed-ups for these methods.
 
-**Software requirements**
+For a general comparison of methods and their memory requirements, users can consult Supplementary Figure 9 which was generated with the default values in `config.yaml`. 
 
-OS Requirements:
 
-The CATD pipeline has been tested on Rocky Linux 8.5 (RHEL) 
+### Software requirements
+There are no specifications on OS requirements, any OS which can run shell scripts within the pipeline and adhere to remaining requirements should work. The pipeline was tested on Linux with Ubuntu 20.04.  
 
-**Prerequisities**
-* git
-* conda
-* mamba
+[Mamba](https://github.com/conda-forge/miniforge#mambaforge) package manager (Mambaforge is recommended) should be installed, with instructions available at the respective repository.
+
+Snakemake must be installed to run the pipeline, which can be achieved through Mamba with:
+
+	mamba create -n snakemake snakemake
+
+Excluding the initial Snakemake install, conda environments for each module of the pipeline will be handled automatically by Snakemake / Mamba. To achieve this, the setup script will prompt for the absolute path of your `conda.sh` file. The only exception is the `CIBERSORT.R` file which is required for CIBERSORT and bseqsc deconvolution. Users should register and download the code manually, then place it under `Modules/CIBERSORT` and `Modules/bseqsc` respectively.
+
     
 ## Installation guide <a name="installationguide"></a>
 
