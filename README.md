@@ -110,7 +110,7 @@ Snakemake must be installed to run the pipeline, which can be achieved through M
 	mamba create -n snakemake snakemake
 
 Excluding the initial Snakemake install, conda environments for each module of the pipeline will be handled automatically by Snakemake / Mamba. To achieve this, the setup script will prompt for the absolute path of your `conda.sh` file. The only exception is the `CIBERSORT.R` file which is required for CIBERSORT and bseqsc deconvolution. Users should register and download the code manually, then place it under `Modules/CIBERSORT` and `Modules/bseqsc` respectively.
-    
+
     
 ## Installation guide <a name="installationguide"></a>
 
