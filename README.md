@@ -62,11 +62,11 @@ The github repository includes:
 
 ```bash
 .
-├── basicSetup.sh  script for the basic set up 
-├── config.yaml config file with all the user-defined parameters 
-├── getDag.sh  get DAG graphic aka a directed acyclic graph (DAG) of jobs where the edges represent dependencies
-├── runPip.sh  script to run the pipeline
-└── Snakefile  Driver script for the deconvolution assessment pipeline
+├── basicSetup.sh  #script for the basic set up 
+├── config.yaml #config file with all the user-defined parameters 
+├── getDag.sh  #get DAG graphic aka a directed acyclic graph (DAG) of jobs where the edges represent dependencies
+├── runPip.sh  #script to run the pipeline
+└── Snakefile  #Driver script for the deconvolution assessment pipeline
 ```
 * All the modules used by the pipeline.
 
