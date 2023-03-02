@@ -59,9 +59,9 @@ Vathrakokoili Pournara, A., Miao, Z., Beker, O. Y., Brazma, A. & Papatheodorou, 
 
 The github repository includes: 
 * The CATD pipeline with the driver snakefile and main pipeline scripts 
-/bin
 
 ```bash
+/bin
 .
 ├── basicSetup.sh  #script for the basic set up 
 ├── config.yaml #config file with all the user-defined parameters 
@@ -73,9 +73,10 @@ The github repository includes:
 
 Each Module consists of an enviroment file, a snakefile with the rule(s) used in this module & the script to run the method
 e.g 
-/EpiDISH
+
 
 ```bash
+/EpiDISH
 .
 ├── env.yaml
 ├── EpiDISH_run.R
@@ -84,7 +85,7 @@ e.g
 
 * A README file 
 
-* Demo for running self-reference, cross-reference as well as real bulk.
+* Demo for running self-reference, cross-reference & real bulk scenarios(tasks)
 
 * Example datasets to run the pipeline
 
@@ -102,11 +103,19 @@ For a general comparison of methods and their memory requirements, users can con
 
 
 ### Software requirements
-There are no specifications on OS requirements, any OS which can run shell scripts within the pipeline and adhere to remaining requirements should work. The pipeline was tested on Linux with Ubuntu 20.04.  
+
+# OS: 
+There are no specifications on OS requirements, any OS which can run shell scripts within the pipeline and adhere to remaining requirements should work. The pipeline was tested on Linux with Ubuntu 20.04. 
+
+# Prerequisities:
+
+* git
+* conda
+* mamba
 
 [Mamba](https://github.com/conda-forge/miniforge#mambaforge) package manager (Mambaforge is recommended) should be installed, with instructions available at the respective repository.
 
-Snakemake must be installed to run the pipeline, which can be achieved through Mamba with:
+* Snakemake must be installed to run the pipeline, which can be achieved through Mamba with:
 
 	mamba create -n snakemake snakemake
 
@@ -114,6 +123,8 @@ Excluding the initial Snakemake install, conda environments for each module of t
 
     
 ## Installation guide <a name="installationguide"></a>
+
+### Instructions 
 
  1. Download the pipeline to your directory of choice.
 
@@ -127,12 +138,19 @@ Excluding the initial Snakemake install, conda environments for each module of t
 
 		make
 
- 5.  Place the input file in the `Input` directory.
- 6. Adjust settings in `config.yaml`.
- 7. **(Optional)** Run `getDag.sh` to generate the updated DAG after adjusting config.
+
+If you are running the pipeline for the first time you should use one sample to run in order for all the environments to be installed fast( each module/method in our pipeline has its own environment. 
+
+ 5.  Place the input file in the `Input` directory that has been created ( example input file under example/first_input.h5ad  )
+ 6. Adjust settings in `config.yaml`. For the first run use the default settings that we have there already
+ 7. **(Optional)** Run `getDag.sh` to generate the updated DAG after adjusting config. 
  8. **(Optional)** If on cluster set up cluster profile if you haven't, instructions available [here](https://github.com/Snakemake-Profiles/lsf).
  9. Run the pipeline using `bsub < runPip.sh` or through `snakemake --use-conda --cores [N]` if on local.
 
+
+### Installation Time + first mock run
+The steps(1-2-3-4) should take few seconds to complete
+If all the environments are included in the first run it will take around 25-30 minutes so 1min/environment is a good estimate.(step 9)
 
 
 ## Functionalities <a name="functionalities"></a>
