@@ -17,7 +17,7 @@ https://ascii.co.uk/art/snake                         ; '   : :`-:     _.`* ;
                                                    .*' /  .*' ; .*`- +'  `*'
                                                     `*-*   `*-*  `*-*'     
 
-                                                   https://ascii.co.uk/art/bug
+                                                   https://ascii.co.uk/art/cat
 </pre>
 
 
