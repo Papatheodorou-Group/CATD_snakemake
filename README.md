@@ -141,26 +141,27 @@ Excluding the initial Snakemake install, conda environments for each module of t
 
 If you are running the pipeline for the first time you should use one sample to run in order for all the environments to be installed fast( each module/method in our pipeline has its own environment. 
 
- 4.  Place the input file in the `Input` directory that has been created /
+ 4.  Place the input file in the `Input` directory that has been created \
  follow the [link](https://drive.google.com/drive/u/0/folders/14rCp3kxUsT3J4DIDg4mW-1QhlcAikE88) to the example file - use either XinY_4Decon.h5ad or XinY_4Decon_seurat.rds )
  
  5. Adjust settings in `config.yaml`like suggested: (familiarise yourself with the config.yaml file and all the parameters that you can choose)
- Specifically:/
- 	**sampleNames**: #Enter the part BEFORE file extension (ex. 'data.h5ad' should be entered as 'data')/
-		- XinY_4Decon # in this case/
-        **pbulkParam:**/
-  pbulkMode: 2  #Different mode for building pbulks/
-  cellCount: 100 #How many cells should be used to create a bulk sample/
-  nSamples: 1 #How many different samples should be generated #first time only generate one sample/
-  propVar: 500 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)/
+ Specifically:\
+ 	**sampleNames**: #Enter the part BEFORE file extension (ex. 'data.h5ad' should be entered as 'data')\
+		- XinY_4Decon # in this case\
+        **pbulkParam:**\
+  pbulkMode: 2  #Different mode for building pbulks\
+  cellCount: 100 #How many cells should be used to create a bulk sample\
+  nSamples: 1 #How many different samples should be generated #first time only generate one sample\
+  propVar: 500 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)\
   sampleCT: 0 #Sampling for cell types allowed or not (1 or 0) (EFFECTIVE IN MODE 2 ONLY)
 	
- 6. **(Optional)** Run `getDag.sh` to generate the updated DAG after adjusting config. 
- 	./getDag.sh 
-	this will output a dag.png where you can observe the jobs that will be executed
+ 6. **(Optional)** Run `getDag.sh` to generate the updated DAG after adjusting config. \
+ 	./getDag.sh \
+	this will output a dag.png where you can observe the jobs that will be executed\
  7. **(Optional)** If on cluster set up cluster profile if you haven't, instructions available [here](https://github.com/Snakemake-Profiles/lsf).
- 8. **(Optional)** Dry run: 
- 	conda activate snakemake 
+ 
+ 8. **(Optional)** Dry run: \
+ 	conda activate snakemake \
 	snakemake -n
  9. Run the pipeline using `bsub < runPip.sh` (LSF) or through `snakemake --use-conda --cores [N]` if on local.
 
