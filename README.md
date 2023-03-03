@@ -36,8 +36,8 @@ Please use the [issue tracker](https://github.com/Functional-Genomics/CATD_snake
  	1.[Instructions](#instructions)\
 	2.[Time](#time)
 5. [Functionalities](#functionalities)\
- 	1.[Self-reference deconvolution](#self-reference deconvolution)\
-	2.[Cross-reference deconvolution](#cross-reference deconvolution)\
+ 	1.[Self-reference deconvolution](#self-referencedeconvolution)\
+	2.[Cross-reference deconvolution](#cross-referencedeconvolution)\
 	3.[Real bulk RNA-seq deconvolution](#realbulkRNA-seqdeconvolution)
 
 ## Overview <a name="overview"></a>
@@ -156,12 +156,12 @@ If all the environments are included in the first run it will take around 25-30 
 ## Functionalities <a name="functionalities"></a>
 
 
-# Running the pipeline
+# Running the pipeline <a name="Running the pipeline"></a>
 **IMPORTANT**: If running for the first time, use one sample only as the environments are
 installed throughout the workflow.
 
 
-## Self-reference
+## Self-reference deconvolution <a name="Self-reference deconvolution"></a>
 ### Description
 Uses **one** single-cell reference to generate the pseudobulks and references for deconvolution benchmarking. Important assumptions:
 *  The cell types should be annotated in the .h5ad or seurat object in the metadata **strictly** under the column name **cellType** (written in camelCase).
@@ -182,7 +182,7 @@ Uses **one** single-cell reference to generate the pseudobulks and references fo
 - Predictions produced by methods, found in: **Results/**
 
 
-## Cross-reference
+## Cross-reference deconvolution <a name="Cross-reference deconvolution"></a>
 
 ### Description
 Uses **two** single-cell references to generate the pseudobulks and references for deconvolution benchmarking.  Important assumptions are:
@@ -203,7 +203,7 @@ Same as self-reference, except after the **3rd** step, note the following direct
 
 **The input files should go in this folder**. Make sure that the inputs **conform to the standards written in the 'Inputs' section above**. Then continue with the **5th** step.
 
-## Real Bulk
+## Real bulk deconvolution <a name="Real bulk deconvolution"></a>
 
 ### Description
 Uses **one** reference single cell matrix with **user-defined** bulks and **known** proportions for deconvolution benchmarking. Assumptions are:
