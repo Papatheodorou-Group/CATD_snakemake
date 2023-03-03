@@ -21,7 +21,7 @@ https://ascii.co.uk/art/snake                         ; '   : :`-:     _.`* ;
 </pre>
 
 Maintainer contact : Anna Vathrakokoili Pournara annavp@ebi.ac.uk\
-Software Authors ✍🏼 ✍🏼: Chichao Miao, Anna Vathrakokoili & Ozgur Beker\
+Software Authors ✍🏼 ✍🏼: Chichao Miao, Anna Vathrakokoili Pournara & Ozgur Beker\
 Snakemake Pipeline implementation 👨‍💻 : Ozgur Beker ozgurbeker@sabanciuniv.edu
 
 Many Thanks to Nadja Nolte for testing and further developping.
@@ -32,16 +32,16 @@ If you are interested in our pipeline or you would like to include your method i
 Please use the [issue tracker](https://github.com/Functional-Genomics/CATD_snakemake/issues) if you encounter a problem
 
 # Table of contents
-1. [Overview](#overview)
-2. [Repo contents](#repocontents)
-3. [System requirements](#systemrequirements)
-4. [Installation guide](#installationguide)\
- 	1.[Instructions](#instructions)\
-	2.[Time](#time)
-5. [Running the pipeline](#runningthepipeline)\
- 	1.[Self-reference deconvolution](#self-referencedeconvolution)\
-	2.[Cross-reference deconvolution](#cross-referencedeconvolution)\
-	3.[Real bulk RNA-seq deconvolution](#realbulkRNA-seqdeconvolution)
+ [Overview](#overview)
+ [Repo contents](#repocontents)
+ [System requirements](#systemrequirements)
+ [Installation guide](#installationguide)\
+ 	[Instructions](#instructions)\
+	[Time](#time)
+ [Running the pipeline](#runningthepipeline)\
+ 	[Self-reference deconvolution](#self-referencedeconvolution)\
+	[Cross-reference deconvolution](#cross-referencedeconvolution)\
+	[Real bulk RNA-seq deconvolution](#realbulkRNA-seqdeconvolution)
 
 ## Overview <a name="overview"></a>
 
@@ -54,7 +54,7 @@ The pipeline includes:
 * 29 deconvolution methods
 * 7 metrics to assess the results when we test deconvolution methods on pseudo-bulks or when ground truth proportions from real data are available.
 
-For more details check our preprint(https://www.biorxiv.org/content/10.1101/2023.01.19.523443v1): 
+For more details check our [preprint](https://www.biorxiv.org/content/10.1101/2023.01.19.523443v1): 
 
 Vathrakokoili Pournara, A., Miao, Z., Beker, O. Y., Brazma, A. & Papatheodorou, I. Power analysis of cell-type deconvolution methods across tissues. http://biorxiv.org/lookup/doi/10.1101/2023.01.19.523443 (2023) doi:10.1101/2023.01.19.523443.
 
