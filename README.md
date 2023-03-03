@@ -160,9 +160,9 @@ If you are running the pipeline for the first time you should use one sample to 
 
  7.  **(Optional)** If on cluster set up cluster profile if you haven't, instructions available [here](https://github.com/Snakemake-Profiles/lsf).
  
- 8. **(Optional)** Dry run: \
+ 8. **(Optional)** Dry run: 
  
- 	`conda activate snakemake` \
+ 	`conda activate snakemake` 
 	
 	`snakemake -n`
 	
@@ -230,7 +230,8 @@ Uses **two** single-cell references to generate the pseudobulks and references f
 
 (a)
 * [BaronHuman_Sege_cross_gen.rds](https://drive.google.com/drive/u/0/folders/1mQAsxvQywW3Qt4rm1_SuNADOk5ylJCjS) #Segerstope dataset from where pseudobulks will be created
-* [BaronHuman_Sege_cross_C0.rds](https://drive.google.com/drive/u/0/folders/1mQAsxvQywW3Qt4rm1_SuNADOk5ylJCjS) #BaronHuman dataset from where the reference will be generated
+* [BaronHuman_Sege_cross_C0.rds](https://drive.google.com/drive/u/0/folders/1mQAsxvQywW3Qt4rm1_SuNADOk5ylJCjS) #BaronHuman dataset from where the reference will be generated\
+
 (b)
 * [Sege_BaronHuman_cross_gen.rds](https://drive.google.com/drive/u/0/folders/1mQAsxvQywW3Qt4rm1_SuNADOk5ylJCjS) #BaronHuman dataset from where pseudobulks will be created
 * [Sege_BaronHuman_cross_C0.rds](https://drive.google.com/drive/u/0/folders/1mQAsxvQywW3Qt4rm1_SuNADOk5ylJCjS) #Segerstope dataset from where the reference will be generated
