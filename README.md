@@ -157,7 +157,7 @@ If all the environments are included in the first run it will take around 25-30 
 installed throughout the workflow.
 
 
-## Self-reference deconvolution <a name="Self-referencedeconvolution"></a>
+## Self-reference deconvolution <a name="self-referencedeconvolution"></a>
 
 ### Description
 Uses **one** single-cell reference to generate the pseudobulks and references for deconvolution benchmarking. Important assumptions:
@@ -179,7 +179,7 @@ Uses **one** single-cell reference to generate the pseudobulks and references fo
 - Predictions produced by methods, found in: **Results/**
 
 
-## Cross-reference deconvolution <a name="Cross-referencedeconvolution"></a>
+## Cross-reference deconvolution <a name="cross-referencedeconvolution"></a>
 
 ### Description
 Uses **two** single-cell references to generate the pseudobulks and references for deconvolution benchmarking.  Important assumptions are:
@@ -200,7 +200,7 @@ Same as self-reference, except after the **3rd** step, note the following direct
 
 **The input files should go in this folder**. Make sure that the inputs **conform to the standards written in the 'Inputs' section above**. Then continue with the **5th** step.
 
-## Real bulk RNA-Seq deconvolution <a name="RealbulkRNA-Seqdeconvolution"></a>
+## Real bulk RNA-Seq deconvolution <a name="realbulkrna-seqdeconvolution"></a>
 
 ### Description
 Uses **one** reference single cell matrix with **user-defined** bulks and **known** proportions for deconvolution benchmarking. Assumptions are:
