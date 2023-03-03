@@ -26,6 +26,8 @@ Snakemake Pipeline implementation 👨‍💻 : Ozgur Beker ozgurbeker@sabanciun
 
 Many Thanks to Nadja Nolte for testing and further developping.
 
+* This pipeline has been inspired from and extends the functionalities in [deconv_benchmark](https://github.com/favilaco/deconv_benchmark), which was published at: [Nature Communications](https://www.nature.com/articles/s41467-020-19015-1) as well as [paper_deconvBenchmark](https://github.com/LiuzLab/paper_deconvBenchmark) which is published at:[Genome Biology](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02290-6#availability-of-data-and-materials)
+
 
 If you are interested in our pipeline or you would like to include your method in the CATD pipeline please contact us or create a pull request.
 
