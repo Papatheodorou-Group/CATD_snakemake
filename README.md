@@ -245,13 +245,15 @@ Same as self-reference.
 
 	Input/Cell_splits
 
-**The input files should go in the above folder**. Make sure that the inputs **conform to the standards written in the 'Inputs' section above**. 
+Make sure that the inputs **conform to the standards written in the 'Inputs' section above**. 
 
  * Edit the config.yaml file similarly to self-reference
- 		* if you would like two or more tasks (e.g use both example (a) and (b) you can add a line in the **sampleNames**\
- 		 **sampleNames**: #Enter the part BEFORE file extension (ex. 'data.h5ad' should be entered as 'data')\
+ 		* if you would like to run two or more tasks at the same time(for example use both example (a) and (b) you can add a line in the **sampleNames** in the `config.yaml`: 
+ 		
+		**sampleNames**: #Enter the part BEFORE file extension (ex. 'data.h5ad' should be entered as 'data')\
 			- BaronHuman_Sege_cross
 			- Sege_BaronHuman_cross
+			- 
  * Then continue with the **6th** step.
 
 
