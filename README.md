@@ -35,7 +35,7 @@ Please use the [issue tracker](https://github.com/Functional-Genomics/CATD_snake
 4. [Installation guide](#installationguide)\
  	1.[Instructions](#instructions)\
 	2.[Time](#time)
-5. [Functionalities](#functionalities)\
+5. [Running the pipeline](#running the pipeline)\
  	1.[Self-reference deconvolution](#self-referencedeconvolution)\
 	2.[Cross-reference deconvolution](#cross-referencedeconvolution)\
 	3.[Real bulk RNA-seq deconvolution](#realbulkRNA-seqdeconvolution)
@@ -104,10 +104,10 @@ For a general comparison of methods and their memory requirements, users can con
 
 ### Software requirements
 
-# OS: 
+### OS: 
 There are no specifications on OS requirements, any OS which can run shell scripts within the pipeline and adhere to remaining requirements should work. The pipeline was tested on Linux with Ubuntu 20.04. 
 
-# Prerequisities:
+### Other software:
 
 * git
 * conda
@@ -148,13 +148,9 @@ If you are running the pipeline for the first time you should use one sample to 
  9. Run the pipeline using `bsub < runPip.sh` or through `snakemake --use-conda --cores [N]` if on local.
 
 
-### Installation Time + first mock run
-The steps(1-2-3-4) should take few seconds to complete
-If all the environments are included in the first run it will take around 25-30 minutes so 1min/environment is a good estimate.(step 9)
-
-
-## Functionalities <a name="functionalities"></a>
-
+### Time <a name="Time"></a>
+The steps(1-2-3-4) should take few seconds to complete.
+If all the environments are included in the first run it will take around 25-30 minutes,roughly 1min/environment is a good estimate.(step 9)
 
 # Running the pipeline <a name="Running the pipeline"></a>
 **IMPORTANT**: If running for the first time, use one sample only as the environments are
@@ -162,6 +158,7 @@ installed throughout the workflow.
 
 
 ## Self-reference deconvolution <a name="Self-reference deconvolution"></a>
+
 ### Description
 Uses **one** single-cell reference to generate the pseudobulks and references for deconvolution benchmarking. Important assumptions:
 *  The cell types should be annotated in the .h5ad or seurat object in the metadata **strictly** under the column name **cellType** (written in camelCase).
@@ -203,7 +200,7 @@ Same as self-reference, except after the **3rd** step, note the following direct
 
 **The input files should go in this folder**. Make sure that the inputs **conform to the standards written in the 'Inputs' section above**. Then continue with the **5th** step.
 
-## Real bulk deconvolution <a name="Real bulk deconvolution"></a>
+## Real bulk RNA-Seq deconvolution <a name="Real bulk RNA-Seq deconvolution"></a>
 
 ### Description
 Uses **one** reference single cell matrix with **user-defined** bulks and **known** proportions for deconvolution benchmarking. Assumptions are:
