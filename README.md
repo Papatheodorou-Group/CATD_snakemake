@@ -148,7 +148,8 @@ If you are running the pipeline for the first time you should use one sample to 
  9. Run the pipeline using `bsub < runPip.sh` or through `snakemake --use-conda --cores [N]` if on local.
 
 
-### Installation Time + first mock run
+### Time
+Installation time & first mock run to install environments
 The steps(1-2-3-4) should take few seconds to complete
 If all the environments are included in the first run it will take around 25-30 minutes so 1min/environment is a good estimate.(step 9)
 
