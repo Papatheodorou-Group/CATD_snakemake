@@ -35,12 +35,12 @@ Please use the [issue tracker](https://github.com/Functional-Genomics/CATD_snake
  * [Overview](#overview)
  * [Repo contents](#repocontents)
  * [System requirements](#systemrequirements)
- * [Installation guide](#installationguide)\
- 	* [Instructions](#instructions)\
+ * [Installation guide](#installationguide)
+ 	* [Instructions](#instructions)
 	* [Time](#time)
- * [Running the pipeline](#runningthepipeline)\
- 	* [Self-reference deconvolution](#self-referencedeconvolution)\
-	* [Cross-reference deconvolution](#cross-referencedeconvolution)\
+ * [Running the pipeline](#runningthepipeline)
+ 	* [Self-reference deconvolution](#self-referencedeconvolution)
+	* [Cross-reference deconvolution](#cross-referencedeconvolution)
 	* [Real bulk RNA-seq deconvolution](#realbulkRNA-seqdeconvolution)
  * [Appendices](#appendices)
 
