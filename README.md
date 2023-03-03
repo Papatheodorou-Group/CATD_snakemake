@@ -113,10 +113,6 @@ There are no specifications on OS requirements, any OS which can run shell scrip
 
 ### Other software:
 
-* git
-* conda
-* mamba
-
 [Mamba](https://github.com/conda-forge/miniforge#mambaforge) package manager (Mambaforge is recommended) should be installed, with instructions available at the respective repository.
 
 * Snakemake must be installed to run the pipeline, which can be achieved through Mamba with:
