@@ -32,16 +32,17 @@ If you are interested in our pipeline or you would like to include your method i
 Please use the [issue tracker](https://github.com/Functional-Genomics/CATD_snakemake/issues) if you encounter a problem
 
 # Table of contents
- [Overview](#overview)
- [Repo contents](#repocontents)
- [System requirements](#systemrequirements)
- [Installation guide](#installationguide)\
- 	[Instructions](#instructions)\
-	[Time](#time)
- [Running the pipeline](#runningthepipeline)\
- 	[Self-reference deconvolution](#self-referencedeconvolution)\
-	[Cross-reference deconvolution](#cross-referencedeconvolution)\
-	[Real bulk RNA-seq deconvolution](#realbulkRNA-seqdeconvolution)
+ * [Overview](#overview)
+ * [Repo contents](#repocontents)
+ * [System requirements](#systemrequirements)
+ * [Installation guide](#installationguide)\
+ 	* [Instructions](#instructions)\
+	* [Time](#time)
+ * [Running the pipeline](#runningthepipeline)\
+ 	* [Self-reference deconvolution](#self-referencedeconvolution)\
+	* [Cross-reference deconvolution](#cross-referencedeconvolution)\
+	* [Real bulk RNA-seq deconvolution](#realbulkRNA-seqdeconvolution)
+ * [Appendices](#appendices)
 
 ## Overview <a name="overview"></a>
 
@@ -241,7 +242,7 @@ This is where the bulks should go. Also, **enable realBulk in config.** If you w
 and place the reference here under the name **{sampleName}_C0.rds**. Otherwise, you can use the `Input` directory with **{sampleName}.h5ad / {sampleName}_seurat.rds**
 
 
-# Appendices
+# Appendices <a name="appendices"></a>
 ## Running CIBERSORT and bseqsc in the pipeline
 Users need to download the CIBERSORT.R code manually and place it within the modules (`Modules/CIBERSORT` and `Modules/bseqsc`) to run these methods.
 
