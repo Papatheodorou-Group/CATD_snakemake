@@ -1,8 +1,8 @@
 #Input file name - to be implemented fully later on
 
 sampleNames: #Enter the part BEFORE file extension (ex. 'data.h5ad' should be entered as 'data')
-  - Hrvatin_1
-  - Hrvatin_2
+  - XinY_4Decon
+  - 
 seededRun: 0 #Use if you want this run of the pipeline to be reproducible (0-1)
 realBulk: 0 #Use if you are going to test with real data with known proportions (0-1)
 realBulk-noProp: 0 #Use to get results only if no ground truths are present
@@ -42,8 +42,8 @@ mem_gb: #Will be converted to MB
 #pbulk parameters below
 pbulkParam:
   pbulkMode: 2  #Different mode for building pbulks
-  cellCount: 100000  #How many cells should be used to create a bulk sample
-  nSamples: 1000  #How many different samples should be generated
+  cellCount: 100  #How many cells should be used to create a bulk sample
+  nSamples: 1  #How many different samples should be generated
   propVar: 500 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
   sampleCT: 0 #Sampling for cell types allowed or not (1 or 0) (EFFECTIVE IN MODE 2 ONLY)
 
@@ -115,7 +115,7 @@ refgenDgeParam:
 stParam:
   scaleC: SCTransform
   scaleT: TMM
-  transform: sqrt
+  transform: none
   scaleFirst: 1 #1 = scale first, 0 = transform first
 
 
