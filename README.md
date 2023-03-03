@@ -152,8 +152,8 @@ If you are running the pipeline for the first time you should use one sample to 
 The steps(1-2-3-4) should take few seconds to complete.
 If all the environments are included in the first run it will take around 25-30 minutes,roughly 1min/environment is a good estimate.(step 9)
 
-# Running the pipeline <a name="Running the pipeline"></a>
-**IMPORTANT**: If running for the first time, use one sample only as the environments are
+# Running the pipeline <a name="runningthepipeline"></a>
+**IMPORTANT**:As mentioned above, if running the pipeline for the first time, use one sample only as all the environments are
 installed throughout the workflow.
 
 
