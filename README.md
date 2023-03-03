@@ -161,15 +161,17 @@ If you are running the pipeline for the first time you should use one sample to 
  7.  **(Optional)** If on cluster set up cluster profile if you haven't, instructions available [here](https://github.com/Snakemake-Profiles/lsf).
  
  8. **(Optional)** Dry run: \
- 	conda activate snakemake \
-	snakemake -n
+ 
+ 	`conda activate snakemake` \
+	
+	`snakemake -n`
 	
  9. Run the pipeline using `bsub < runPip.sh` (LSF) or through `snakemake --use-conda --cores [N]` if on local.
 
 
 ### Time <a name="Time"></a>
-The steps(1-2-3) should take few seconds to complete.
-If all the environments are included in the first run it will take around 25-30 minutes,roughly 1min/environment is a good estimate.(step 9)
+The steps(1-2-3) should take few seconds to complete.\
+If all the environments are included in the first run it will take around 25-30 minutes,roughly 1min/environment is a good estimate.(step 9)\
 When the job(step 9) finishes all the environments will have been installed and users are ready to run actual experiments and test the pipeline
 
 # Running the pipeline <a name="runningthepipeline"></a>
@@ -191,10 +193,10 @@ Uses **one** single-cell reference to generate both the pseudobulks and the refe
 
 	Input/{sampleName}_seurat.rds
 
-###Example data:
+### Example data:
 
-[XinY_4Decon.h5ad]()
-[XinY_4Decon_seurat.rds]()
+* [XinY_4Decon.h5ad](https://drive.google.com/drive/u/0/folders/14rCp3kxUsT3J4DIDg4mW-1QhlcAikE88)
+* [XinY_4Decon_seurat.rds](https://drive.google.com/drive/u/0/folders/14rCp3kxUsT3J4DIDg4mW-1QhlcAikE88)
 
 ### Outputs:
 - Evaluation of selected methods based on selected metrics in config, found in: **Metrics/**
@@ -224,21 +226,32 @@ Uses **two** single-cell references to generate the pseudobulks and references f
 	Input/Cell_splits/{sampleName}_gen.rds		(Will be used to generate psuedobulks)				
 	Input/Cell_splits/{sampleName}_C0.rds    	(Will be used to generate references)
 
-###Example data:
+### Example data:
 
-[BaronHuman_Sege_cross_gen.rds](https://drive.google.com/drive/u/0/folders/1mQAsxvQywW3Qt4rm1_SuNADOk5ylJCjS) #Segerstope dataset from where pseudobulks will be created
-[BaronHuman_Sege_cross_C0.rds](https://drive.google.com/drive/u/0/folders/1mQAsxvQywW3Qt4rm1_SuNADOk5ylJCjS) #BaronHuman dataset from where the reference will be generated
+(a)
+* [BaronHuman_Sege_cross_gen.rds](https://drive.google.com/drive/u/0/folders/1mQAsxvQywW3Qt4rm1_SuNADOk5ylJCjS) #Segerstope dataset from where pseudobulks will be created
+* [BaronHuman_Sege_cross_C0.rds](https://drive.google.com/drive/u/0/folders/1mQAsxvQywW3Qt4rm1_SuNADOk5ylJCjS) #BaronHuman dataset from where the reference will be generated
+(b)
+* [Sege_BaronHuman_cross_gen.rds](https://drive.google.com/drive/u/0/folders/1mQAsxvQywW3Qt4rm1_SuNADOk5ylJCjS) #BaronHuman dataset from where pseudobulks will be created
+* [Sege_BaronHuman_cross_C0.rds](https://drive.google.com/drive/u/0/folders/1mQAsxvQywW3Qt4rm1_SuNADOk5ylJCjS) #Segerstope dataset from where the reference will be generated
+
 
 ### Outputs:
 Same as self-reference.
 
 ### Instructions
-Same as self-reference, except after the **4** step, add the input files in the following directory (instead of just Input/):
+ * Same as self-reference, except in **4th** step, add the input files in the following directory:
 
 	Input/Cell_splits
 
-**The input files should go in the above folder**. Make sure that the inputs **conform to the standards written in the 'Inputs' section above**. Then continue with the **6th** step.
+**The input files should go in the above folder**. Make sure that the inputs **conform to the standards written in the 'Inputs' section above**. 
 
+ * Edit the config.yaml file similarly to self-reference
+ 		* if you would like two or more tasks (e.g use both example (a) and (b) you can add a line in the **sampleNames**\
+ 		 **sampleNames**: #Enter the part BEFORE file extension (ex. 'data.h5ad' should be entered as 'data')\
+			- BaronHuman_Sege_cross
+			- Sege_BaronHuman_cross
+ * Then continue with the **6th** step.
 
 
 
