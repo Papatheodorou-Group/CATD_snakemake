@@ -283,8 +283,8 @@ The first two options will only use **half** of the data to generate references.
 
 ### Example data:
 
-[FinotelloB_WilkR_props.rds](https://drive.google.com/drive/u/0/folders/1iePwDSSrt-oY5zy7N1qcoxWHyaqzuG23) #ground truth proportions table
-[FinotelloB_WilkR_pbulks.rds](https://drive.google.com/drive/u/0/folders/1iePwDSSrt-oY5zy7N1qcoxWHyaqzuG23)#real bulk matrix (Finotello et al)
+[FinotelloB_WilkR_props.rds](https://drive.google.com/drive/u/0/folders/1iePwDSSrt-oY5zy7N1qcoxWHyaqzuG23) #ground truth proportions table\
+[FinotelloB_WilkR_pbulks.rds](https://drive.google.com/drive/u/0/folders/1iePwDSSrt-oY5zy7N1qcoxWHyaqzuG23)#real bulk matrix (Finotello et al)\
 [FinotelloB_WilkR_C0.rds](https://drive.google.com/drive/u/0/folders/1iePwDSSrt-oY5zy7N1qcoxWHyaqzuG23)#WilkR single-cell expression matrix
 
 ### Outputs
