@@ -20,9 +20,12 @@ https://ascii.co.uk/art/snake                         ; '   : :`-:     _.`* ;
                                                    https://ascii.co.uk/art/cat
 </pre>
 
+Maintainer contact : Anna Vathrakokoili Pournara annavp@ebi.ac.uk\
+Software Authors ✍🏼 ✍🏼: Chichao Miao, Anna Vathrakokoili & Ozgur Beker\
+Snakemake Pipeline implementation 👨‍💻 : Ozgur Beker ozgurbeker@sabanciuniv.edu
 
-Author & maintainer contact : Anna Vathrakokoili Pournara annavp@ebi.ac.uk\
-Snakemake Pipeline implementation : Ozgur Beker ozgurbeker@sabanciuniv.edu
+Many Thanks to Nadja Nolte for testing and further developping.
+
 
 If you are interested in our pipeline or you would like to include your method in the CATD pipeline please contact us or create a pull request.
 
@@ -51,7 +54,7 @@ The pipeline includes:
 * 29 deconvolution methods
 * 7 metrics to assess the results when we test deconvolution methods on pseudo-bulks or when ground truth proportions from real data are available.
 
-For more details check our preprint: 
+For more details check our preprint(https://www.biorxiv.org/content/10.1101/2023.01.19.523443v1): 
 
 Vathrakokoili Pournara, A., Miao, Z., Beker, O. Y., Brazma, A. & Papatheodorou, I. Power analysis of cell-type deconvolution methods across tissues. http://biorxiv.org/lookup/doi/10.1101/2023.01.19.523443 (2023) doi:10.1101/2023.01.19.523443.
 
@@ -76,7 +79,7 @@ e.g
 
 
 ```bash
-/EpiDISH
+/Modules/EpiDISH
 .
 ├── env.yaml
 ├── EpiDISH_run.R
@@ -160,7 +163,7 @@ installed throughout the workflow.
 ## Self-reference deconvolution <a name="self-referencedeconvolution"></a>
 
 ### Description
-Uses **one** single-cell reference to generate the pseudobulks and references for deconvolution benchmarking. Important assumptions:
+Uses **one** single-cell reference to generate both the pseudobulks and the reference for deconvolution benchmarking. Important assumptions:
 *  The cell types should be annotated in the .h5ad or seurat object in the metadata **strictly** under the column name **cellType** (written in camelCase).
 *  In the metadata, there needs to be **cellID** and **sampleID** columns, **strictly** under those names. If they don't exist, simply assign rownames to those columns.
 
@@ -177,6 +180,8 @@ Uses **one** single-cell reference to generate the pseudobulks and references fo
 - Resource usage of each step, summarized in: **{sampleName}_benchmarks_summarized.png**
 - Individual benchmarks for steps, found in: **Benchmarks/**
 - Predictions produced by methods, found in: **Results/**
+
+
 
 
 ## Cross-reference deconvolution <a name="cross-referencedeconvolution"></a>
