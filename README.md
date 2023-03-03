@@ -104,10 +104,10 @@ For a general comparison of methods and their memory requirements, users can con
 
 ### Software requirements
 
-# OS: 
+### OS: 
 There are no specifications on OS requirements, any OS which can run shell scripts within the pipeline and adhere to remaining requirements should work. The pipeline was tested on Linux with Ubuntu 20.04. 
 
-# Prerequisities:
+### Other software:
 
 * git
 * conda
