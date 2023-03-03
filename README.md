@@ -250,11 +250,12 @@ Make sure that the inputs **conform to the standards written in the 'Inputs' sec
  * Edit the config.yaml file similarly to self-reference
  		* if you would like to run two or more tasks at the same time(for example use both example (a) and (b) you can add a line in the **sampleNames** in the `config.yaml`: 
  		
-		**sampleNames**: #Enter the part BEFORE file extension (ex. 'data.h5ad' should be entered as 'data')\
+		**sampleNames**: #Enter the part BEFORE file extension (ex. 'data.h5ad' should be entered as 'data')
 			- BaronHuman_Sege_cross
 			- Sege_BaronHuman_cross
-			- 
- * Then continue with the **6th** step.
+ 
+ 
+ *  Then continue with the **6th** step.
 
 
 
@@ -280,19 +281,37 @@ Uses **one** reference single cell matrix with **user-defined** bulks and **know
 
 The first two options will only use **half** of the data to generate references. The third will use **all** of the data to generate the reference. Alongside the reference, you need to input the pseudo-bulks inside the folder specified under those names.
 
+### Example data:
+
+[FinotelloB_WilkR_props.rds](https://drive.google.com/drive/u/0/folders/1iePwDSSrt-oY5zy7N1qcoxWHyaqzuG23) #ground truth proportions table
+[FinotelloB_WilkR_pbulks.rds](https://drive.google.com/drive/u/0/folders/1iePwDSSrt-oY5zy7N1qcoxWHyaqzuG23)#real bulk matrix (Finotello et al)
+[FinotelloB_WilkR_C0.rds](https://drive.google.com/drive/u/0/folders/1iePwDSSrt-oY5zy7N1qcoxWHyaqzuG23)#WilkR single-cell expression matrix
+
 ### Outputs
 Same as self-reference.
 
 ### Instructions
-Same as self-reference, except after the **3rd** step, note the following directory:
+Same as self-reference, except in the **4th** step, note the following directory:
 
 	Input/Psuedobulks
 
-This is where the bulks should go. Also, **enable realBulk in config.** If you wish to use all the data for the reference, go to:
+This is where the bulks and the ground truth proportions should go(FinotelloB_WilkR_pbulks.rds & FinotelloB_WilkR_props.rds). Also, **enable realBulk in config.yaml** \
+If you wish to use all the data for the reference, go to:
 
 	Input/Cell_splits
 
-and place the reference here under the name **{sampleName}_C0.rds**. Otherwise, you can use the `Input` directory with **{sampleName}.h5ad / {sampleName}_seurat.rds**
+and place the reference file here under the name **{sampleName}_C0.rds**(FinotelloB_WilkR_C0.rds).
+
+If you want to run your own real bulk data with a single-cell reference but you do not have ground truth proportions **enable realBulk-noProp in config.yaml** 
+in this case you will not have a {sampleName}_props.rds and the pipeline will not calculate any metrics and will output only a heatmap
+
+### Outputs (realBulk-noProp)
+Same as self-reference.
+
+
+- 1 Heatmap plot that aids to compare the results of different methods, found in: **Plots/**
+- Resource usage of each step, summarized in: **{sampleName}_benchmarks_summarized.png**
+- Predictions produced by methods, found in: **Output/**
 
 
 # Appendices <a name="appendices"></a>
