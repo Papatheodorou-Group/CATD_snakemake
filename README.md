@@ -35,10 +35,10 @@ Please use the [issue tracker](https://github.com/Functional-Genomics/CATD_snake
 4. [Installation guide](#installationguide)\
  	1.[Instructions](#instructions)\
 	2.[Time](#time)
-5. [Running the Pipeline](#runningthepipeline)\
- 	1.[Self-reference(Task type 1)](#self-reference)\
-	2.[Cross-reference(Task type 2)](#cross-reference)\
-	3.[Real bulk RNA-seq deconvolution](#realbulk)
+5. [Functionalities](#functionalities)\
+ 	1.[Self-reference deconvolution](#self-reference deconvolution)\
+	2.[Cross-reference deconvolution](#cross-reference deconvolution)\
+	3.[Real bulk RNA-seq deconvolution](#realbulkRNA-seqdeconvolution)
 
 ## Overview <a name="overview"></a>
 
@@ -104,10 +104,10 @@ For a general comparison of methods and their memory requirements, users can con
 
 ### Software requirements
 
-### OS: 
+# OS: 
 There are no specifications on OS requirements, any OS which can run shell scripts within the pipeline and adhere to remaining requirements should work. The pipeline was tested on Linux with Ubuntu 20.04. 
 
-### Other software:
+# Prerequisities:
 
 * git
 * conda
@@ -148,22 +148,22 @@ If you are running the pipeline for the first time you should use one sample to 
  9. Run the pipeline using `bsub < runPip.sh` or through `snakemake --use-conda --cores [N]` if on local.
 
 
-### Time
-**Installation time & first mock run to install environments** :
-The steps(1-2-3-4) should take few seconds to complete./
-If all the environments are included in the first run it will take around 25-30 minutes, roughly 1min/environment is a good estimate.(step 9)
+### Installation Time + first mock run
+The steps(1-2-3-4) should take few seconds to complete
+If all the environments are included in the first run it will take around 25-30 minutes so 1min/environment is a good estimate.(step 9)
 
 
-# Running the pipeline <a name="runningthepipeline"></a>
-
-**IMPORTANT**: As mentioned before if running for the first time, use one sample only as the environments are
-installed throughout the workflow.(See Installation guide)
+## Functionalities <a name="functionalities"></a>
 
 
-## Self-reference deconvolution
+# Running the pipeline
+**IMPORTANT**: If running for the first time, use one sample only as the environments are
+installed throughout the workflow.
+
+
+## Self-reference
 ### Description
-Uses **one** single-cell reference to generate both the pseudobulks and references and aims to aid the benchmark of deconvolution methods./
-Important assumptions:
+Uses **one** single-cell reference to generate the pseudobulks and references for deconvolution benchmarking. Important assumptions:
 *  The cell types should be annotated in the .h5ad or seurat object in the metadata **strictly** under the column name **cellType** (written in camelCase).
 *  In the metadata, there needs to be **cellID** and **sampleID** columns, **strictly** under those names. If they don't exist, simply assign rownames to those columns.
 
@@ -182,13 +182,11 @@ Important assumptions:
 - Predictions produced by methods, found in: **Results/**
 
 
-## Cross-reference deconvolution
+## Cross-reference
 
 ### Description
-Uses **two** single-cell references to generate the pseudobulks and references for deconvolution benchmarking. Aims to study the batch effects caused because of differences between the bulk and the reference(technology effect,sample and study effect)./
-
-Important assumptions are:/
--	All assumptions in the self-reference part/
+Uses **two** single-cell references to generate the pseudobulks and references for deconvolution benchmarking.  Important assumptions are:
+-	All assumptions in the self-reference part
 -	The **levels** (i.e unique list) of cell types must be the **same** in both references provided.
 
 ### Inputs:
@@ -208,12 +206,11 @@ Same as self-reference, except after the **3rd** step, note the following direct
 ## Real Bulk
 
 ### Description
-Uses **one** reference single cell matrix with **user-defined** bulks and (optional) **known** proportions for deconvolution benchmarking. 
-Assumptions are:/
-- All assumptions in the self reference part/
+Uses **one** reference single cell matrix with **user-defined** bulks and **known** proportions for deconvolution benchmarking. Assumptions are:
+- All assumptions in the self reference part
 - The **rownames** (cell types) in the proportions should  be the **same** as the cell types annotated in the reference
 ### Inputs
-	Input/{sampleName}.h5ad  /   Input/{sampleName}_seurat.rds 
+	Input/{sampleName}.h5ad  /   Input/{sampleName}_seurat.rds
 
 	OR
 
