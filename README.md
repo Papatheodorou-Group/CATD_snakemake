@@ -87,11 +87,11 @@ e.g
 └── Snakefile
 ```
 
-* A README file 
+* A README file containing between other things : 
 
-* Demo for running self-reference, cross-reference & real bulk scenarios(tasks)
+	* Instructions/Demo for running self-reference, cross-reference & real bulk scenarios(tasks)
 
-* Example datasets to run the pipeline
+	* examples datasets deposited on google drive
 
 
 ## System Requirements <a name="systemrequirements"></a>
@@ -130,27 +130,43 @@ Excluding the initial Snakemake install, conda environments for each module of t
 
 		git clone https://github.com/Functional-Genomics/CATD_snakemake.git
 
- 3. Set up Conda environment with snakemake, pipeline strictly uses [mamba](https://github.com/mamba-org/mamba) for much faster environment setup.
+ 2. Set up Conda environment with snakemake, pipeline strictly uses [mamba](https://github.com/mamba-org/mamba) for much faster environment setup.
 
 		mamba create -n snakemake snakemake
 
- 4. Build the pipeline.
+ 3. Build the pipeline.
 
 		make
 
 
 If you are running the pipeline for the first time you should use one sample to run in order for all the environments to be installed fast( each module/method in our pipeline has its own environment. 
 
- 5.  Place the input file in the `Input` directory that has been created ( example input file under example/first_input.h5ad  )
- 6. Adjust settings in `config.yaml`. For the first run use the default settings that we have there already
- 7. **(Optional)** Run `getDag.sh` to generate the updated DAG after adjusting config. 
- 8. **(Optional)** If on cluster set up cluster profile if you haven't, instructions available [here](https://github.com/Snakemake-Profiles/lsf).
- 9. Run the pipeline using `bsub < runPip.sh` or through `snakemake --use-conda --cores [N]` if on local.
+ 4.  Place the input file in the `Input` directory that has been created (follow the [link](https://drive.google.com/drive/u/0/folders/14rCp3kxUsT3J4DIDg4mW-1QhlcAikE88) to the example file - use either XinY_4Decon.h5ad or XinY_4Decon_seurat.rds )
+ 5. Adjust settings in `config.yaml`like suggested: (familiarise yourself with the config.yaml file and all the parameters that you can choose)
+ Specifically:
+ 	**sampleNames**: #Enter the part BEFORE file extension (ex. 'data.h5ad' should be entered as 'data')
+		- XinY_4Decon # in this case
+        **pbulkParam:**
+  pbulkMode: 2  #Different mode for building pbulks
+  cellCount: 100 #How many cells should be used to create a bulk sample
+  nSamples: 1 #How many different samples should be generated #first time only generate one sample
+  propVar: 500 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
+  sampleCT: 0 #Sampling for cell types allowed or not (1 or 0) (EFFECTIVE IN MODE 2 ONLY)
+	
+ 6. **(Optional)** Run `getDag.sh` to generate the updated DAG after adjusting config. 
+ 	./getDag.sh 
+	this will output a dag.png where you can observe the jobs that will be executed
+ 7. **(Optional)** If on cluster set up cluster profile if you haven't, instructions available [here](https://github.com/Snakemake-Profiles/lsf).
+ 8. **(Optional)** Dry run: 
+ 	conda activate snakemake 
+	snakemake -n
+ 9. Run the pipeline using `bsub < runPip.sh` (LSF) or through `snakemake --use-conda --cores [N]` if on local.
 
 
 ### Time <a name="Time"></a>
-The steps(1-2-3-4) should take few seconds to complete.
+The steps(1-2-3) should take few seconds to complete.
 If all the environments are included in the first run it will take around 25-30 minutes,roughly 1min/environment is a good estimate.(step 9)
+When the job(step 9) finishes all the environments will have been installed and users are ready to run actual experiments and test the pipeline
 
 # Running the pipeline <a name="runningthepipeline"></a>
 **IMPORTANT**:As mentioned above, if running the pipeline for the first time, use one sample only as all the environments are
@@ -171,6 +187,11 @@ Uses **one** single-cell reference to generate both the pseudobulks and the refe
 
 	Input/{sampleName}_seurat.rds
 
+###Example data:
+
+[XinY_4Decon.h5ad]()
+[XinY_4Decon_seurat.rds]()
+
 ### Outputs:
 - Evaluation of selected methods based on selected metrics in config, found in: **Metrics/**
 - Plots describing the metrics, found in: **Plots/**
@@ -178,7 +199,14 @@ Uses **one** single-cell reference to generate both the pseudobulks and the refe
 - Individual benchmarks for steps, found in: **Benchmarks/**
 - Predictions produced by methods, found in: **Results/**
 
+### Instructions
 
+-Start from step **4** from above
+-Edit again the 'config.yaml' file :
+	This time you can change/tune the parameters e.g increase the **nSamples** to 100 or more , increase **cellCount** to 1000 etc
+	based on the pseudobulks you want to create, you can also edit tranformation/normalization/deconvolution methods parameters
+-step **6** and **8** from above are optional again but recommended.
+-run the self-reference task: step **9**
 
 
 ## Cross-reference deconvolution <a name="cross-referencedeconvolution"></a>
@@ -192,15 +220,24 @@ Uses **two** single-cell references to generate the pseudobulks and references f
 	Input/Cell_splits/{sampleName}_gen.rds		(Will be used to generate psuedobulks)				
 	Input/Cell_splits/{sampleName}_C0.rds    	(Will be used to generate references)
 
+###Example data:
+
+[BaronHuman_Sege_cross_gen.rds](https://drive.google.com/drive/u/0/folders/1mQAsxvQywW3Qt4rm1_SuNADOk5ylJCjS) #Segerstope dataset from where pseudobulks will be created
+[BaronHuman_Sege_cross_C0.rds](https://drive.google.com/drive/u/0/folders/1mQAsxvQywW3Qt4rm1_SuNADOk5ylJCjS) #BaronHuman dataset from where the reference will be generated
+
 ### Outputs:
 Same as self-reference.
 
 ### Instructions
-Same as self-reference, except after the **3rd** step, note the following directory:
+Same as self-reference, except after the **4** step, add the input files in the following directory (instead of just Input/):
 
 	Input/Cell_splits
 
-**The input files should go in this folder**. Make sure that the inputs **conform to the standards written in the 'Inputs' section above**. Then continue with the **5th** step.
+**The input files should go in the above folder**. Make sure that the inputs **conform to the standards written in the 'Inputs' section above**. Then continue with the **6th** step.
+
+
+
+
 
 ## Real bulk RNA-Seq deconvolution <a name="realbulkrna-seqdeconvolution"></a>
 
