@@ -149,7 +149,7 @@ rule getConsensus:
     input:
         'Output/{sample}_res_EpiDISH.rds',
         'Output/{sample}_res_FARDEEP.rds',
-        'Output/{sample}_res_DWLS.rds',
+        'Output/{sample}_res_DWLS.rds'
 
     output:
         getConsensus('{sample}')
