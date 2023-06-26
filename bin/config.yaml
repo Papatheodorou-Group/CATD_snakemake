@@ -6,6 +6,7 @@ sampleNames: #Enter the part BEFORE file extension (ex. 'data.h5ad' should be en
 seededRun: 0 #Use if you want this run of the pipeline to be reproducible (0-1)
 realBulk: 0 #Use if you are going to test with real data with known proportions (0-1)
 realBulk-noProp: 0 #Use to get results only if no ground truths are present
+getConsenus: 0 #Use to get consensus of FARDEEP, DWLS and EpiDish as final output, make sure to include these three methods under deconMethods
 
 
 cores:
