@@ -229,6 +229,11 @@ if not config['realBulk-noProp']:
         input:
             expand(getRunSums('{sampleName}'), sampleName = config['sampleNames'])
 
+elif config['getConsenus']:
+    rule all:
+        input:
+            expand(getConsensus('{sampleName}'), sampleName = config['sampleNames'])
+
 else:
     rule all:
         input:
