@@ -177,6 +177,8 @@ def getPhenData(inList, sampleName):
 
         return inList
 
+def getConsensus(sampleName):
+    return str("ConsensusPlot/" + sampleName + "_consensus.png")
 
 
 #Prep metamodule
