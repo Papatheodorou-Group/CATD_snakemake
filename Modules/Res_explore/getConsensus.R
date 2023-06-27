@@ -38,10 +38,10 @@ sampleName <- commandArgs(trailingOnly = TRUE)
 
 #Get files as list 
 #only select DWLS, EpiDISH and FARDEEP proportions for consensus
-filenames <- list.files("Output/", pattern="DWLS|EpiDISH|FARDEEP") 
-            %>% lapply(., function(x) { x <- paste0("Output/", x) }) 
-            %>% lapply(., function(x) { grep(sampleName, x, value = TRUE) }) 
-            %>% .[lengths(.)!=0] %>% as.character(.)
+filenames <- list.files("Output/", pattern="DWLS|EpiDISH|FARDEEP") %>% 
+             lapply(., function(x) { x <- paste0("Output/", x) }) %>% 
+             lapply(., function(x) { grep(sampleName, x, value = TRUE) }) %>% 
+             .[lengths(.)!=0] %>% as.character(.)
 
 files <- lapply(filenames, readRDS)
 names(files) <- lapply(filenames, function(x) gsub("Output/.*res_(.*).rds", "\\1", x))
