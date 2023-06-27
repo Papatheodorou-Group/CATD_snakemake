@@ -2,10 +2,16 @@
 #
 # @zgr2788
 
-if (!require("pak", quietly = TRUE)){
-  install.packages("pak", repos="http://cran.us.r-project.org")
-}
+#if (!require("pak", quietly = TRUE)){
+#  install.packages("pak", repos="http://cran.us.r-project.org")
+#}
 
+# install the `pak` package manager
+install.packages("pak",repos = "http://cran.us.r-project.org")
+
+# minimal installation
+suppressMessages(library(pak))
+pak::pkg_install("omnideconv/omnideconv")
 
 # complete installation, including Python dependencies
 suppressMessages(library(pak))
