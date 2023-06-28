@@ -129,8 +129,12 @@ Excluding the initial Snakemake install, conda environments for each module of t
 ### Instructions 
 
  1. Download the pipeline to your directory of choice(also install git-lfs in your system before cloning, you can use conda)
-		conda install -c conda-forge git-lfs
-		git clone https://github.com/Functional-Genomics/CATD_snakemake.git
+```bash
+		conda install -c conda-forge git-lfs```
+
+```bash
+		git clone https://github.com/Functional-Genomics/CATD_snakemake.git```  
+
 
  3. Set up Conda environment with snakemake, pipeline strictly uses [mamba](https://github.com/mamba-org/mamba) for much faster environment setup.
 
