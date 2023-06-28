@@ -143,3 +143,26 @@ rule getHeatmap:
 
     shell:
         "Rscript Modules/Res_explore/Heatmap_agr.R {wildcards.sample}"
+
+
+rule getConsensus:
+    input:
+        'Output/{sample}_res_EpiDISH.rds',
+        'Output/{sample}_res_FARDEEP.rds',
+        'Output/{sample}_res_DWLS.rds'
+
+    output:
+        getConsensus('{sample}')
+
+    conda:
+        "env.yaml"
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['resultsExp'])
+
+    shell:
+        """
+        mkdir -p Consensus
+        mkdir -p ConsensusPlot
+        Rscript Modules/Res_explore/getConsensus.R {wildcards.sample}
+        """
