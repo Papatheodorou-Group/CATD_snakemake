@@ -130,7 +130,6 @@ Excluding the initial Snakemake install, conda environments for each module of t
 
  1. Download the pipeline to your directory of choice(also install git-lfs in your system before cloning, you can use conda)
 
-		conda install -c conda-forge git-lfs
 
 
 		git clone https://github.com/Functional-Genomics/CATD_snakemake.git
@@ -157,7 +156,7 @@ If you are running the pipeline for the first time you should use one sample to 
         **pbulkParam:**\
   		pbulkMode: 2  #Different mode for building pbulks\
   		cellCount: 100 #How many cells should be used to create a bulk sample\
-  		nSamples: 1 #How many different samples should be generated #first time only generate one sample\
+  		nSamples: 10 #How many different samples should be generated #first time only generate one sample\
 	 	propVar: 500 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)\
   		sampleCT: 0 #Sampling for cell types allowed or not (1 or 0) (EFFECTIVE IN MODE 2 ONLY)
 	
@@ -181,7 +180,7 @@ If all the environments are included in the first run it will take around 25-30 
 When the job(step 9) finishes all the environments will have been installed and users are ready to run actual experiments and test the pipeline
 
 # Running the pipeline <a name="runningthepipeline"></a>
-**IMPORTANT**:As mentioned above, if running the pipeline for the first time, use one sample only as all the environments are
+**IMPORTANT**:As mentioned above, if running the pipeline for the first time, use very few samples (e.g 10) only as all the environments are
 installed throughout the workflow.
 
 
