@@ -144,7 +144,7 @@ Excluding the initial Snakemake install, conda environments for each module of t
 		make
 
 
-If you are running the pipeline for the first time you should use one sample to run in order for all the environments to be installed fast( each module/method in our pipeline has its own environment. 
+If you are running the pipeline for the first time you should use few samples to run in order for all the environments to be installed fast( each module/method in our pipeline has its own environment. 
 
  4.  Place the input file in the `Input` directory that has been created \
  follow the [link](https://drive.google.com/drive/u/0/folders/14rCp3kxUsT3J4DIDg4mW-1QhlcAikE88) to the example file - use either XinY_4Decon.h5ad or XinY_4Decon_seurat.rds )
