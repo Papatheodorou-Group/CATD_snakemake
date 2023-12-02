@@ -1,0 +1,17 @@
+cff-version:
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Vathrakokoili-Pournara"
+  given-names: "Anna"
+  orcid: 
+- family-names: "Beker"
+  given-names: "Ozgur Yilimaz"
+  orcid:
+- family-names: "Nolte"
+  given-names: "Nadja"
+  orcid:
+title: "CATD snakemake"
+version: v0.2.0
+doi: 10.5281/zenodo.10021677
+date-released: 2023-07-27
+url: "https://github.com/Papatheodorou-Group/CATD_snakemake"
