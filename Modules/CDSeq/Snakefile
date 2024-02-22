@@ -21,7 +21,7 @@
 
 rule CDSeq_run:
     input:
-        getC1(getBulks('{sample}'), '{sample}')
+        getC2(getC1(getBulks('{sample}'), '{sample}'),'{sample}')
 
     output:
         "Output/{sample}_res_CDSeq.rds"
@@ -33,9 +33,12 @@ rule CDSeq_run:
 
     benchmark:
         "Benchmarks/{sample}_CDSeq_benchmark.txt"
+    
+    params: 
+        markers=config['markers']
 
     resources:
         mem_mb=getMB(config['mem_gb']['CDSeq'])
 
     shell:
-        "Rscript Modules/CDSeq/CDSeq_run.R {input} {threads} {output}"
+        "Rscript Modules/CDSeq/CDSeq_run.R {input} {threads} {params.markers}  {output}"

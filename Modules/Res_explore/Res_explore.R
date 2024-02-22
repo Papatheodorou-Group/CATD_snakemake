@@ -34,7 +34,8 @@ files <- lapply(filenames, readRDS) %>% lapply(., function(x) ifelse(is.na(x), 0
 names(files) <- lapply(filenames, function(x) gsub("Output/.*res_(.*).rds", "\\1", x))
 
 
-
+print(files)
+                       
 
 #Process metrics
 for (i in 1:length(metrics))
@@ -84,7 +85,22 @@ for (i in 1:length(metrics))
     R2_s <- lapply(files, function(x) R2(c(as.matrix(P)), c(as.matrix(x))))
     R2_s <- R2_s[order(unlist(R2_s),decreasing=TRUE)]
     saveRDS(R2_s, paste0("Metrics/", sampleName,"_res_r2.rds"))
-  }
-  #Implement more here!
-  )
+  },
+
+  "scor"={
+    scor <- lapply(files, function(x) cor(c(as.matrix(P)), c(as.matrix(x)), method = "spearman"))
+    scor <- scor[order(unlist(scor), decreasing = TRUE)]
+    saveRDS(scor, paste0("Metrics/", sampleName, "_res_scor.rds"))
+},
+   "weighted_rmse"={
+    weights <- 1 / P
+    weights <- as.matrix(weights)
+    weights[is.infinite(weights) | is.nan(weights)] <- 0
+    weighted_rmse <- lapply(files, function(x) sqrt(mean(weights*as.matrix((x - P)^2))))
+    names(weighted_rmse) <- names(files)
+    weighted_rmse <- weighted_rmse[order(unlist(weighted_rmse),decreasing=FALSE)]
+    saveRDS(weighted_rmse, paste0("Metrics/", sampleName, "_res_weighted_rmse.rds"))
+}
+#Implement more here                                                  
+)
 }

@@ -21,7 +21,7 @@
 
 rule elasticNET_run:
     input:
-        getC1(getBulks('{sample}'), '{sample}')
+        getC2(getC1(getBulks('{sample}'), '{sample}'),'{sample}')
 
     output:
         "Output/{sample}_res_elasticNET.rds"
@@ -34,6 +34,9 @@ rule elasticNET_run:
 
     resources:
         mem_mb=getMB(config['mem_gb']['minorOps'])
+    
+    params: 
+        markers=config['markers']
 
     shell:
-        "Rscript Modules/elasticNET/elasticNET_run.R {input} {output}"
+        "Rscript Modules/elasticNET/elasticNET_run.R {input} {params.markers} {output}"

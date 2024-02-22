@@ -21,10 +21,13 @@
 
 rule CIBERSORT_run:
     input:
-        getC1(getBulks('{sample}'), '{sample}')
+        getC2(getC1(getBulks('{sample}'), '{sample}'),'{sample}')
 
     output:
         "Output/{sample}_res_CIBERSORT.rds"
+        
+    params:
+        markers=config['markers']
 
     conda:
         "env.yaml"
@@ -35,7 +38,7 @@ rule CIBERSORT_run:
         "Benchmarks/{sample}_CIBERSORT_benchmark.txt"
 
     resources:
-        mem_mb=getMB(config['mem_gb']['minorOps'])
+        mem_mb=getMB(config['mem_gb']['minorOps'])    
 
     shell:
-        "Rscript Modules/CIBERSORT/CIBERSORT_run.R {input} {output}"
+        "Rscript Modules/CIBERSORT/CIBERSORT_run.R {input} {params.markers} {output}"

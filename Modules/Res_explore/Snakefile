@@ -29,7 +29,7 @@ rule exploreResults:
 
     conda:
         "env.yaml"
-
+        
     params:
         metrics = config['resMetrics'],
         min_p = config['minkowski_p']

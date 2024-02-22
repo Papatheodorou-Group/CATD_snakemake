@@ -5,7 +5,7 @@
 
 suppressMessages(library(debCAM))
 suppressMessages(library(dplyr))
-suppressMessages(library(energy))
+#suppressMessages(library(energy))
 
 
 #Read data
@@ -31,5 +31,8 @@ if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') MGlist <- MGlist[order(m
 res <- redoASest(T, MGlist, maxIter = 50) #Adjust maxIter later
 res <- t(res$Aest)
 
+                                                                                                         
+rownames(res)<- rownames(P)
 #Save and exit
+                                                                                                           
 saveRDS(res, file=filename_O)

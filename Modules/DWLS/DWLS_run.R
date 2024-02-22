@@ -8,7 +8,7 @@ suppressMessages(library(future.apply))
 suppressMessages(library(DWLS))
 suppressMessages(library(energy))
 
-
+set.seed(123)
 
 
 
@@ -36,8 +36,9 @@ rm(common)
 
 #Preprocess
 message("Started running sig...")
-Signature <- buildSignatureMatrixMAST(scdata = C0, id = phenData[,"cellType"], path = scratchDir, diff.cutoff = 0.5, pval.cutoff = 0.01)
-
+#Signature <- buildSignatureMatrixMAST(scdata = C0, id = phenData[,"cellType"], path = scratchDir, diff.cutoff = 0.5, pval.cutoff #= 0.01)
+load("Hrvatin_2018_new_scratch/Sig.RData")
+Signature<-Sig
 
 #Get results and reorder the matrices for correspondence
 res <- future_apply(T,2, function(x){

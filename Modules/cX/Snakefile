@@ -1,0 +1,85 @@
+## Rule index for CIBERSORTX deconv
+##
+## @zgr2788
+##
+##
+## Description:
+## This file includes the rule to run CIBERSORTX with C0 reference.
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+
+
+rule preprocess_run:
+    input:
+        getPhenData(getC0(getBulks('{sample}'), '{sample}'), '{sample}')
+
+    output:
+        ref="Modules/cX/{sample}_res_preprocess_ref_sample.txt",
+        mixture="Modules/cX/{sample}_res_preprocess_mixture.txt"
+
+    conda:
+        "env.yaml"
+        
+    resources:
+        mem_mb=getMB(config['mem_gb']['Bisque'])
+        
+    shell:
+        """
+        Rscript Modules/cX/preprocess_run.R {input} {output.ref} {output.mixture}
+        touch {output.ref} {output.mixture}
+        """
+
+
+rule CIBERSORTX_exec_run:
+    input:
+        ref="Modules/cX/{sample}_res_preprocess_ref_sample.txt",
+        mixture="Modules/cX/{sample}_res_preprocess_mixture.txt",
+        singularity_container="/nfs/research/irene/annavp/fractions_latest.sif"
+
+    output:
+        "Modules/cX/{sample}/CIBERSORTx_Results.txt"
+
+    benchmark:
+        "Benchmarks/{sample}_CIBERSORTX_exec_benchmark.txt"
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['Bisque'])
+
+    shell:
+        """
+        mkdir -p Modules/cX/{wildcards.sample}
+        singularity exec --no-home -c -B Modules/cX//:/src/data -B Modules/cX/{wildcards.sample}//:/src/outdir {input.singularity_container} /src/CIBERSORTxFractions --single_cell TRUE --verbose TRUE --username annavp@ebi.ac.uk --token YOURTOKEN  --refsample {input.ref} --mixture {input.mixture}
+        
+        """          
+        
+rule CIBERSORTX_output_run:
+    input:
+        getPhenData(getC0(getBulks('{sample}'), '{sample}'), '{sample}'),
+        "Modules/cX/{sample}/CIBERSORTx_Results.txt"
+
+    output:
+        "Output/{sample}_res_CIBERSORTX.rds"
+
+    conda:
+        "env.yaml"
+
+    benchmark:
+        "Benchmarks/{sample}_CIBERSORTX_benchmark.txt"
+
+    resources:
+        mem_mb=getMB(config['mem_gb']['Bisque'])
+
+    shell:
+        "Rscript Modules/cX/CIBERSORTX_run.R {input} {output}"
+ 

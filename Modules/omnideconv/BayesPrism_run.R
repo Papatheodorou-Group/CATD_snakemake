@@ -1,10 +1,13 @@
-## Autogenes deconv script
+## BayesPrism deconv script
 ##
 ## @zgr2788
+## @annavpo
 
 
 #Load omnideconv
+#Make sure BayesPrism dependency is installed. 
 suppressMessages(library(omnideconv))
+
 
 #Get args and load files
 args <- commandArgs(trailingOnly = TRUE)
@@ -12,7 +15,8 @@ filename_T <- args[1]
 filename_P <- args[2]
 filename_C0 <- args[3]
 filename_phenData <- args[4]
-filename_O <- args[5]
+cores <- as.numeric(args[5])
+filename_O <- args[6]
 
 T <- readRDS(filename_T)
 P <- readRDS(filename_P)
@@ -28,12 +32,12 @@ rm(common)
 
 #Build sig
 cellTypes <- phenData$cellType
-model <- omnideconv::build_model(C0, cellTypes, bulk_gene_expression = T, method = "autogenes")
-res <- omnideconv::deconvolute(T, signature = model, single_cell_object = C0, method = "autogenes")
+res <- omnideconv::deconvolute(T, signature = NULL, cell_type_annotations=cellTypes, single_cell_object = C0, method = "bayesprism",n_cores=cores)
+
 res[res < 10^-5] <- 0 #Convergence error tolerance = 10^-5
 res <- t(res/rowSums(res))
 
 if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
-saveRDS(res, file="AutogeneS.rds")
+
 #Save and exit
 saveRDS(res, file=filename_O)

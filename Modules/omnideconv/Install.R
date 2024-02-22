@@ -10,15 +10,17 @@
 install.packages("pak",repos = "http://cran.us.r-project.org")
 
 # minimal installation
-suppressMessages(library(pak))
-pak::pkg_install("omnideconv/omnideconv")
+#suppressMessages(library(pak))
+#pak::pkg_install("omnideconv/omnideconv")
 
 # complete installation, including Python dependencies
 suppressMessages(library(pak))
-pak::pkg_install("omnideconv/omnideconv", dependencies = TRUE)
-omnideconv::install_all_python()
+pak::pkg_install("omnideconv/omnideconv")
 
 suppressMessages(library(omnideconv))
+install.packages("e1071", repos="http://R-Forge.R-project.org")
+suppressMessages(library(e1071))
+
 print("Installed omnideconv successfully!")
 
 #Manual

@@ -31,8 +31,9 @@ RemoveBatchEffect <- function(dd,curated.ref.genes,curated.cell.types){
   tmp0=c()
   for(kk in unique(names(curated.cell.types))){
     tmp.vv=which(names(curated.cell.types)==kk)
-    tmp0=cbind(tmp0,apply(curated.ref.genes.br[,tmp.vv],1,median,na.rm=T))
+    tmp0=cbind(tmp0,apply(curated.ref.genes.br[,tmp.vv],1,median,na.rm=TRUE))
   } # takes the median value to collapse reference profile to have 1 profile per cell type
+  message("Finishing")
   curated.ref.genes.agg.br=tmp0
   colnames(curated.ref.genes.agg.br)=unique(names(curated.cell.types))
   #rownames(curated.ref.genes.agg.br)=rownames(curated.ref.genes.br)
@@ -52,10 +53,10 @@ RemoveOutliers <- function(vv, ref.dd, thr.q=0.99){
 }
 
 ##----- Constrained regression method implemented in Abbas et al., 2009 -----##
-getFractions.Abbas <- function(XX,YY,w=NA){
+getFractions.Abbas <- function(XX,YY, w = NA ){
   ss.remove=c()
   ss.names=colnames(XX)
-  while(T){
+  while(TRUE){
     if(length(ss.remove)==0)tmp.XX=XX else{
       if(is.null(ncol(tmp.XX)))return(rep(0,ncol(XX)))
       tmp.XX=tmp.XX[,-ss.remove]

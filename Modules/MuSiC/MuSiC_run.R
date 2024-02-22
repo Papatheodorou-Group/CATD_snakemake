@@ -29,8 +29,8 @@ suppressMessages(library(MuSiC))
 suppressMessages(library(Biobase))
 suppressMessages(library(energy))
 suppressMessages(library(dplyr))
-install.packages('SeuratObject',repos='http://cran.us.r-project.org')
-suppressMessages(library(SeuratObject))
+#install.packages('SeuratObject',repos='http://cran.us.r-project.org')
+#suppressMessages(library(SeuratObject))
 suppressMessages(library(SingleCellExperiment))
 
 
@@ -74,7 +74,7 @@ T <- exprs(T)
 #Get results and reorder the matrices for correspondence
 res <- music_prop(T, C0, clusters = "cellType", samples = "sampleID", markers = NULL, normalize = FALSE, verbose = TRUE)$Est.prop.weighted
 res <- t(res)
-print(str(res))
+
 if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res <- res[order(match(rownames(res), rownames(P))),]
 
 #Save and exit

@@ -31,6 +31,9 @@ files <- lapply(files, function(x) x[order(match(rownames(x), rownames(files[[1]
 
 #Generate combs to iterate over
 combs <- combn(files, 2)
+
+print(head(combs))
+
 colnames(combs) <- combn(names(files), 2, paste0, collapse="@")
 avgDists <- sapply(seq_len(ncol(combs)), function(z)  as.numeric(table(diag(cor(combs[,z][[1]], combs[,z][[2]])) > 0.9)["TRUE"]) )
 #avgDists <- sapply(seq_len(ncol(combs)), function(z)  getAvgDist(combs[,z][[1]], combs[,z][[2]]) )
