@@ -48,7 +48,7 @@ generateBarPlot <- function(files, metric){
     )
 
     #Get plot
-    png(filename = paste0("Plots/",sampleName, "_barplot_", metric, ".png"), width = 1920*3, height = 1080*3, res=300)
+    pdf(file = paste0("Plots/",sampleName, "_barplot_", metric, ".pdf"))
     points <- barplot(df[,1], beside=TRUE, col = viridis(nrow(df), direction = -1), yaxp = y_axp)
     mtext(side=1, line=3, "Methods", font=2,cex=1)
     mtext(side=2, line=3, y_lab, font=2,cex=1)

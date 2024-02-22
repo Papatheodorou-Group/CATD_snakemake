@@ -54,6 +54,6 @@ mat <- t(mat)
 mat[lower.tri(mat)] <- t(mat)[lower.tri(mat)]
 
 #Save plot
-png(filename = paste0("Plots/",sampleName, "_metricsHeatmap.png"), width = 1920*3, height = 1080*3, res=300)
+pdf(file = paste0("Plots/",sampleName, "_metricsHeatmap.pdf"))
 heatmap(mat, col = rev(viridis(256)), scale = "none")
 dev.off()
