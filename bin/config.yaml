@@ -2,7 +2,6 @@
 
 sampleNames: #Enter the part BEFORE file extension (ex. 'data.h5ad' should be entered as 'data')
   - XinY_4Decon
-  - 
 seededRun: 0 #Use if you want this run of the pipeline to be reproducible (0-1)
 realBulk: 0 #Use if you are going to test with real data with known proportions (0-1)
 realBulk-noProp: 0 #Use to get results only if no ground truths are present
@@ -19,6 +18,7 @@ cores:
   DWLS: 16
   debCAM_unsupervised: 30
   scaleTransform: 32
+  BayesPrism: 16
 
 mem_gb: #Will be converted to MB
 
@@ -36,6 +36,9 @@ mem_gb: #Will be converted to MB
   TIMER: 300
   bseqsc: 300
   MOMF: 300
+  BayesPrism: 300
+  CPM: 300
+  Autogenes: 300
 
 
 
@@ -44,8 +47,8 @@ mem_gb: #Will be converted to MB
 pbulkParam:
   pbulkMode: 2  #Different mode for building pbulks
   cellCount: 100  #How many cells should be used to create a bulk sample
-  nSamples: 1  #How many different samples should be generated
-  propVar: 500 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
+  nSamples: 10  #How many different samples should be generated
+  propVar: -1 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
   sampleCT: 0 #Sampling for cell types allowed or not (1 or 0) (EFFECTIVE IN MODE 2 ONLY)
 
 
@@ -67,9 +70,11 @@ pbulkParam:
 #   CLR # NOT WORKING, DO NOT USE
 #   RC
 refgenDgeParam:
-    test_1: 'bimod'
+    test_1: 't'
     test_2: 'wilcox'
     seuratNorm: 'LogNormalize'
+# if markers: TRUE, all reference-based methods(with exception of single-cell methods) run with only markers genes detected from DE analysis "FindMarkers", if markers: FALSE methods run with all the genes
+markers: FALSE
 
 
 #params for scale_transform
@@ -174,7 +179,7 @@ deconMethods:
   - deconf
   - proportionsInAdmixture
   - EpiDISH
-  #- debCAM_unsupervised   # remove if giving too many iterations error
+  - debCAM_marker   # remove if giving too many iterations error
   - CDSeq
   - MuSiC
   - Bisque
@@ -185,6 +190,9 @@ deconMethods:
   - TIMER
   - MOMF
   - Autogenes
+  - CIBERSORTX
+  - BayesPrism
+# - NEWMETHOD
 
 
 
@@ -211,6 +219,8 @@ forceMuSiCRaw: TRUE #MuSiC originally requires raw counts, but can be made FALSE
 #avgcos     (Average cosine similarity, considering each sample as vector of genes)
 #mae         (Mean Absolute Error)
 #R2          (R-squared)
+#scor        (Spearman correlation)
+#weighted_rmse (DWLS) 
 resMetrics:
   - rmse
   - mdist
@@ -219,4 +229,6 @@ resMetrics:
   - avgcos
   - mae
   - r2
+  - scor
+  - weighted_rmse
 minkowski_p: 2

@@ -216,6 +216,8 @@ include: "Modules/bseqsc/Snakefile"
 include: "Modules/CPM/Snakefile"
 include: "Modules/TIMER/Snakefile"
 include: "Modules/omnideconv/Snakefile"
+include: "Modules/cX/Snakefile"
+
 
 #Results metamodule
 include: "Modules/Res_explore/Snakefile"
