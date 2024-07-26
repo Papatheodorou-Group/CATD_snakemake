@@ -137,9 +137,12 @@ Excluding the initial Snakemake install, conda environments for each module of t
 
  3. Set up Conda environment with snakemake, pipeline strictly uses [mamba](https://github.com/mamba-org/mamba) for much faster environment setup.
 
-		mamba create -n snakemake snakemake
+		mamba create -c conda-forge -c bioconda -n snakemake snakemake=7.14.0
+#downgrade tabulate=0.8.10 :
+		mamba install tabulate=0.8.10
 
- 4. Build the pipeline.
+
+ 5. Build the pipeline.
 
 		make
 
