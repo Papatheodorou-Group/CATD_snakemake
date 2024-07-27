@@ -22,6 +22,7 @@ T <- readRDS(filename_T)
 P <- readRDS(filename_P)
 C0 <- readRDS(filename_C0)
 phenData <- readRDS(filename_phenData)
+print(filename_O)
 
 #Match genes in rows for both references
 common <- intersect(rownames(C0), rownames(T))
@@ -49,9 +50,4 @@ message("CPM running DONE")
 
 if (filename_P != 'Modules/Psuedobulk/dummy_props.rds') res = res[order(match(rownames(res), rownames(P))),]
 
-saveRDS(res, file="Finotelo_markers_CPM.rds")
-#Save and exit
 saveRDS(res, file=filename_O)
-
-message("CPM all ok")
-
