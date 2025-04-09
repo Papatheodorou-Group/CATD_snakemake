@@ -14,7 +14,7 @@ plan('multisession', workers = as.numeric(args[3])) #Paralellism
 
 
 T <- readRDS(filename_T)
-filename_T <- sub("Input/Psuedobulks", "Input/Normalized_tables", filename_T)
+filename_T <- sub("Input/Pseudobulks", "Input/Normalized_tables", filename_T)
 
 
 #Preprocess matrices to avoid errorshaving multiple snakefiles in one directory

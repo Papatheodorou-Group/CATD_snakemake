@@ -231,7 +231,7 @@ Uses **two** single-cell references to generate the pseudobulks and references f
 -	The **levels** (i.e unique list) of cell types must be the **same** in both references provided.
 
 ### Inputs:
-	Input/Cell_splits/{sampleName}_gen.rds		(Will be used to generate psuedobulks)				
+	Input/Cell_splits/{sampleName}_gen.rds		(Will be used to generate pseudobulks)				
 	Input/Cell_splits/{sampleName}_C0.rds    	(Will be used to generate references)
 
 ### Example data:
@@ -283,8 +283,8 @@ Uses **one** reference single cell matrix with **user-defined** bulks and **know
 
 	AND
 
-	Input/Psuedobulks/{sampleName}_pbulks.rds
-	Input/Psuedobulks/{sampleName}_props.rds
+	Input/Pseudobulks/{sampleName}_pbulks.rds
+	Input/Pseudobulks/{sampleName}_props.rds
 
 
 The first two options will only use **half** of the data to generate references. The third will use **all** of the data to generate the reference. Alongside the reference, you need to input the pseudo-bulks inside the folder specified under those names.
@@ -301,7 +301,7 @@ Same as self-reference.
 ### Instructions
 Same as self-reference, except in the **4th** step, note the following directory:
 
-	Input/Psuedobulks
+	Input/Pseudobulks
 
 This is where the bulks and the ground truth proportions should go(FinotelloB_WilkR_pbulks.rds & FinotelloB_WilkR_props.rds). Also, **enable realBulk in config.yaml** \
 If you wish to use all the data for the reference, go to:
@@ -367,7 +367,7 @@ The full list of jobs looks like this:
 	elasticNET_run                    1              1              1
 	exploreBenchmarks                 1              1              1
 	exploreResults                    1              1              1
-	generatePsuedobulks               1             32             32
+	generatePseudobulks               1             32             32
 	generateReferences                1             32             32
 	lasso_run                         1              1              1
 	proportionsInAdmixture_run        1              1              1

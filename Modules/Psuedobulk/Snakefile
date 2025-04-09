@@ -6,7 +6,7 @@
 ## Description:
 ##
 ## Takes a SeuratObject as input ('{input}_gen.rds' as part of pipeline) and
-## generates psuedobulks with the given parameters. If reproducability is
+## generates pseudobulks with the given parameters. If reproducability is
 ## desired, the seeded version of the rule should be used, which is essentially
 ## the same code with a seed of '42'.
 ##
@@ -19,13 +19,13 @@
 ##
 ##
 
-rule generatePsuedobulks:
+rule generatePseudobulks:
     input:
         'Input/Cell_splits/{sample}_gen.rds'
 
     output:
-        'Input/Psuedobulks/{sample}_pbulks.rds',
-        'Input/Psuedobulks/{sample}_props.rds'
+        'Input/Pseudobulks/{sample}_pbulks.rds',
+        'Input/Pseudobulks/{sample}_props.rds'
 
     params:
         mode = config['pbulkParam']['pbulkMode'],
@@ -47,18 +47,18 @@ rule generatePsuedobulks:
 
     shell:
         """
-        mkdir -p Input/Psuedobulks
+        mkdir -p Input/Pseudobulks
         Rscript Modules/Psuedobulk/randomGen.R Input/Cell_splits/{wildcards.sample}_gen.rds {params} {threads}
         """
 
 
-rule generateSeededPsuedobulks:
+rule generateSeededPseudobulks:
     input:
         'Input/Cell_splits/{sample}_gen_seeded.rds'
 
     output:
-        'Input/Psuedobulks/{sample}_pbulks_seeded.rds',
-        'Input/Psuedobulks/{sample}_props_seeded.rds'
+        'Input/Pseudobulks/{sample}_pbulks_seeded.rds',
+        'Input/Pseudobulks/{sample}_props_seeded.rds'
 
     params:
         mode = config['pbulkParam']['pbulkMode'],
@@ -80,6 +80,6 @@ rule generateSeededPsuedobulks:
 
     shell:
         """
-        mkdir -p Input/Psuedobulks
+        mkdir -p Input/Pseudobulks
         Rscript Modules/Psuedobulk/randomGen_seeded.R Input/Cell_splits/{wildcards.sample}_gen_seeded.rds {params} {threads}
         """

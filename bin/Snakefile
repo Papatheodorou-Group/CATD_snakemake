@@ -91,7 +91,7 @@ def getBulks(sampleName):
         filename_T = str("Input/Normalized_tables/" + sampleName + "_pbulks" + seedStatus + st + ".rds")
 
         if not config['realBulk-noProp']:
-            filename_P = str("Input/Psuedobulks/" + sampleName + "_props" + seedStatus + ".rds")
+            filename_P = str("Input/Pseudobulks/" + sampleName + "_props" + seedStatus + ".rds")
 
         inList.append(filename_T)
 
