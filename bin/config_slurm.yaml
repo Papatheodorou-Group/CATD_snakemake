@@ -1,0 +1,236 @@
+#Input file name - to be implemented fully later on
+
+sampleNames: #Enter the part BEFORE file extension (ex. 'data.h5ad' should be entered as 'data')
+  - XinY_4Decon
+seededRun: 0 #Use if you want this run of the pipeline to be reproducible (0-1)
+realBulk: 0 #Use if you are going to test with real data with known proportions (0-1)
+realBulk-noProp: 0 #Use to get results only if no ground truths are present
+getConsensus: 0 #Use to get consensus of FARDEEP, DWLS and EpiDISH as final output, make sure to include these three methods under deconMethods
+
+
+cores:
+  pbulks: 32
+  c_gen: 32
+  CDSeq: 16
+  CPM: 16
+  CIBERSORT: 3
+  bseqsc: 3
+  DWLS: 16
+  debCAM_unsupervised: 30
+  scaleTransform: 32
+  BayesPrism: 16
+
+mem_gb: #Will be converted to MB
+
+  resultsExp: 5 #Only needed at last step
+  minorOps: 50 #Will be used for all operations that require relatively less memory
+  pbulks: 300
+  scaleTransform: 300
+  c_gen: 300
+  CDSeq: 300
+  Bisque: 300
+  CPM: 300
+  DWLS: 300
+  MuSiC: 300
+  SCDC: 300
+  TIMER: 300
+  bseqsc: 300
+  MOMF: 300
+  BayesPrism: 300
+  CPM: 300
+  Autogenes: 300
+
+time:
+    minorOps: "7-00:00:00"
+    majorOps: "7-00:00:00"
+
+
+#pbulk parameters below
+pbulkParam:
+  pbulkMode: 2  #Different mode for building pbulks
+  cellCount: 100  #How many cells should be used to create a bulk sample
+  nSamples: 10  #How many different samples should be generated
+  propVar: -1 #Variances inbetween proportions, check vignette (EFFECTIVE IN MODE 2 ONLY, enter negative value to switch to min max prop mode)
+  sampleCT: 0 #Sampling for cell types allowed or not (1 or 0) (EFFECTIVE IN MODE 2 ONLY)
+
+
+
+
+#Available tests in Seurat:
+#   "wilcox"
+#   "bimod"
+#   "roc"
+#   "t"
+#   "negbinom"
+#   "poisson"
+#   "LR"
+#   "MAST"
+#   "DESeq2"
+
+#Normalizations available in Seurat:
+#   LogNormalize
+#   CLR # NOT WORKING, DO NOT USE
+#   RC
+refgenDgeParam:
+    test_1: 't'
+    test_2: 'wilcox'
+    seuratNorm: 'LogNormalize'
+# if markers: TRUE, all reference-based methods(with exception of single-cell methods) run with only markers genes detected from DE analysis "FindMarkers", if markers: FALSE methods run with all the genes
+markers: FALSE
+
+
+#params for scale_transform
+
+#Transform
+#   none
+#   log
+#   sqrt
+#   vst (requires high memory)
+
+
+#scaleC
+#   none
+#   column
+#   row
+#   mean
+#   column_z-score
+#   global_z-score
+#   column_min-max
+#   global_min-max
+#   LogNormalize
+#   QN
+#   TMM
+#   SCTransform (sc-specific)
+#   scater (sc-specific)
+#   scran (sc-specific)
+#   Linnorm (sc-specific)
+
+#scaleT
+#   none
+#   column
+#   row
+#   mean
+#   column_z-score
+#   global_z-score
+#   column_min-max
+#   global_min-max
+#   LogNormalize
+#   QN
+#   TMM
+#   UQ
+#   median_ratios
+
+stParam:
+  scaleC: SCTransform
+  scaleT: TMM
+  transform: none
+  scaleFirst: 1 #1 = scale first, 0 = transform first
+
+
+### METHODS ###
+## Bulk
+# CIBERSORT
+# DeconRNASeq
+# OLS
+# NNLS
+# FARDEEP
+# RLR
+# DCQ
+# elasticNET
+# lasso
+# ridge
+# EPIC
+# DSA
+# ssKL
+# ssFrobenius
+# dtangle
+# deconf
+# proportionsInAdmixture
+# EpiDISH
+# debCAM_unsupervised
+# debCAM_marker
+# debCAM_C1
+# CDSeq
+
+## SC
+# MuSiC
+# Bisque
+# DWLS
+# SCDC
+# bseqsc
+# CPM
+# TIMER
+
+# Add or delete//comment the methods below to run them.
+deconMethods:
+  - CIBERSORT
+  - DeconRNASeq
+  - OLS
+  - NNLS
+  - FARDEEP
+  - RLR
+  - DCQ
+  - elasticNET
+  - lasso
+  - ridge
+  - EPIC
+  - DSA
+  - ssKL
+  - ssFrobenius
+  - dtangle
+  - deconf
+  - proportionsInAdmixture
+  - EpiDISH
+  - debCAM_marker   # remove if giving too many iterations error
+  - CDSeq
+  - MuSiC
+  - Bisque
+  - DWLS
+  - SCDC
+  - bseqsc
+  - CPM
+  - TIMER
+  - MOMF
+  - Autogenes
+  - CIBERSORTX
+  - BayesPrism
+# - NEWMETHOD
+
+
+
+#Unsupervised params (DEPRECATED):
+unsupervisedParams:
+  expectedTypes: 9
+
+#Marker selection params (DEPRECATED)
+markerParams:
+  topN: 4
+
+#Force MuSiC to run with raw counts
+forceMuSiCRaw: TRUE #MuSiC originally requires raw counts, but can be made FALSE to test for susceptibility to normalization
+
+
+
+### RESULTS ###
+
+## Implemented metrics:
+#rmse        (Root Mean Squared Error)
+#mdist      (Minkowski Distance, use p=2 for euclidean)
+#dcor        (Distance correlation)
+#pcor        (Pearson correlation)
+#avgcos     (Average cosine similarity, considering each sample as vector of genes)
+#mae         (Mean Absolute Error)
+#R2          (R-squared)
+#scor        (Spearman correlation)
+#weighted_rmse (DWLS) 
+resMetrics:
+  - rmse
+  - mdist
+  - dcor
+  - pcor
+  - avgcos
+  - mae
+  - r2
+  - scor
+  - weighted_rmse
+minkowski_p: 2
