@@ -16,11 +16,11 @@ nSamples=$4
 propVar=$5
 sampleCT=$6
 
-files=$(ls Input/Psuedobulks | grep $sampleName)
+files=$(ls Input/Pseudobulks | grep $sampleName)
 for f in $files
 do
   fname=$(echo "$f" | sed "s@.rds@@g")
-  cp "Input/Psuedobulks/$f" "${dir}/Pseudobulks/${fname}_${mode}_${cellCount}_${nSamples}_${propVar}_${sampleCT}.rds"
+  cp "Input/Pseudobulks/$f" "${dir}/Pseudobulks/${fname}_${mode}_${cellCount}_${nSamples}_${propVar}_${sampleCT}.rds"
 done
 
 

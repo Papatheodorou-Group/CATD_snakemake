@@ -48,18 +48,18 @@ Please use the [issue tracker](https://github.com/Functional-Genomics/CATD_snake
 
 ## Overview <a name="overview"></a>
 
-The CATD pipeline is a benchmarking pipeline meant to facilitate the assessment of cell-type deconvolution methods(29 now) across different simulation scenarios in a standardised way. It also allows the deconvolution of real bulk samples with many user-unput parameters so that users can deconvolute their own in-house data following our proporsed guidelines.
+The CATD pipeline is a benchmarking pipeline meant to facilitate the assessment of cell-type deconvolution methods (29 now) across different simulation scenarios in a standardised way. It also allows the deconvolution of real bulk samples with many user-unput parameters so that users can deconvolute their own in-house data following our proposed guidelines.
 The pipeline includes:
 * Pseudobulk generation methods that allow to create diverse bulk samples and compare deconvolution methods across different scenarios.
 * 17 normalization methods implemented in the pipeline for the normalization of the input single-cell reference and the (pseudo)bulk samples
 * 4 transformation methods implemented
-* 9 DE tests for the selection of marker genes from single-cell reference data(Seurat)
+* 9 DE tests for the selection of marker genes from single-cell reference data (Seurat)
 * 29 deconvolution methods
 * 7 metrics to assess the results when we test deconvolution methods on pseudo-bulks or when ground truth proportions from real data are available.
 
-For more details check our [preprint](https://www.biorxiv.org/content/10.1101/2023.01.19.523443v1): 
+For more details check our publication in [Bioinformatics Advances](https://doi.org/10.1093/bioadv/vbae048): 
 
-Vathrakokoili Pournara, A., Miao, Z., Beker, O. Y., Brazma, A. & Papatheodorou, I. Power analysis of cell-type deconvolution methods across tissues. http://biorxiv.org/lookup/doi/10.1101/2023.01.19.523443 (2023) doi:10.1101/2023.01.19.523443.
+Vathrakokoili Pournara, A., Miao, Z., Beker, O. Y., Brazma, A. & Papatheodorou, I. CATD: a reproducible pipeline for selecting cell-type deconvolution methods across tissues https://doi.org/10.1093/bioadv/vbae048 (2024) doi:10.1093/bioadv/vbae048.
 
 ## Repo contents <a name="repocontents"></a>
 
@@ -135,19 +135,19 @@ Excluding the initial Snakemake install, conda environments for each module of t
 		git clone https://github.com/Functional-Genomics/CATD_snakemake.git
 
 
- 3. Set up Conda environment with snakemake, pipeline strictly uses [mamba](https://github.com/mamba-org/mamba) for much faster environment setup.
+ 2. Set up Conda environment with snakemake, pipeline strictly uses [mamba](https://github.com/mamba-org/mamba) for much faster environment setup.
 
 		mamba create -c conda-forge -c bioconda -n snakemake snakemake=7.14.0
 #downgrade tabulate=0.8.10 :
 		mamba install tabulate=0.8.10
 
 
- 5. Build the pipeline.
+ 3. Build the pipeline.
 
 		make
 
 
-If you are running the pipeline for the first time you should use few samples to run in order for all the environments to be installed fast( each module/method in our pipeline has its own environment. 
+If you are running the pipeline for the first time you should use few samples to run in order for all the environments to be installed fast (each module/method in our pipeline has its own environment. 
 
  4.  Place the input file in the `Input` directory that has been created \
  follow the [link](https://drive.google.com/drive/u/0/folders/14rCp3kxUsT3J4DIDg4mW-1QhlcAikE88) to the example file - use either XinY_4Decon.h5ad or XinY_4Decon_seurat.rds )
@@ -231,7 +231,7 @@ Uses **two** single-cell references to generate the pseudobulks and references f
 -	The **levels** (i.e unique list) of cell types must be the **same** in both references provided.
 
 ### Inputs:
-	Input/Cell_splits/{sampleName}_gen.rds		(Will be used to generate psuedobulks)				
+	Input/Cell_splits/{sampleName}_gen.rds		(Will be used to generate pseudobulks)				
 	Input/Cell_splits/{sampleName}_C0.rds    	(Will be used to generate references)
 
 ### Example data:
@@ -283,8 +283,8 @@ Uses **one** reference single cell matrix with **user-defined** bulks and **know
 
 	AND
 
-	Input/Psuedobulks/{sampleName}_pbulks.rds
-	Input/Psuedobulks/{sampleName}_props.rds
+	Input/Pseudobulks/{sampleName}_pbulks.rds
+	Input/Pseudobulks/{sampleName}_props.rds
 
 
 The first two options will only use **half** of the data to generate references. The third will use **all** of the data to generate the reference. Alongside the reference, you need to input the pseudo-bulks inside the folder specified under those names.
@@ -301,7 +301,7 @@ Same as self-reference.
 ### Instructions
 Same as self-reference, except in the **4th** step, note the following directory:
 
-	Input/Psuedobulks
+	Input/Pseudobulks
 
 This is where the bulks and the ground truth proportions should go(FinotelloB_WilkR_pbulks.rds & FinotelloB_WilkR_props.rds). Also, **enable realBulk in config.yaml** \
 If you wish to use all the data for the reference, go to:
@@ -367,7 +367,7 @@ The full list of jobs looks like this:
 	elasticNET_run                    1              1              1
 	exploreBenchmarks                 1              1              1
 	exploreResults                    1              1              1
-	generatePsuedobulks               1             32             32
+	generatePseudobulks               1             32             32
 	generateReferences                1             32             32
 	lasso_run                         1              1              1
 	proportionsInAdmixture_run        1              1              1

@@ -1,5 +1,5 @@
 prep : bin/getDag.sh bin/runPip.sh bin/basicSetup.sh bin/Snakefile bin/config.yaml
-	@mkdir -p Input Input/Psuedobulks Input/Cell_splits && \
+	@mkdir -p Input Input/Pseudobulks Input/Cell_splits && \
 		cp bin/getDag.sh bin/runPip.sh bin/basicSetup.sh bin/Snakefile bin/config.yaml . && \
 		bash basicSetup.sh && \
 		rm basicSetup.sh

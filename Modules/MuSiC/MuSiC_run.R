@@ -48,7 +48,7 @@ if (!force_raw)
     message("WARNING: MuSiC requires RAW counts to run correctly.\nIf you did not intend to run MuSiC with scaling/transformations applied, set\n\n'force_raw = TRUE'\n\nin config.yaml.")
   } else {
     message("MuSiC is running with RAW counts...")
-    filename_T <- filename_T %>% sub("Normalized_tables", "Psuedobulks" , .) %>% sub("_scaled_transformed", "", .) %>% sub("_transformed_scaled", "", .)
+    filename_T <- filename_T %>% sub("Normalized_tables", "Pseudobulks" , .) %>% sub("_scaled_transformed", "", .) %>% sub("_transformed_scaled", "", .)
     filename_C0 <- filename_C0 %>% sub("Normalized_tables", "Cell_splits", .) %>% sub("_scaled_transformed", "", .) %>% sub("_transformed_scaled", "", .)
   }
 

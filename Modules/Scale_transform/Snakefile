@@ -24,7 +24,7 @@ rule scaleTransform_T_C:
     input:
         C_table = 'Input/References/{sample}_C0.rds',
         C_phenData = 'Input/References/{sample}_phenData.rds',
-        T_table = 'Input/Psuedobulks/{sample}_pbulks.rds'
+        T_table = 'Input/Pseudobulks/{sample}_pbulks.rds'
 
     output:
         'Input/Normalized_tables/{sample}_pbulks_scaled_transformed.rds',
@@ -60,7 +60,7 @@ rule transformScale_T_C:
     input:
         C_table = 'Input/References/{sample}_C0.rds',
         C_phenData = 'Input/References/{sample}_phenData.rds',
-        T_table = 'Input/Psuedobulks/{sample}_pbulks.rds'
+        T_table = 'Input/Pseudobulks/{sample}_pbulks.rds'
 
     output:
         'Input/Normalized_tables/{sample}_pbulks_transformed_scaled.rds',
@@ -100,7 +100,7 @@ rule scaleTransformSeeded_T_C:
     input:
         C_table = 'Input/References/{sample}_C0_seeded.rds',
         C_phenData = 'Input/References/{sample}_phenData_seeded.rds',
-        T_table = 'Input/Psuedobulks/{sample}_pbulks_seeded.rds'
+        T_table = 'Input/Pseudobulks/{sample}_pbulks_seeded.rds'
 
     output:
         'Input/Normalized_tables/{sample}_pbulks_seeded_scaled_transformed.rds',
@@ -136,7 +136,7 @@ rule transformScaleSeeded_T_C:
     input:
         C_table = 'Input/References/{sample}_C0_seeded.rds',
         C_phenData = 'Input/References/{sample}_phenData_seeded.rds',
-        T_table = 'Input/Psuedobulks/{sample}_pbulks_seeded.rds'
+        T_table = 'Input/Pseudobulks/{sample}_pbulks_seeded.rds'
 
     output:
         'Input/Normalized_tables/{sample}_pbulks_seeded_transformed_scaled.rds',

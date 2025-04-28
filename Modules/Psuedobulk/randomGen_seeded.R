@@ -47,7 +47,7 @@ tryCatch(
 set.seed(42)
 
 T_prep <- readRDS(filename)
-filename <- sub("Input/Cell_splits", "Input/Psuedobulks", filename)
+filename <- sub("Input/Cell_splits", "Input/Pseudobulks", filename)
 
 #set.seed(42)
 
