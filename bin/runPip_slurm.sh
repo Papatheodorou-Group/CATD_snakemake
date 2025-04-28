@@ -6,7 +6,7 @@
 #SBATCH --time=7-00:00:00
 #SBATCH --cpus-per-task=4
 
-condaDir=""
+condaDir="Run basicSetup.sh to configure"
 
 source $condaDir
 conda activate snakemake
