@@ -128,7 +128,7 @@ Excluding the initial Snakemake install, conda environments for each module of t
 
 ### Instructions 
 
- 1. Download the pipeline to your directory of choice(also install git-lfs in your system before cloning, you can use conda)
+ 1. Download the pipeline to your directory of choice (also install git-lfs in your system before cloning, you can use conda)
 
 
 
@@ -166,7 +166,7 @@ If you are running the pipeline for the first time you should use few samples to
  6. **(Optional)** Run `getDag.sh` to generate the updated DAG after adjusting config. \
 	This will output a dag.png where you can observe the jobs that will be executed
 
- 7.  **(Optional)** If on cluster set up cluster profile if you haven't, instructions available [here](https://github.com/Snakemake-Profiles/lsf).
+ 7.  **(Optional)** If on cluster set up cluster profile if you haven't, instructions available for lsf [here](https://github.com/Snakemake-Profiles/lsf) and for slurm [here](https://github.com/Snakemake-Profiles/slurm).
  
  8. **(Optional)** Dry run: 
  
