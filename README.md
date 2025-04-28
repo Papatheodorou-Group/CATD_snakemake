@@ -174,7 +174,10 @@ If you are running the pipeline for the first time you should use few samples to
 	
 	`snakemake -n`
 	
- 9. Run the pipeline using `bsub < runPip.sh` (LSF) or through `snakemake --use-conda --cores [N]` if on local.
+ 9. Run the pipeline:
+ - LSF scheduler using `bsub < runPip.sh` 
+ - SLURM scheduler using `sbatch  --mem=10G   --time=7-00:00:00 runPip_slurm.sh`
+ - on local `snakemake --use-conda --cores [N]` 
 
 
 ### Time <a name="Time"></a>
